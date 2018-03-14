@@ -158,16 +158,51 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
                                     <i class="now-ui-icons location_world"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <?php
+                                if($record_dat['notif']!=0){
+                                    if(isset($record_dat['events'])){
+                                        $i=1;
+                                        foreach($record_dat['events'] as $e){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/schedule">
+                                                    Event no.'.$i.': '.$e['title'].', Desc:'.$e['description'].'
+                                                    </a>
+                                                ';
+                                            $i++;
+                                        }
+                                    }
+
+                                    if(isset($record_dat['items'])){
+                                        foreach($record_dat['items'] as $item){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/inventory" >
+                                                    Item #'.$item['itemid'].': '.$item['item_desc'].' has 0 quantity left!
+                                                    </a>
+                                                ';
+
+                                        }
+                                    }
+                                }
+
+
+                                    else {
+
+
+
+
+
+                                            echo    '<a class="dropdown-item">No new notification</a>
+
+
+                                            ';
+                                    }
+
+                                ?>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -213,7 +248,6 @@
                 <div id="toShow" class="spanhidden"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Please enter start date</div>
             </div>            
             <div class="col-md-2 col-sm-2">
-                <button type="reset" class="button" style="background-color:#f2f2f2;color:#404040;">Cancel</button>
                 <button type="button" onclick="realTimeSalesChart()" class="button">Save</button>
             </div>
             <div class="col-md-2 col-sm-2"></div>
