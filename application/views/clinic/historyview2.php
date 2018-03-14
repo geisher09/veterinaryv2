@@ -133,7 +133,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h2 class="card-title">Transactions</h2>
+                                <h4 class="card-title">Transactions</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -235,7 +235,6 @@
     <script>
 function myFunction() {
     location.reload();
-    alert('hi');
 }
 </script>
 </html>

@@ -41,9 +41,15 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
     }
-    input[type='text']{
-        background: url(<?php echo base_url('assets/images/calendar.png');?>) no-repeat;
-        background-position: 97% 3px;
+    input[type='text']#startdate{
+        background: url(<?php echo base_url('assets/img/calendar.png');?>) no-repeat;
+        background-position: 95% 3px;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+    input[type='text']#enddate{
+        background: url(<?php echo base_url('assets/img/calendar.png');?>) no-repeat;
+        background-position: 95% 3px;
         padding-left: 10px;
         cursor: pointer;
     }
@@ -189,15 +195,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Sales</h2>
-                            </div>
                             <div class="card-body">
     <div class="btn-group" style="margin-left:50px;">
 	    <button type="button" class="button" onclick="realTimeSalesChart()">Weekly</button>
 	    <button type="button" class="button" onclick="monthlySalesChart()">Monthly</button>
 	    <button type="button" class="button" onclick="yearlySalesChart()">Yearly</button>
-	  </div>
+    </div>
 
 	<div id="chart-container" style="margin-top:-40px;">
 			<canvas id="mycanvas"></canvas>
@@ -206,10 +209,12 @@
 		<div id="chart-date" class="row salesDate" >
             <div class="col-md-2 col-sm-2"></div>
             <div class="col-md-3 col-sm-3">
-				<label>Start date:</label><input type="text" class="form-control" id="startdate" name="startdate" />
+				<label style="font-size:18px;color:#595959;">Start date:</label>
+                <input type="text" class="form-control" id="startdate" name="startdate" />
             </div>
             <div class="col-md-3 col-sm-3">
-				<label>End date:</label><input type="text" class="form-control" id="enddate" name="enddate" disabled="disabled" />
+				<label style="font-size:18px;color:#595959;">End date:</label>
+                <input type="text" class="form-control" id="enddate" name="enddate" disabled="disabled" />
                 <div id="toShow" class="spanhidden"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Please enter start date</div>
             </div>            
             <div class="col-md-2 col-sm-2">
@@ -350,7 +355,8 @@ function realTimeSalesChart(){
 								position : "top",
 								text : "Sales Chart",
 								fontSize : 45,
-                                fontFamily : "Arvo",
+                                fontFamily : "Montserrat",
+                                fontWeight : "700",
 								fontColor : "#2471A3"
 							},
 							legend : {

@@ -187,8 +187,7 @@
                                                 <td style="text-align:center;"><?php echo $client['pets']; ?></td>
                                                 <td style="text-align:center; width:260px;">    
                                                 <?php $c=$client['clientid'];?> 
-                                                <b class="btn viewdetailsbtn" style="font-size:15px;" id="<?php echo $c;?>" type="button" onclick="lol(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true">
-                                                <span class="tooltiptext2">View Details</span></span></b>
+                                                <b class="btn viewdetailsbtn" style="font-size:15px;" id="<?php echo $c;?>" type="button" onclick="lol(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -213,9 +212,9 @@
       ?>
       <!-- CHRSTNV validation-->
       <div class="modal-content registerModal">
-        <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);"><!--background-color:rgba(128, 191, 255,0.9)-->
+        <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+          <h3 class="modal-title" style="font-size:30px;margin:0px auto;"><b>NEW CLIENT FORM</b></h3>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title text-center" style="font-size:30px;"><b>NEW CLIENT FORM</b></h3>
         </div>
         <div class="modal-body" style="padding:60px;padding-top:0px;">
                 <br/>
@@ -232,7 +231,7 @@
                 <hr />
               <div class="newClientboxHead"><h3 class="text-center"><b>Owner's Info</b></h3></div>
             <div class="newClientbox"> 
-                <div class="form-group" >
+                <div class="form-group row" >
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="name">Name:</label>
                   <div class="col-sm-8 col-md-8 " id="CNerror">
@@ -245,7 +244,7 @@
                         
                     </div>  
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="address">Address:</label>
                   <div class="col-sm-8 col-md-8" id="CAerror">          
@@ -258,7 +257,7 @@
                 
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="contact">Contact #:</label>
                   <div class="col-sm-8 col-md-8" id="CCerror">          
@@ -271,7 +270,7 @@
              
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="email">E-mail:</label>
                   <div class="col-sm-8 col-md-8" id="CEerror">          
@@ -287,7 +286,7 @@
             </div> 
             <div class="newClientboxHead"><h3 class="text-center"><b>Pet's Info</b></h3></div>
             <div class="newClientbox">
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="petname">Name:</label>
                   <div class="col-sm-8 col-md-8" id="CPerror">
@@ -300,7 +299,7 @@
              
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="petbreed">Breed:</label>
                   <div class="col-sm-8 col-md-8" id="CBerror">
@@ -313,7 +312,7 @@
         
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-3 col-md-3" for="markings">Color/Markings:</label>
                   <div class="col-sm-7 col-md-7" id="CPerror">
@@ -326,7 +325,7 @@
 
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="species">Species:</label>
                   <div class="col-sm-8 col-md-8" id="CSerror">
@@ -339,7 +338,7 @@
         
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="birthday">Birthday:</label>
                   <div class="col-sm-8 col-md-8" id="CDerror">
@@ -352,20 +351,16 @@
                 
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="sex">Sex:</label>
                   <div class="col-sm-8 col-md-8">
-                    <div class="radio">
-                    <label style="font-weight:400;font-size:16px;">
-                      <input type="radio" name="sex" value="m">Male
+                    <label style="font-weight:400;font-size:16px;cursor:pointer;">
+                      <input type="radio" name="sex" value="m"> Male
+                    </label><br/>
+                    <label style="font-weight:400;font-size:16px;cursor:pointer;">
+                      <input type="radio" name="sex" value="f"> Female
                     </label>
-                    </div>
-                    <div class="radio">
-                    <label style="font-weight:400;font-size:16px;">
-                      <input type="radio" name="sex" value="f">Female
-                    </label>
-                    </div>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
                 </div>
@@ -373,7 +368,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="submit" id="sbmtClient" class="btn btn-primary">Save</button>
+          <button type="submit" id="sbmtClient" class="btn btn-info">Save</button>
               </form>
         </div>
         <?php form_close();?>
@@ -389,13 +384,10 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                
                 <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
                 <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
-                 <!-- <button id="mytab"  class="tablink btn btn-info"  onclick="">Visit Detailsss</button>  -->
                 <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory'); " >Add History</button>
-                    
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
         
             <div class="modal-body">
@@ -514,80 +506,109 @@
                 </div>
                     
                 <div class="container-fluid window" id="addPet">
-                    <p class="lead text-center" style="font-size:32px; font-family:'Arvo'; color:#2471A3;">Add Pet</p>
-                    <hr />
-                    <div class="col-md-2"></div>
-                    <form></form>
-                    <?php echo form_open('vetclinic/savepet', ['class'=>'form-horizontal','id'=>'addPetForm']); ?>
-                    <div class="col-md-8">
-                            <div class="form-group" id="Perror">
-                                <span style="white-space: nowrap">
-                                <label for="">Pet Name:</label>
-                                <input type="text" class="form-control" id="Mypetname" name="pname" />
-                                <p id="Peterror" class="valerror"></p>
-                                </span>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="hidden" id="addpetclientno" name="addpetclientno"/>
-                            </div>
-
-                            <div class="form-group" id="Terror">
-                                <label for="">Species:</label>
-                                <input type="text" class="form-control" id="addpetype" name="species"/>
-                                <p id="Typeerror" class="valerror"></p>
-                            </div>
-                            
-                            <div class="form-group" id="Berror">
-                                <label for="">Breed:</label>
-                                <input type="text" class="form-control" id="addpetbreed" name="breed"/>
-                                <p id="Breerror" class="valerror"></p>
-                            </div>
-                            
-                            <div class="form-group" id="Derror">
-                                <label for="">Birthday:</label>
-                                <input type="date" class="form-control" id="addpetbday" name="birthday"/>
-                                <p id="Bdayerror" class="valerror"></p>
-                            </div>  
-                            
-                            <div class="form-group" id="Merror">
-                                <label for="">Markings:</label>
-                                <input type="text" class="form-control" id="addpetmarkings" name="markings"/>
-                                <p id="Markerror" class="valerror"></p>
-                            </div>
-                        
-                            <div class="form-group">
-                                <label class=" col-sm-3" for="sex">Sex:</label>
-                                  <div class="col-sm-8">
-                                    <label class="radio-inline">
-                                      <input type="radio" id="addpetsex" name="sex" value="m" checked>Male
+					<p class="lead text-center" style="font-size:32px; font-family:'Montserrat'; color:#2471A3;">Add Pet</p>
+					<hr />
+					<form></form>
+					<?php echo form_open('vetclinic/savepet', ['class'=>'form-horizontal','id'=>'addPetForm']); ?>
+                        <br/>
+							<div class="form-group row" id="Perror">
+<!--								<span style="white-space: nowrap">-->
+                                <div class=" col-sm-1 col-md-1"></div>
+								<label class=" col-sm-2 col-md-2" for="">Pet Name:</label>
+                                <div class="col-sm-8 col-md-8">
+								    <input type="text" class="form-control" id="Mypetname" name="pname" />
+                                </div>
+								<p id="Peterror" class="valerror"></p>
+<!--								</span>-->
+                                <div class=" col-sm-1 col-md-1"></div>
+							</div>
+							
+							<div class="form-group">
+								<input type="hidden" id="addpetclientno" name="addpetclientno"/>
+							</div>
+                        <br/>
+							<div class="form-group row" id="Terror">
+                                <div class=" col-sm-1 col-md-1"></div>
+								<label class=" col-sm-2 col-md-2" for="">Species:</label>
+                                <div class="col-sm-8 col-md-8">
+								<select class="sb" name="species" id="addpetype">
+									<option value="Dog">Dog</option>
+									<option value="Cat">Cat</option>
+									<option value="Hedgehog">Hedgehog</option>
+									<option value="Rabbit">Rabbit</option>
+								</select>
+                                </div>
+                                <div class=" col-sm-1 col-md-1"></div>
+								<!-- <input type="text" class="form-control" id="addpetype" name="species"/> -->
+								<p id="Typeerror" class="valerror"></p>
+							</div>
+							<br/>
+							<div class="form-group row" id="Berror">
+                                <div class=" col-sm-1 col-md-1"></div>
+								<label class=" col-sm-2 col-md-2" for="">Breed:</label>
+                                <div class="col-sm-8 col-md-8">
+								<select class="sb" name="breed" id="addpetbreed">
+									<option value="Labrador">Loverador Retriever</option>
+									<option value="Golden Retriever">Golden Retriever</option>
+								</select>
+                                </div>
+                                <div class=" col-sm-1 col-md-1"></div>
+								<!-- <input type="text" class="form-control" id="addpetbreed" name="breed"/> -->
+								<p id="Breerror" class="valerror"></p>
+							</div>
+							<br/>
+							<div class="form-group row" id="Derror">
+                                <div class=" col-sm-1 col-md-1"></div>
+								<label class=" col-sm-2 col-md-2" for="">Birthday:</label>
+                                <div class="col-sm-8 col-md-8">
+								<input type="date" class="form-control" id="addpetbday" name="birthday"/>
+                                </div>
+                                <div class=" col-sm-1 col-md-1"></div>
+								<p id="Bdayerror" class="valerror"></p>
+							</div>	
+							<br/>
+							<div class="form-group row" id="Merror">
+                                <div class=" col-sm-1 col-md-1"></div>
+								<label class=" col-sm-2 col-md-2" for="">Markings:</label>
+                                <div class="col-sm-8 col-md-8">
+								<input type="text" class="form-control" id="addpetmarkings" name="markings"/>
+                                </div>
+                                <div class=" col-sm-1 col-md-1"></div>
+								<p id="Markerror" class="valerror"></p>
+							</div>
+                        <br/>
+							<div class="form-group row">
+                                <div class=" col-sm-1 col-md-1"></div>
+								<label class=" col-sm-2 col-md-2" for="sex">Sex:</label>
+								  <div class="col-sm-8 col-md-8">
+                                    <label style="font-weight:400;font-size:16px;cursor:pointer;">
+                                      <input type="radio" name="sex" value="m"> Male
+                                    </label><br/>
+                                    <label style="font-weight:400;font-size:16px;cursor:pointer;">
+                                      <input type="radio" name="sex" value="f"> Female
                                     </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" id="addpetsex" name="sex" value="f">Female
-                                    </label>
-                                  </div>
-                            </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" id="sbmtPet" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                        <?php echo form_close();?>
-                    </div>
-                    <div class="col-md-2"></div>
-                </div>
+								  </div>
+                                <div class=" col-sm-1 col-md-1"></div>
+							</div>
+                        <br/>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							<button type="submit" id="sbmtPet" class="btn btn-primary">Save</button>
+						</div>
+						<?php echo form_close();?>
+				</div>
         
                 <div class="container-fluid window2" id="visitHistory">
+                    <div class="row">
                     <div class="col-md-6">
-                        <p class="lead text-center" style="font-size:23px; font-family:'Arvo'; color:#2471A3;">History of Visits</p>
+                        <p class="lead text-center" style="font-size:23px;font-family:'Montserrat';font-weight:400;color:#2471A3;">History of Visits</p>
                         
-                            <div style="height: 300px; overflow: auto">
+                            <div style="min-height:500px;max-height:700px; overflow: auto">
                                 <table align="center" id="petList" class="table table-hover" style="margin-top: 20px;">
                                     <th align="center" class="table-bordered bg-info" style="background-color:#d9d9d9;">Date</th>
                                     <th align="center" class="table-bordered bg-info" style="background-color:#d9d9d9;">Pet ID</th>
                                     <th align="center" class="table-bordered bg-info" style="background-color:#d9d9d9;">Service Type</th>
                                     <th align="center" class="table-bordered bg-info" style="background-color:#d9d9d9;">View Full Visit</th>
-                                    <th align="center" class="table-bordered bg-info" style="background-color:#d9d9d9;">Add Item Used</th>
 
                                     <tbody align="center" id="PetsVisits">
                                         
@@ -598,7 +619,7 @@
                     </div>
     
                     <div class="col-md-6 collapse" id="fullVisitDet">
-                        <p class="lead text-center" style="font-size:23px; font-family:'Arvo'; color:#2471A3;">Full Visit Details</p>
+                        <p class="lead text-center" style="font-size:23px;font-family:'Montserrat'; font-weight:400;color:#2471A3;">Full Visit Details</p>
                         <form role="form" method="post" class="form-group">
                             <div class="row">
                                 <div class="col-md-12" id="basicid"></div>
@@ -638,10 +659,10 @@
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center col-md-5 bg-info">
+                                                <th class="text-center bg-info">
                                                 Item Used ID
                                                 </th>
-                                                <th class="text-center col-md-7 bg-info">
+                                                <th class="text-center bg-info">
                                                 Item Description
                                                 </th>
                                             </tr>
@@ -674,152 +695,165 @@
                             </div>
                         </form>
                     </div>
+                        </div>
                 </div>  
             
-                <div class="container-fluid window" id="addHistory">
-                    
-                        <div class="row">
-                            <p class="lead text-center" style="font-size:32px; font-family:'Arvo'; color:#2471A3;">Add History</p>
-                            <hr />
-                            <div class="col-md-6">
-                                <?php 
-                                $attributes = array('class'=>'form-horizontal','id'=>'hstryform');
-                                echo form_open('vetclinic/savehistory', $attributes); ?>
-                                <div class="row">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                        <label>Pet:</label>
-                                        <select name="pet" class="form-control" id="VpetsOwned">
-                                            
-                                        </select>
+				<div class="container-fluid window" id="addHistory">
+					
+				<p class="lead text-center" style="font-size:32px;font-family:'Montserrat';color:#2471A3;font-weight:400;">Add History</p>
+						<div class="row">
+							<hr />
+							<div class="col-md-12">
+								<?php 
+								$attributes = array('class'=>'form-horizontal','id'=>'hstryform');
+								echo form_open('vetclinic/savehistory', $attributes); ?>
+								<div class="row">
+										<div class="col-md-6">
+                                            <br/>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            <label>Pet:</label></div>
+                                            <div class="col-md-10">
+                                            <select name="pet" class="form-control" id="VpetsOwned">
+
+                                            </select></div>
                                         </div>
+										</div>
 
-                                        <?php 
-                                        date_default_timezone_set('Asia/Manila');
-                                        $date=date('m-d-Y');
-                                        ?>
-                                        <div class="col-md-6">
-                                            <h4 name="date" class="text-center"><label>Date:&nbsp;</label><?php echo $date;?></h4>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="col-md-12 form-group">
-                                        <label>Doctor:</label>
-                                        <select name="doctor" class="form-control" id="Vdoctors">
-                                            
-                                        </select>
-                                    </div>
-                                    <br />
-                                    <div class=" col-md-12 form-group">
-                                        <label for="">Findings :</label>
-                                        <textarea placeholder="Findings" class="form-control" name="findings" rows="4"></textarea>
-                                    </div>
-                
-                                    <div class="col-md-12 form-group">
-                                        <label for="">Recommendations :</label>
-                                        <textarea placeholder="Recommendations" class="form-control" name="recom" rows="4"></textarea>
-                                    </div>  
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                    
-                                
-                                    <label>Service Type:</label>
-                                    <div class="col-md-12">
-                                        <label class="radio-inline" >
-                                            <input value="Grooming" type="radio" class="srvcs" name="optradio"><span class="srvcss">Grooming</span>
-                                        </label>
-                                        <label class="radio-inline" >
-                                            <input value="Treatment" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Treatment</span>
-                                        </label>
-                                            <!-- <input class="btn btn-warning" id="buttoncheck" type="button" name="btn" value="Click"></input> -->
-                                            <br />
-                                            <input type="hidden" id="btn_get" name="get_btn_value"></input>
-                                            <br />
-                                    </div>
+										<?php 
+										date_default_timezone_set('Asia/Manila');
+										$date=date('m-d-Y');
+										?>
+										<div class="col-md-6">
+											<h4 name="date" class="text-center"><label>Date:&nbsp;</label><?php echo $date;?></h4>
+										</div>
+									<hr />
+									<div class="col-md-12 form-group">
+										<label>Doctor:</label>
+										<select name="doctor" class="form-control" id="Vdoctors">
+											
+										</select>
+									</div>
+									<br />
+									<div class=" col-md-12 form-group">
+										<label for="">Diagnosis :</label>
+										<textarea placeholder="Diagnosis" class="form-control" name="findings" rows="4"></textarea>
+									</div>
+				
+									<div class="col-md-12 form-group">
+										<label for="">Recommendations :</label>
+										<textarea placeholder="Recommendations" class="form-control" name="recom" rows="4"></textarea>
+									</div>	
+									<div class="col-md-12 form-group">
+										<label for="">Prescriptions :</label>
+										<textarea placeholder="Prescriptions" class="form-control" name="" rows="4"></textarea>
+									</div>	
+									
+								</div>
+							</div>
+							
+							<div class="col-md-12">
+									<label>Service Type:</label>
+									<div class="col-md-12">
+										<label class="radio-inline" style="cursor:pointer;">
+											<input value="Grooming" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Grooming&nbsp;&nbsp;</span>
+										</label>
+										<label class="radio-inline" style="cursor:pointer;" >
+											<input value="Treatment" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Treatment</span>
+										</label>
+                                        <br />
+									    <input type="hidden" id="btn_get" name="get_btn_value"></input>
+									    <br />
+									</div>
 
-                                    <select class="form-control" name="Select1" id="Select1">
-                                    </select>
-                                    </br>
-                                    <table class="table table-bordered table-hover" id="tab_logic">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center col-md-1" style="background-color:#d9d9d9">#</th>
-                                                <th class="text-center col-md-8" style="background-color:#d9d9d9">Item Used</th>
-                                                <th class="text-center col-md-3" style="background-color:#d9d9d9">Quantity</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                            <tr id='addr0'>
-                                                
-                                                <td class="text-center">
-                                                    1
-                                                </td>
-                                                <td>
-                                                    <select class='form-control Vitems'><option></option></select>
-                                                </td>
-                                                <td>
-                                                    
-                                                    
-                                                    <input type="number" name='qty0' id="myitem0" placeholder='Qty' class="form-control addtm" min="0"/>
-                                                    <input id="prdid0" class='prd' type='hidden'></input>
-                                                </td>
-                                            </tr>
-                                            <tr id='addr1'>
-                                                
+									<select class="form-control" name="Select1" id="Select1">
+									</select>
+									</br>
+									<table class="table table-bordered table-hover" id="tab_logic">
+										<thead>
+											<tr>
+												<th class="text-center" style="background-color:#d9d9d9">#</th>
+												<th class="text-center" style="background-color:#d9d9d9;width:300px;">Item Used</th>
+												<th class="text-center" style="background-color:#d9d9d9">Quantity</th>
+												<th class="text-center" style="background-color:#d9d9d9">Unit price</th>
+												<th class="text-center" style="background-color:#d9d9d9">Amount</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+											<tr id='addr0'>
+												
+												<td class="text-center">
+													1
+												</td>
+												<td>
+													<select class='form-control Vitems'><option></option></select>
+												</td>
+												<td>
+													<input type="number" name='qty0' id="myitem0" placeholder='Qty' class="form-control addtm" min="0"/>
+													<input id="prdid0" class='prd' type='hidden'></input>
+												</td>
+												<td>
+													<input type="number" name='qty0' id="qtyprice0" placeholder='Price' class="form-control ITprice" min="0" readonly />
+												</td>
+												<td>
+													<input type="number" name='qty0' id="amount0" placeholder='Price' class="form-control Tamount" min="0" readonly/>
+												</td>
 
-                                            </tr>
-                                        <tfoot>
-                                                
-                                            <tr>
+											</tr>
+											<tr id='addr1'>
+												
 
+											</tr>
+											<tr id='addr1'>
+												
 
-                                            <td colspan="3">
-
-                                                <div class="col-md-1">Total: </div> <div class="col-md-11" id="TotalSum">
-                                                
-                                                </div>
-                                                <input type="hidden" name="hiddenSum" id="hiddenSum" /> <!-- compute sum hidden field-->
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                
-                                        </tbody>
-                                        
-
-                                    </table>
-
-                                    <div class="btn-group">
-                                        <a id="add_row" class="btn btn-primary pull-center"  onclick="sos(this.id)" title="Add row">+</a>
-                                        <a id="delete_row" class="pull-right btn btn-danger" title="Delete row">-</a>   
-                                    </div>
-
-                                <div class=" col-md-12 form-group">
-                                    <h4 class="text-right">Total Cost: (Php)</h4>
-                                    <input type="number" name='totalCost' placeholder='0.00' class="form-control"/>
-                                </div>
-
-                            
-                            </div>
-                        </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" id="sbmtbtn" class="btn btn-primary">Save</button>
-                                </div>
-                <?php echo form_close(); ?>
+											</tr>
+										<tfoot>
+												
+											<tr>
 
 
-            
-            <!-----------------FOOTER ------------>
-            <!-- <div class="modal-footer">
-                <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div> -->
-                        
-            </div>
+										
+												<input type="hidden" name="hiddenSum" id="hiddenSum" /> <!-- compute sum hidden field-->
+											
+										</tr>
+									</tfoot>
+								
+										</tbody>
+										
+
+									</table>
+
+									<div class="btn-group">
+										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row">+</a>
+										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row">-</a>
+									</div>
+
+								<div class=" col-md-12 form-group">
+									<h4 class="text-right">Total Cost: (Php)</h4>
+									<input type="number" name='totalCost' placeholder='0.00' class="form-control"/>
+								</div>
+
+							
+							</div>
+      
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" id="sbmtbtn" class="btn btn-primary">Save</button>
+						</div>
+				<?php echo form_close(); ?>
+
+
+			
+			<!-----------------FOOTER ------------>
+			<!-- <div class="modal-footer">
+				<button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Save</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div> -->
+						
+			</div>
 
 
     
@@ -832,7 +866,9 @@
 
 <!--Script for the item used-->
 <script>
-
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 
 $('.modal').on('hidden.bs.modal', function (e) {
   if($('.modal').hasClass('in')) {
@@ -870,7 +906,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                sos(this.id);
              $("#add_row").click(function(){
             
-              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td>");
+              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='qtyprice0' placeholder='Price' class='form-control ITprice' min='0' readonly /></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
 
               $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 
@@ -987,10 +1023,10 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var s="";
                             var r="";
                             var t="";
-                            s = '<h5 align="center">Visit id: '+obj.visit.visitid+'&emsp;'+'Visit Date: '+obj.visit.visitdate+'</h5>';
-                            t = '<h5 align="center">Vet id: '+obj.visit.vetid+'</h5>';
-                            r = '<h4 align="center">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</h4>';
-                            q = '<h4 align="center">Pet id: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</h4>';
+                            s = '<h5 align="center">Visit ID: '+obj.visit.visitid+'<br/>'+'Visit Date: '+obj.visit.visitdate+'</h5>';
+                            t = '<h5 align="center">Vet ID: '+obj.visit.vetid+'</h5>';
+                            r = '<h5 align="center">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</h5>';
+                            q = '<h5 align="center">Pet ID: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</h5>';
                             var item = "";
                             if(parseInt(obj.items.length) > 0){
                                 for(var i=0; i<parseInt(obj.items.length); i++){
@@ -1032,7 +1068,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
                             if(parseInt(obj.visits.length) > 0){
                                 for(var i=0; i<parseInt(obj.visits.length); i++){
-                                    s += '<tr><td>'+obj.visits[i].visitdate+'</td><td>'+obj.visits[i].petid+'</td><td>'+obj.visits[i].case_type+'</td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" onclick="history(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" "type="button" onclick="sos(this.id)"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button></tr>';
+                                    s += '<tr><td>'+obj.visits[i].visitdate+'</td><td>'+obj.visits[i].petid+'</td><td>'+obj.visits[i].case_type+'</td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" onclick="history(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td></tr>';
                                 }
                                 $("#PetsVisits").html(s);                               
                             }

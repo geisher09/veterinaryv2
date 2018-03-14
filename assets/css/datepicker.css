@@ -332,17 +332,17 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker .ui-datepicker-prev {
 	left: 5px;
-    background: url(../images/prev.png) no-repeat;
+    background: url(../img/prev.png) no-repeat;
 }
 .ui-datepicker .ui-datepicker-next {
 	right: 5px;
-    background: url(../images/next.png) no-repeat;
+    background: url(../img/next.png) no-repeat;
 }
 .ui-datepicker .ui-datepicker-prev:hover {
-    background: url(../images/2prev.png) no-repeat;
+    background: url(../img/2prev.png) no-repeat;
 }
 .ui-datepicker .ui-datepicker-next:hover {
-    background: url(../images/2next.png) no-repeat;
+    background: url(../img/2next.png) no-repeat;
 }
 .ui-datepicker .ui-datepicker-prev-hover {
     cursor: pointer;
