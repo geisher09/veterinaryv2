@@ -172,9 +172,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-list-search" id="mytable">
+                                    <table class="table table-list-search" >
                                         <thead>
-                                        <tr class="th1">
+                                        <tr >
                                             <th >
                                                 <div id="addbutn">
                                                     <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalNorm">
