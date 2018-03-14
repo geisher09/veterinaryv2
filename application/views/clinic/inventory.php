@@ -176,18 +176,17 @@
                                         <thead>
                                         <tr class="th1">
                                             <th >
-                                                <div>
-                                                    <button type="button" class="btn btn-md" id="addbutn"  data-toggle="modal" data-target="#myModalNorm">
+                                                <div id="addbutn">
+                                                    <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalNorm">
                                                         <span class="glyphicon glyphicon-plus">
-                                                        <span class="tooltiptext">Add an item</span>
-                                                        </span>
+                                                        Add an Item
                                                     </button>
 
                                                 </div> 
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th class="text-primary" style="text-align:center;width:100px;">#</th>
+                                            <th class="text-primary" style="text-align:center;">Item ID</th>
                                             <th class="text-primary">Description</th>
                                             <th class="text-primary">Price</th>
                                             <th class="text-primary" >Stocks Left</th>
@@ -201,7 +200,7 @@
                                                             foreach($data['stock'] as $s){
                                                           
                                                                 echo '<tr  style="height:20px;padding:-10px;" class="'.($s['qty_left']==0?'redrow':'').'">  
-                                                                        <td style="text-align:center;width:100px;">'.$i.'</td>
+                                                                        <td style="text-align:center;">'.$i.'</td>
                                                                         <td style="text-align:center;"  >'.$s['item_desc'].'</td>
                                                                         <td style="text-align:center;">'.$s['item_cost'].'</td>
                                                                         <td style="text-align:center; ">'.$s['qty_left'].'</td>
@@ -219,15 +218,19 @@
                                                                     </form>
                                                                 </td>
                                                                     
-                                                                    <td >
+                                                                    <td style="width:100px;">
+																	<form>
                                                                   <div class="row">
+																	
                                                                      <div class="class="col-sm-6">
                                                                          <button type="button" data-toggle="modal" id="'.$s['itemid'].'" data-target="#editStock" onclick="populate(this.id)" class="btn btn-success" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</button>
                                                                       </div>
+																	  
                                                                   </div>
+																  </form>
                                                                 </td>
                                                                 
-                                                                <td>
+                                                                <td style="width:100px;">
                                                                         <form method="GET" action="">
                                                                             <div class="row">
                                                                             
