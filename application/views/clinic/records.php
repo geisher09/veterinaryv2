@@ -103,7 +103,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
-                                    <i class="now-ui-icons location_world"></i>
+                                    <i class="now-ui-icons ui-1_bell-53"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
@@ -183,7 +183,7 @@
                                         </div> 
                                 <?php endif; ?>
                                 <div class="table-responsive">
-                                    <table class="table table-list-search" id="mytable">
+                                    <table class="table table-list-search" >
                                         <thead>
                                         <tr class="">
                                                     <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
@@ -336,11 +336,32 @@
              
                     </div>
                 </div>
+				<div class="form-group row">
+                  <div class="col-sm-1 col-md-1"></div>
+                  <label class=" col-sm-2 col-md-2" for="species">Species:</label>
+                  <div class="col-sm-8 col-md-8" id="CSerror">
+					<select class="sb" name="species" id="petspecies">
+						<option value="Dog">Dog </option>
+						<option value="Cat">Cat</option>
+					</select>
+                    <!-- <input type="text" class="form-control" id="petspecies"  name="species"> -->
+                    <p id="CStext" class="valerror"></p>
+                  </div>
+                  <div class="col-sm-1 col-md-1"></div>
+                  <div class="col-lg-8">
+                        <div><br></div>
+        
+                    </div>
+                </div>
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="petbreed">Breed:</label>
                   <div class="col-sm-8 col-md-8" id="CBerror">
-                    <input type="text" class="form-control" id="petbreed"  name="breed">
+					<select class="sb" name="breed" id="petbreed">
+						<option value="LR">Loverador Retriever</option>
+						<option value="GR">Golden Retriever</option>
+					</select>
+                    <!-- <input type="text" class="form-control" id="petbreed"  name="breed"> -->
                     <p id="CBtext" class="valerror"></p>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
@@ -362,19 +383,7 @@
 
                     </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-1 col-md-1"></div>
-                  <label class=" col-sm-2 col-md-2" for="species">Species:</label>
-                  <div class="col-sm-8 col-md-8" id="CSerror">
-                    <input type="text" class="form-control" id="petspecies"  name="species">
-                    <p id="CStext" class="valerror"></p>
-                  </div>
-                  <div class="col-sm-1 col-md-1"></div>
-                  <div class="col-lg-8">
-                        <div><br></div>
-        
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="birthday">Birthday:</label>
@@ -902,6 +911,13 @@
     </div>
 </div>
 
+<!--Script for select2-->
+<script>
+	$(document).ready(function() {
+		$('.sb').select2({ width : '100%'});
+	});
+</script>
+
 
 <!--Script for the item used-->
 <script>
@@ -1107,7 +1123,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
                             if(parseInt(obj.visits.length) > 0){
                                 for(var i=0; i<parseInt(obj.visits.length); i++){
-                                    s += '<tr><td>'+obj.visits[i].visitdate+'</td><td>'+obj.visits[i].petid+'</td><td>'+obj.visits[i].case_type+'</td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" onclick="history(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td></tr>';
+                                    s += '<tr><td>'+obj.visits[i].visitdate+'</td><td>'+obj.visits[i].petid+'</td><td>'+obj.visits[i].case_type+'</td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" onclick="history(this.id)"><span class="now-ui-icons files_single-copy-04" aria-hidden="true"></span></button></td></tr>';
                                 }
                                 $("#PetsVisits").html(s);                               
                             }
@@ -1155,7 +1171,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
         //                  if(parseInt(obj.pets.length) > 0){
         //                      for(var i=0; i<parseInt(obj.pets.length); i++){
         //                          s += '<option value="+obj.pets[i].petid+">'+obj.pets[i].pname+'</option>';
-        //                          // s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td><td><button class="tablink btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></button></tr>';
+        //                          // s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="now-ui-icons files_single-copy-04" aria-hidden="true"></span></button></td><td><button class="tablink btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="now-ui-icons location_pin" aria-hidden="true"></span></button></tr>';
         //                      }
         //                      $("#VpetsOwned").html(s);                               
         //                  }
@@ -1195,7 +1211,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var ai = "", hi="";
                             if(parseInt(obj.pets.length) > 0){
                                 for(var i=0; i<parseInt(obj.pets.length); i++){
-                                    s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></button></tr>';
+                                    s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="now-ui-icons files_single-copy-04" aria-hidden="true"></span></button></td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="now-ui-icons location_pin" aria-hidden="true"></span></button></tr>';
                                     v += '<option value='+obj.pets[i].petid+'>'+obj.pets[i].pname+'</option>';
 
                                 }

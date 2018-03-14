@@ -48,7 +48,6 @@
 
         #calendar {
             margin-top: 50px;
-            margin-left: 12%;
             max-width: 1000px;
         }
         
@@ -58,7 +57,47 @@
         .btn-default.active {background-color: #3498DB; color: white;}
         .btn-default.active:hover {background-color: #3498DB; color: white;}
         .btn-default.active:focus {background-color: #3498DB; color: white;}
-        .fc-center {font-size:50px !important; font-family: Arvo; color: #2980B9;}
+		
+		.fc-prev-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-prev-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-prev-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-next-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-next-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-next-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-today-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-today-button.disabled {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-today-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-today-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		
+		.fc-month-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-month-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-month-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-month-button.active {background-color: #3498DB; color: white;}
+        .fc-month-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-month-button.active:focus {background-color: #3498DB; color: white;}
+		
+		.fc-agendaWeek-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-agendaWeek-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-agendaWeek-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-agendaWeek-button.active {background-color: #3498DB; color: white;}
+        .fc-agendaWeek-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-agendaWeek-button.active:focus {background-color: #3498DB; color: white;}
+		
+		.fc-agendaDay-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-agendaDay-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-agendaDay-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-agendaDay-button.active {background-color: #3498DB; color: white;}
+        .fc-agendaDay-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-agendaDay-button.active:focus {background-color: #3498DB; color: white;}
+		
+		.fc-listWeek-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-listWeek-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-listWeek-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-listWeek-button.active {background-color: #3498DB; color: white;}
+        .fc-listWeek-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-listWeek-button.active:focus {background-color: #3498DB; color: white;}
+		
+        .fc-center { font-family: Poppins; color: #2980B9;}
         .fc-day-header {color:#2980B9; background-color: #F2F4F4;}
         th.fc-week-number {color:#2980B9; background-color: #F2F4F4;}
         .fc-day-top {font-weight: bold;}
@@ -151,14 +190,7 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" class="form-control" id="search" onkeyup="search()" name="q" placeholder="Search for" required>
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                </span>
-                            </div>
-                        </form>
+                        
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
@@ -171,7 +203,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
-                                    <i class="now-ui-icons location_world"></i>
+                                    <i class="now-ui-icons ui-1_bell-53"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
@@ -245,8 +277,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+					<h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:10%;">View/Update Calendar Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold;">View/Update Calendar Event</h4>
                 </div>
                 <div class="modal-body">
                     <?php echo form_open(site_url("vetclinic/edit_event"), array("class" => "form-horizontal")) ?>
@@ -304,10 +336,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header edit" style="background-color:rgba(128, 191, 255,0.9);">
+					<h3 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left: 35%;">ADD EVENT</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold;">ADD EVENT</h3>
+                    
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                     <?php echo form_open(site_url("vetclinic/add_event"), array("class" => "form-horizontal")) ?>
                     <div class="form-group">
                         <label for="p-in" class="col-md-4 label-heading">Event Title:</label>
@@ -343,7 +376,7 @@
 
                 init: function(themeSystem) {
                     $('#calendar').fullCalendar({
-                        themeSystem: 'bootstrap3',
+                        themeSystem: 'bootstrap4',
                         header: {
                             left: 'prev,next today',
                             center: 'title',
