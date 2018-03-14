@@ -180,6 +180,7 @@
 <br/>
 	<div class="container-fluid box">
 	               
+				 <div style="left:20%; margin-bottom:20px;" class="col-lg-8 col-sm-8">
                    <div id="password-change">
                 <?php echo form_open('...',['class'=>'lgform']);?>
                 <br /><br />
@@ -204,12 +205,13 @@
             </div>
             <br />
             <div class="text-center">
-                <button type="submit" class="btn btn-info btn-md">Change Password</button>
-                <a href="<?php echo site_url('..'); ?>" class="btn btn-danger btn-md" role="button">Cancel</a>
+                <button type="submit" class="btn btn-info btn-md" style="background-color:#3498DB;">Change Password</button>
+                <a href="<?php echo site_url('..'); ?>" class="btn btn-danger btn-md" style="background-color:#E74C3C;" role="button">Cancel</a>
             </div>
             <?php echo form_close(); ?>
                             
                     </div>
+					</div>
                 </div>
             </div>
         </div>
