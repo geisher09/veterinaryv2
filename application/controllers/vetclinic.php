@@ -820,42 +820,39 @@ $lastclient = $this->vet_model->getLastClient();
         return TRUE;
     	}
 		} 
-		//chrstnv
-		public function validateItem(){
 
-			// print_r($_POST);
-			$this->form_validation->set_rules('desc','Description','required|min_length[2]');
-	  		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
-		 	$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
+	//chrstnv
+	public function validateItem(){
 
-		 	if($this->form_validation->run()){
+		// print_r($_POST);
+		$this->form_validation->set_rules('desc','Description','required|min_length[2]');
+		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
+		$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
 
-		 		echo 'true';
+		if($this->form_validation->run()){
 
-
-		 	}
-		 	else{
-		 		if(form_error('desc')!=null){
-		 			$data['desc']=form_error('desc');
-		 		}
-		 			if(form_error('cost')!=null){
-		 			$data['cost']=form_error('cost');
-		 		}
-		 			if(form_error('qty')!=null){
-		 			$data['qty']= form_error('qty');
-		 			
-		 		}
-		 		echo json_encode($data);
+			echo 'true';
 
 
-
-		 	}
-
-
+		}
+		else{
+			if(form_error('desc')!=null){
+				$data['desc']=form_error('desc');
+			}
+				if(form_error('cost')!=null){
+				$data['cost']=form_error('cost');
+			}
+				if(form_error('qty')!=null){
+				$data['qty']= form_error('qty');
+				
+			}
+			echo json_encode($data);
 
 
 
 		}
+
+	}
 	public function validatePet()
 	{
 			$this->form_validation->set_rules('name','Pet name','required|min_length[2]|callback_space');
