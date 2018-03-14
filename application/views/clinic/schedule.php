@@ -4,9 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     <link href="<?php echo base_url('assets/fullcalendar.min.css'); ?>" rel='stylesheet' />
-    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/jquery.min.js'); ?>"></script>
+    
     <script src="<?php echo base_url('assets/moment.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
+    
     <link href="<?php echo base_url('assets/fullcalendar.print.min.css'); ?>" rel='stylesheet' media='print' />
     <link href="<?php echo base_url('assets/jquery-ui.css'); ?>" rel='stylesheet' />
     <script src="<?php echo base_url('assets/fullcalendar.min.js'); ?>"></script>
@@ -389,14 +389,15 @@
                               $('#editModal').modal();
                         },
                         dayClick: function(date, jsEvent, view) {
-                            var start = date.format();
-                            var view = view.name;
-                            /*alert(start);*/
-                            $('#start').val(start);
-                            $('#end').val(start);
-                            $('#addModal').modal();
-
-                        },
+							if(date.isSameOrAfter(moment())){
+								var start = date.format();
+								var view = view.name;
+								/*alert(start);*/
+								$('#start').val(start);
+								$('#end').val(start);
+								$('#addModal').modal();
+							}
+					    },
                         eventResize: function(event, delta, revertFunc) {
                             console.log(event);
                             var title = event.title;
