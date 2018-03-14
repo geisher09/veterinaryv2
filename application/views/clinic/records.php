@@ -185,10 +185,10 @@
                                 <div class="table-responsive">
                                     <table class="table table-list-search" id="mytable">
                                         <thead>
-                                        <tr class="th1">
+                                        <tr class="">
                                                     <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
                                                         <span class="glyphicon glyphicon-plus">
-                                                        <span class="tooltiptext" style="font-size:18px;">Add new client </span>
+                                                        <span class="" style="font-size:18px;">Add new client </span>
                                                         </span>
                                                     </button>
                                         </tr>
@@ -222,7 +222,7 @@
                                                 <td style="text-align:center;"><?php echo $client['pets']; ?></td>
                                                 <td style="text-align:center; width:260px;">    
                                                 <?php $c=$client['clientid'];?> 
-                                                <b class="btn btn-info viewdetailsbtn" style="font-size:10px;" id="<?php echo $c;?>" type="button" onclick="lol(this.id)">View<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b>
+                                                <b class="btn btn-info " style="font-size:10px;" id="<?php echo $c;?>" type="button" onclick="lol(this.id)">View<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b>
                                                 </td>
                                             </tr>
                                         <?php } ?>

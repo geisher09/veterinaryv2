@@ -170,7 +170,7 @@
                             <div class="card-header">
                                 <h2 class="card-title">Services Offered</h2>
 								<div id="addserv">
-									<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addservicemodal">
+									<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#addservicemodal">
 									<span class="glyphicon glyphicon-plus"></span> Add Service</button>
 								</div>
                             </div>

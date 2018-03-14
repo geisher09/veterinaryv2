@@ -1,15 +1,35 @@
-label { 
-    font-weight: bold; 
-    font-size: 18px; 
-    font-family: 'Montserrat';
-}
-btn { 
-    font-size: 17px; 
-    font-family: 'Montserrat';
-}
-input[type="text"]{
-    font-size: 15px;
-}
+
+    label { 
+        font-weight: bold; 
+        font-size: 18px; 
+        font-family: 'Montserrat';
+    }
+    btn { 
+        font-size: 17px; 
+        font-family: 'Montserrat';
+    }
+    input[type="text"]{
+        font-size: 15px;
+    }
+	.badge1{
+		position:relative;
+	}
+	
+	.badge1[data-badge]:after {
+		content:attr(data-badge);
+		position:absolute;
+		bottom:11px;
+		left: 11px;
+		font-size:.8em;
+		background: red;
+		color:white;
+		width:15px;height:15px;
+		text-align:center;
+		line-height:15px;
+		border-radius:50%;
+		border: none;
+	}
+
 /************* services ************/
 	.boxed {
 		float: left;
@@ -101,26 +121,3 @@ input[type="text"]{
 		 background-color:  #2471A3;
 		 outline: none;
 	}
-
-    .newClientbox{
-        background-color: #F2F2F2;
-        padding:50px 0px 10px 0px;
-        border-radius: 25px;
-        border: 1px solid #CCCCCC;
-    }
-    .newClientboxHead{
-        background-color: white;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        width: 250px;
-        margin-left: 45px;
-        position: relative;
-        top: 28;
-        z-index: 100;
-        border-radius: 20px;
-        border: 1px solid #CCCCCC;
-        font-family: 'Montserrat';
-        font-weight: bolder;
-        font-size: 30px;
-        text-align: center;
-    }
