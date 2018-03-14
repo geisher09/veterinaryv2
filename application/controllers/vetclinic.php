@@ -740,7 +740,7 @@ $lastclient = $this->vet_model->getLastClient();
 
 
 
-		$data['title']='history';
+		$data['title']='Transactions History';
 			$data['itemhistory']=$this->itemhistory->read();
 			$data['notif']=$this->vet_model->notification();
 		$record_data['notif']=$this->vet_model->notification();
@@ -936,5 +936,3 @@ $lastclient = $this->vet_model->getLastClient();
 		$pdf->Output('test.pdf', 'I');
 	}
 }
-
-?>

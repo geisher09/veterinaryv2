@@ -1,3 +1,16 @@
+
+    label { 
+        font-weight: bold; 
+        font-size: 18px; 
+        font-family: 'Montserrat';
+    }
+    btn { 
+        font-size: 17px; 
+        font-family: 'Montserrat';
+    }
+    input[type="text"]{
+        font-size: 15px;
+    }
 	.badge1{
 		position:relative;
 	}

@@ -52,11 +52,6 @@
 		border-radius: 10px;
 	}
 	
-    label, .btn {
-        font-family: Poppins;
-        font-size:17px;
-        font-weight: 500;
-    }
 	.navbar-nav {
 		-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
 		-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
@@ -307,26 +302,6 @@
 		border-right: 0px;
 		border-bottom: 0px;
 	}
-	/************* search bars *************/
-	/*
-	input[type=text]#search {
-		width: 100%;
-		height: 10px;
-		outline:none;
-		border: 1px solid #F2F2F2;
-		font-size: 16px;
-		background-color: #FFFFFF;
-		border-radius:15px;
-		padding: 15px 5px;
-		margin: 11px 0px 10px 10px;
-		transition: 0.5s;
-		align:right;
-	}
-	input[type=text]#search:hover,
-	input[type=text]#search:focus{
-		border: 1px solid #F2F2F2;
-		background-color: #FFFFFF;
-	} */
 	
 	@media all and (max-width: 500px) {
 		.search input > .btnmod { display: none; }
@@ -526,14 +501,19 @@
     }
     .newClientboxHead{
         background-color: white;
-        padding: 0px 0px 8px 0px;
-        width: 180px;
-        margin-left: 50px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 250px;
+        margin-left: 45px;
         position: relative;
         top: 28;
         z-index: 100;
         border-radius: 20px;
         border: 1px solid #CCCCCC;
+        font-family: 'Montserrat';
+        font-weight: bolder;
+        font-size: 25px;
+        text-align: center;
     }
 	
     .salesDate{
