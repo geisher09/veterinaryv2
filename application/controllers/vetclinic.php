@@ -768,7 +768,7 @@ $lastclient = $this->vet_model->getLastClient();
 		public function validateItem(){
 
 			// print_r($_POST);
-			$this->form_validation->set_rules('desc','Description','required|min_length[2]|callback_space');
+			$this->form_validation->set_rules('desc','Description','required|min_length[2]');
 	  		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
 		 	$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
 
