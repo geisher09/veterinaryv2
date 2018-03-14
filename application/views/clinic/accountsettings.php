@@ -17,7 +17,7 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li>
+                    <li class="active">
                         <a href="<?php echo base_url('vetclinic'); ?>">
                             <i class="now-ui-icons design_app"></i>
                             <p>Dashboard</p>
@@ -49,15 +49,15 @@
                             </div>
                         </li>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="#subPages2" data-toggle="collapse" class="collapsed">
                             <i class="now-ui-icons shopping_basket"></i>
                             <p>Inventory</p>
                         </a>
                             <li>
-                            <div id="subPages2" class="collapsed">
+                            <div id="subPages2" class="collapse">
                                 <ul class="nav">
-                                    <li class="active"><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
+                                    <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
                                     <li><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
                                 </ul>
                             </div>
@@ -91,14 +91,7 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" class="form-control" id="search" onkeyup="search()" name="q" placeholder="Search for" required>
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                </span>
-                            </div>
-                        </form>
+                        
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -181,107 +174,40 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h2 class="card-title">Available Stocks</h2>
+                                <h2 class="card-title">Account Settings</h2>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-list-search" >
-                                        <thead>
-                                        <tr >
-                                            <th >
-                                                <div id="addbutn">
-                                                    <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalNorm">
-                                                        <span class="glyphicon glyphicon-plus">
-                                                        Add an Item
-                                                    </button>
-
-                                                </div> 
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-primary" style="text-align:center;">Item ID</th>
-                                            <th class="text-primary">Description</th>
-                                            <th class="text-primary">Price</th>
-                                            <th class="text-primary" >Stocks Left</th>
-                                            <th class="text-right" style="text-align:center">Action</th>
-                                        </tr>
-                                    </thead>
-                                        <tbody>
-        
-                                            <?php
-                                                $i=1;
-                                                            foreach($data['stock'] as $s){
-                                                          
-                                                                echo '<tr  style="height:20px;padding:-10px;" class="'.($s['qty_left']==0?'redrow':'').'">  
-                                                                        <td style="text-align:center;">'.$i.'</td>
-                                                                        <td style="text-align:center;"  >'.$s['item_desc'].'</td>
-                                                                        <td style="text-align:center;">'.$s['item_cost'].'</td>
-                                                                        <td style="text-align:center; ">'.$s['qty_left'].'</td>
-                                                                    <td style="width:200px;">
-                                                                    <form method="POST" action="">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-6">
-                                                                                <input type="number" class="form-control minqty" id="add_stock" name="add_stock" min="1"/>
-                                                                                <input type="hidden" class="form-control" id="itemid" name="itemid" value="'.$s['itemid'].'"/>
-                                                                            </div>
-                                                                            <div class="class="col-sm-6">
-                                                                                <button name="addstock" type="submit" class="btn btn-info" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </td>
-                                                                    
-                                                                    <td style="width:100px;">
-																	<form>
-                                                                  <div class="row">
-																	
-                                                                     <div class="class="col-sm-6">
-                                                                         <button type="button" data-toggle="modal" id="'.$s['itemid'].'" data-target="#editStock" onclick="populate(this.id)" class="btn btn-success" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</button>
-                                                                      </div>
-																	  
-                                                                  </div>
-																  </form>
-                                                                </td>
-                                                                
-                                                                <td style="width:100px;">
-                                                                        <form method="GET" action="">
-                                                                            <div class="row">
-                                                                            
-                                                                                <div>
-                                                                                    <a href="'.base_url('vetclinic/delete').'?itemid='.$s['itemid'].'" name="addstock" type="submit" class="btn btn-danger" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-trash"></span>&nbsp;Delete</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </td>
-                                                            </tr>
-                                                            ';
-                                                 $i++;
-                                                    }
-                                                    ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+<br/>
+	<div class="container-fluid box">
+	               
+                   <div class="row" id="settingsdiv">
+                <div class="col-md-8 col-sm-12">
+                    <?php echo form_open('...',['class'=>'lgform']);?>
+                     <br /><br />
+                    <br />
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username" class="form-control" />
+                        <?php echo '<h5 class="pulse animated" style="color: #ff4d4d;
+                            "><strong>'.form_error('username').'</strong></h5>'; ?>
+                    </div>
+                    <br />
+                    <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password...</a>
+                    <div style="float:right;">
+                    <button type="submit" class="btn btn-success btn-md">Save Changes</button>
+                    <?php echo form_close();?>
+                    <?php echo form_open('...',['class'=>'lgform']);?>
+                    <button type="submit" class="btn btn-danger btn-md">Discard Changes</button>
+                    <?php echo form_close();?>
+                    </div>
+                </div>
+    </div>
+                            
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-<?php
-    include "addstockmodal.php";
 
-    
-?>
-<script type="text/javascript">
-    function stock(addstock){
-        $(document).ready(function() {
-            var val=$('#add_stock').val();
-             alert(val);
-            alert(addstock);
-        
-        });
-    }
-</script>
-</html>
+
+</div>
