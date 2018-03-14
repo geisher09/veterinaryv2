@@ -181,7 +181,7 @@
 	<div class="container-fluid box">
 	               
                    <div class="row" id="settingsdiv">
-                <div class="col-md-8 col-sm-12">
+                <div style="left: 20%;"class="col-md-6 col-sm-12">
                     <?php echo form_open('...',['class'=>'lgform']);?>
                      <br /><br />
                     <br />
@@ -192,12 +192,12 @@
                             "><strong>'.form_error('username').'</strong></h5>'; ?>
                     </div>
                     <br />
-                    <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password...</a>
-                    <div style="float:right;">
-                    <button type="submit" class="btn btn-success btn-md">Save Changes</button>
+                    <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password</a>
+                    <div style="float: right;" >
+                    <button style="position:absolute; right:180px; background-color:#28B463;" type="submit" class="btn btn-success btn-md">Save Changes</button>
                     <?php echo form_close();?>
                     <?php echo form_open('...',['class'=>'lgform']);?>
-                    <button type="submit" class="btn btn-danger btn-md">Discard Changes</button>
+                    <button style="background-color:#E74C3C;" type="submit" class="btn btn-danger btn-md">Discard Changes</button>
                     <?php echo form_close();?>
                     </div>
                 </div>
