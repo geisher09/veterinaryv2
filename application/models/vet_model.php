@@ -385,7 +385,7 @@
 			      'findings' => $this->input->post('findings') ,
 			      'recommendation' => $this->input->post('recom'),
 			      'case_type' => $this->input->post('optradio'),
-			      'visit_cost' => $this->input->post('totalCost'),
+			      //'visit_cost' => $this->input->post('totalCost'),
 			      'total' => $this->input->post('totalCost')+$this->input->post('hiddenSum'),
 			      'itemCost'=> $this->input->post('hiddenSum')  );
 
