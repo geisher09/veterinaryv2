@@ -32,9 +32,13 @@ class vetclinic extends CI_Controller {
 		$this->load->model('vet_model');
 		$clients = $this->vet_model->getClients();
 		$stocks = $this->vet_model->getStocks();
-		$lastclient = $this->vet_model->getLastClient();	
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
 		$this->load->view('include/header2',$header_data);
-		$this->load->view('clinic/dashboard', ['cl'=>$clients,'al'=>$lastclient,'stock'=>$stocks]);			
+		$this->load->view('clinic/dashboard', ['record_dat'=>$record_data]);			
 		//$this->load->view('include/footer');
 	}
 
@@ -45,9 +49,13 @@ class vetclinic extends CI_Controller {
 		$this->load->model('vet_model');
 		$clients = $this->vet_model->getClients();
 		$stocks = $this->vet_model->getStocks();
-		$lastclient = $this->vet_model->getLastClient();	
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
 		$this->load->view('include/header2',$header_data);
-		$this->load->view('clinic/records', ['cl'=>$clients,'al'=>$lastclient,'stock'=>$stocks]);			
+		$this->load->view('clinic/records', ['cl'=>$clients,'al'=>$lastclient,'stock'=>$stocks,'record_dat'=>$record_data]);			
 		//$this->load->view('include/footer');
 	}
 
@@ -170,10 +178,10 @@ class vetclinic extends CI_Controller {
 			$this->services->del($data);
 		}
 		$header_data['title'] = "Services Offered";
-		$header_data['notif']=$this->vet_model->notification();
-		$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
-		$header_data['eventCounter'] = count($header_data['events']);
-		$header_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
 		$condition = array('type'=>'Grooming');
 		$data['grooming'] = $this->services->read($condition);
 		$condition = array('type'=>'Treatment');
@@ -182,21 +190,14 @@ class vetclinic extends CI_Controller {
 
 
 		$this->load->view('include/header2',$header_data);
-		$this->load->view('clinic/services',$data);
+		$this->load->view('clinic/services',['data'=>$data,'record_dat'=>$record_data]);
 		$this->load->view('include/footer');
 	}// end of services function
 
 
 	
 	
-	// public function inventory(){
-		
-	// 	$header_data['title'] = "Inventory";
-		
-	// 	$this->load->view('include/header',$header_data);
-	// 	$this->load->view('clinic/inventory');
-	// 	$this->load->view('include/footer');
-	// }// end of inventory function
+	
 	//chrstnv
 	public function save(){
 $lastclient = $this->vet_model->getLastClient();
@@ -371,13 +372,13 @@ $lastclient = $this->vet_model->getLastClient();
 	public function schedule()
 	{
 		$header_data['title'] = "Schedule";
-		$header_data['notif']=$this->vet_model->notification();
-		$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
-		$header_data['eventCounter'] = count($header_data['events']);
-		$header_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
 		$this->load->view('include/header2',$header_data);
 		$this->load->model('vet_model','schedule');
-		$this->load->view('clinic/schedule');
+		$this->load->view('clinic/schedule',['record_dat'=>$record_data]);
 		$this->load->view('include/footer');
 
 	}
@@ -385,40 +386,14 @@ $lastclient = $this->vet_model->getLastClient();
 	public function sales()
 	{
 		$header_data['title'] = "Sales";
-		$header_data['notif']=$this->vet_model->notification();
-		$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
-		$header_data['eventCounter'] = count($header_data['events']);
-		$header_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
 		$this->load->view('include/header2',$header_data);
 		$this->sdate = "2017-08-02";//$startDate and $endDate == range of dates
 		$this->edate = "2017-08-17";								 //$dates == array of dates in the range given
-		// $this->ajax_list($this->sdate,$this->edate);
-		// $i = 0;
-		// $d = '';
-		// while(strcmp($d, $endDate) != 0){ //loop to get dates in the range given
-		// 	$d = date('Y-m-d',strtotime('+1 day', strtotime($dates[$i])));
-		// 	$dates[] = $d;
-		// 	++$i;
-		// }
-
-		// foreach($dates as $d){ //loop to get sum per date
-		// 	$sales1[] = $this->vet_model->getSalesSum($d);
-		// 	$sales2[] = $this->vet_model->getSalesSum2($d);
-		// }
-		// $sales = array_merge($sales1, $sales2);
-
-		// $output = array(
-		// 				"sales1" => $sales1,
-		// 				"sales2" => $sales2,
-		// 				"sales" => $sales,
-		// 				"dates" => $dates
-		// 		);
-		// $date['s'] = $GLOBALS['datestart'];
-		// $date['e'] = $GLOBALS['dateend'];
-		// return $output;
-		//$this->load->view('clinic/sales2',['sal'=>$sales,'sal2'=>$sales2]);
-		//$this->load->view('clinic/chart',['sal2'=>$sales2]);
-		$this->load->view('clinic/sales');
+		$this->load->view('clinic/sales',['record_dat'=>$record_data]);
 		$this->load->view('include/footer');
 		
 
@@ -704,10 +679,13 @@ $lastclient = $this->vet_model->getLastClient();
 		$data['stock'] = $this->itemstock->read();
 		$data['itemhistory']=$this->itemhistory->read();
 		$header_data['title'] = "Inventory";
-		
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
 		
 		$this->load->view('include/header2',$header_data);
-		$this->load->view('clinic/inventory',$data);
+		$this->load->view('clinic/inventory',['data'=>$data,'record_dat'=>$record_data]);
 
 		$this->load->view('include/footer');
 	}
@@ -765,12 +743,13 @@ $lastclient = $this->vet_model->getLastClient();
 		$data['title']='history';
 			$data['itemhistory']=$this->itemhistory->read();
 			$data['notif']=$this->vet_model->notification();
-		$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
-		$header_data['eventCounter'] = count($header_data['events']);
-		$header_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
 	
 		$this->load->view('include/header2',$data);
-		$this->load->view('clinic/historyview2',$data);
+		$this->load->view('clinic/historyview2',['data'=>$data,'record_dat'=>$record_data]);
 
 		$this->load->view('include/footer');
 	}
