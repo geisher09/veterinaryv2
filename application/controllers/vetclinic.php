@@ -34,6 +34,8 @@ class vetclinic extends CI_Controller {
 		$stocks = $this->vet_model->getStocks();
 		$lastclient = $this->vet_model->getLastClient();
 		$sales_data['items']=$this->vet_model->getTotalSalesSum();
+		$sales_data['visits']=$this->vet_model->getTotalSalesSum2();
+		$sales_data['patients']=$this->vet_model->getTotalPatients();
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$record_data['eventCounter'] = count($record_data['events']);
