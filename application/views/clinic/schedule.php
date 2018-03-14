@@ -3,13 +3,12 @@
 <title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/jquery.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
-
     <link href="<?php echo base_url('assets/fullcalendar.min.css'); ?>" rel='stylesheet' />
+    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/jquery.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/moment.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
     <link href="<?php echo base_url('assets/fullcalendar.print.min.css'); ?>" rel='stylesheet' media='print' />
     <link href="<?php echo base_url('assets/jquery-ui.css'); ?>" rel='stylesheet' />
-    <script src="<?php echo base_url('assets/moment.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/fullcalendar.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/theme-chooser.js'); ?>"></script>
     
@@ -196,6 +195,14 @@
             </nav>
             <div class="panel-header panel-header-sm">
             </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Schedule</h2>
+                            </div>
+                            <div class="card-body">
     <div id='calendar'></div>
 
     <!-- edit modal -->
@@ -248,8 +255,15 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <!-- add event modal -->
+<!-- add event modal -->
 
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -284,8 +298,7 @@
             </div>
         </div>
     </div>
-</div>
-</div>
+
 </body>
 <script>
 
@@ -420,26 +433,4 @@
         });
 
     </script>
-</body>
 </html>
-
-
-
-<!-- if(new String(view).valueOf() == new String("month").valueOf()){
-                                $('#start').val(moment(start).format('Y-m-d'));
-                                $('#end').val(moment(start).format('Y-m-d'));
-                                $('#end').attr('type','hidden');
-                                $('label[id="endlabel"]').hide()
-                                $('#start').attr('type','hidden');
-                                $('label[id="startlabel"]').hide();
-                                $(".edit h4").text("Add  an ALL DAY event for "+start);
-                            }
-                            else{
-                                $('#start').val(moment(start).format('YYYY/MM/DD HH:mm'));
-                                $('#end').val(moment(start).format('YYYY/MM/DD HH:mm'));
-                                $('#end').attr('type','text');
-                                $('label[id="endlabel"]').show();
-                                $('#start').attr('type','text');
-                                $('label[id="startlabel"]').show();
-                                $(".edit h4").text("Add an event for " +date.format("YYYY/MM/DD"));
-                            } -->

@@ -184,6 +184,15 @@
             </nav>
             <div class="panel-header panel-header-sm">
             </div>
+
+  			<div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Sales</h2>
+                            </div>
+                            <div class="card-body">
     <div class="btn-group" style="margin-left:50px;">
 	    <button type="button" class="button" onclick="realTimeSalesChart()">Weekly</button>
 	    <button type="button" class="button" onclick="monthlySalesChart()">Monthly</button>
@@ -193,7 +202,7 @@
 	<div id="chart-container" style="margin-top:-40px;">
 			<canvas id="mycanvas"></canvas>
 	</div>
-    <!-- <form method="POST" action="<?php echo base_url('vetclinic/sales');?>" > -->
+	    <!-- <form method="POST" action="<?php echo base_url('vetclinic/sales');?>" > -->
 		<div id="chart-date" class="row salesDate" >
             <div class="col-md-2 col-sm-2"></div>
             <div class="col-md-3 col-sm-3">
@@ -209,8 +218,14 @@
             </div>
             <div class="col-md-2 col-sm-2"></div>
 		</div>
-		</div>
+			</div>
+
     <!--     </form> -->
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </body>
 
