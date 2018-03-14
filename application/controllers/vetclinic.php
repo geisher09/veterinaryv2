@@ -901,7 +901,20 @@ $lastclient = $this->vet_model->getLastClient();
 		$pdf->addPage();
 		
 		$itemsReport = array();
-		$itemsArr = $this->vet_model->getSales2();
+		$servReport = array();
+
+		$range = $this->input->get('range');
+		if($range === 'daily'){
+			$itemsArr = $this->vet_model->getSales2(date('Y-m-d'));
+			$servArr = $this->vet_model->getSales(date('Y-m-d'));
+		}
+		elseif($range === 'monthly'){
+			$year=date('Y');
+			$month=date('m');
+			$itemsArr = $this->vet_model->getSales2(null,$month, $year);
+			$servArr = $this->vet_model->getSales(null,$month, $year);
+		}
+
 		foreach($itemsArr as $i){
 			if(array_key_exists($i['itemid'], $itemsReport)){
 				$itemsReport[$i['itemid']]['qty'] += $i['qty'];
@@ -915,8 +928,6 @@ $lastclient = $this->vet_model->getLastClient();
 		}
 		$data['itemsReport'] = $itemsReport;
 
-		$servReport = array();
-		$servArr = $this->vet_model->getSales();
 		foreach($servArr as $s){
 			if(array_key_exists($s['serviceid'], $servReport)){
 				$servReport[$s['serviceid']]['qty'] += 1;
@@ -936,3 +947,5 @@ $lastclient = $this->vet_model->getLastClient();
 		$pdf->Output('test.pdf', 'I');
 	}
 }
+
+?>
