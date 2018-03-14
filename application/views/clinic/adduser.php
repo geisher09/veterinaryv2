@@ -179,35 +179,41 @@
                             <div class="card-body">
 <br/>
 	<div class="container-fluid box">
-	               
+      
                    <div class="row" id="inner-div" style="color:white;">
                 <div class="col-md-6 col-sm-12">
-                    <?php echo form_open('...',['class'=>'lgform']);?>
+                           <?php if( $error = $this->session->flashdata('success')): ?>
+            <div class="alert alert-dismissible alert-success">
+                <?php echo $error; ?>
+            </div> 
+    <?php endif; ?>
+                      
+                    <?php echo form_open('login/create',['class'=>'lgform']);?>
                 <br /><br /><br />
                 <div class="col-md-6 col-sm-12">
                 <!--    <h3>ACCOUNT</h3>   -->
                     <div class="form-group">
                         <label for="username">Username:</label>
                         <?php echo form_input(['name'=>'username','class'=>'form-control','placeholder'=>'Username', 'value'=>set_value('username')]); ?>
-                        <?php echo '<h5 class="pulse animated" style="color: red;
-                        "><strong>'.form_error('username').'</strong></h5>'; ?>
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('username').'</strong></h7>'; ?>
                       </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
                         <?php echo form_input(['name'=>'password','type'=>'password','class'=>'form-control','placeholder'=>'Password', 'value'=>set_value('password')]); ?>
-                        <?php echo '<h5 class="pulse animated" style="color: red;
-                        "><strong>'.form_error('password').'</strong></h5>'; ?>
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('password').'</strong></h7>'; ?>
                       </div>
                     <div class="form-group">
                         <label for="pwd_2">Confirm Password:</label>
-                        <input name="password_confirm" type="password" class="form-control" id="pwd_2">
-                        <?php echo '<h5 class="pulse animated" style="color: red;
-                        "><strong>'.form_error('password_confirm').'</strong></h5>'; ?>
+                        <input name="password_confirm2" type="password" class="form-control" id="pwd_2">
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('password_confirm2').'</strong></h7>'; ?>
                     </div>
                         <br />
                         <div style="float:right;">
                         <button type="submit" class="btn btn-success btn-lg">Create account</button>
-                        <a href="<?php echo site_url('Home'); ?>" class="btn btn-default btn-lg" role="button">Cancel</a>
+                        <a href="<?php echo site_url('vetclinic'); ?>" class="btn btn-default btn-lg" role="button">Cancel</a>
                         </div>
                         
                     <?php  echo form_close(); ?>

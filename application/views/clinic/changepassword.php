@@ -181,31 +181,32 @@
 	<div class="container-fluid box">
 	               
                    <div id="password-change">
-                <?php echo form_open('...',['class'=>'lgform']);?>
+                <?php echo form_open('login/changepass',['class'=>'lgform']);?>
                 <br /><br />
                     <br />
                 <div class="form-group">
                     <label for="password">Current Password:</label>
-                    <input type="password" name="password" id="password" class="form-control"  placeholder="Current Password" />
-                    <?php echo '<h5 class="pulse animated" style="color: red; "><strong>'.form_error('password').'</strong></h5>'; ?>
+                    <input type="hidden" name="userID" value="<?php echo $_SESSION['userID'];?>">
+                    <input type="password" name="password" id="password" class="form-control"  placeholder="Current Password" value="<?php echo set_value('password');?>" />
+                    <?php echo '<h7 class="pulse animated" style="color: red; "><strong>'.form_error('password').'</strong></h7>'; ?>
                 </div>
 
                 <div class="form-group">
                     <label for="pwd">New Password:</label>
-                        <input type="password" id="password_change" name="password_change" value="" class="form-control" placeholder="New Password"  />
-                    <?php echo '<h5 class="pulse animated" style="color: red; "><strong>'.form_error('password_change').'</strong></h5>'; ?>
+                        <input type="password" id="password_change" name="password_change" value="" class="form-control" placeholder="New Password" value="<?php echo set_value('password_change');?>"  />
+                    <?php echo '<h7 class="pulse animated" style="color: red; "><strong>'.form_error('password_change').'</strong></h7>'; ?>
                 </div>
 
                 <div class="form-group">
                     <label for="pwd_2">Confirm New Password:</label>
-                    <input name="password_confirm" type="password" class="form-control" id="pwd_2" placeholder="Password Confirmation">
-                    <?php echo '<h5 class="pulse animated" style="color: red; "><strong>'.form_error('password_confirm').'</strong></h5>'; ?>
+                    <input name="password_confirm" type="password" class="form-control" id="pwd_2" placeholder="Password Confirmation" value="<?php echo set_value('password_confirm');?>">
+                    <?php echo '<h7 class="pulse animated" style="color: red; "><strong>'.form_error('password_confirm').'</strong></h7>'; ?>
                 </div>
             </div>
             <br />
             <div class="text-center">
                 <button type="submit" class="btn btn-info btn-md">Change Password</button>
-                <a href="<?php echo site_url('..'); ?>" class="btn btn-danger btn-md" role="button">Cancel</a>
+                <a href="<?php echo site_url('vetclinic/accountsettings'); ?>" class="btn btn-danger btn-md" role="button">Cancel</a>
             </div>
             <?php echo form_close(); ?>
                             

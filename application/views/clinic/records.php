@@ -792,11 +792,13 @@
 										</select>
 									</div>
 									<br />
+                                   
 									<div class=" col-md-12 form-group">
-										<label for="">Diagnosis :</label>
-										<textarea placeholder="Diagnosis" class="form-control" name="findings" rows="4"></textarea>
+										<label for="">Diagnosis :</label><span id="findingserror" class="valerror"></span>
+										<textarea placeholder="Diagnosis" id="petfindings" class="form-control" name="findings" rows="4"></textarea>
+
 									</div>
-				
+				             
 									<div class="col-md-12 form-group">
 										<label for="">Recommendations :</label>
 										<textarea placeholder="Recommendations" class="form-control" name="recom" rows="4"></textarea>

@@ -277,9 +277,15 @@ $(document).ready(function(){
 								if($("#btn_get").val()=='')
 								{
 
-									alert('Please select Service type');
-
+								
+										alert('Please add service type');
 									$(".srvcss").css("color","red");
+								}
+								else if($("#petfindings").val()=='')
+								{
+										$("#findingserror").html('You should add some Findings');
+										alert('Please add some findings');
+										  
 								}
 								else {
 								

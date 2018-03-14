@@ -397,7 +397,7 @@ $lastclient = $this->vet_model->getLastClient();
 				 else{
              		//$this->session->set_flashdata('response', 'Failed :(');
 				 }
-				return redirect('vetclinic');
+				return redirect('vetclinic/records');
 
             }
 

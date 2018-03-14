@@ -23,8 +23,19 @@ class User_model extends CI_Model {
         
     }
     
-    function update($newRecord){
-        $this->db->replace($this->table,$newRecord);
+    function update($data){
+     
+                $this->db->set('username',$data['username']);
+             
+                $this->db->where('userID',$data['userID']);
+                $this->db->update('user');
+    }
+    function updatepass($data){
+     
+                $this->db->set('password',$data['password']);
+             
+                $this->db->where('userID',$data['userID']);
+                $this->db->update('user');
     }
     
     function del($where_array){

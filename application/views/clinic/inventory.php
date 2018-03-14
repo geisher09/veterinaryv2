@@ -242,17 +242,7 @@
                                                                   </div>
 																  </form>
                                                                 </td>
-                                                                
-                                                                <td style="width:100px;">
-                                                                        <form method="GET" action="">
-                                                                            <div class="row">
-                                                                            
-                                                                                <div>
-                                                                                    <a href="'.base_url('vetclinic/delete').'?itemid='.$s['itemid'].'" name="addstock" type="submit" class="btn btn-danger" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-trash"></span>&nbsp;Delete</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </td>
+                                                           
                                                             </tr>
                                                             ';
                                                  $i++;
@@ -285,3 +275,15 @@
     }
 </script>
 </html>
+     
+                                                            <!--   <td style="width:100px;">
+                                                                //         <form method="GET" action="">
+                                                                //             <div class="row">
+                                                                            
+                                                                //                 <div>
+                                                                //                     <a href="'.base_url('vetclinic/delete').'?itemid='.$s['itemid'].'" name="addstock" type="submit" class="btn btn-danger" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-trash"></span>&nbsp;Delete</a>
+                                                                //                 </div>
+                                                                //             </div>
+                                                                //         </form>
+                                                                //     </td>-->
+                                                                

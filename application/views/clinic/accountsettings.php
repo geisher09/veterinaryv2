@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 
 <body class="">
@@ -182,12 +182,23 @@
 	               
                    <div class="row" id="settingsdiv">
                 <div class="col-md-8 col-sm-12">
-                    <?php echo form_open('...',['class'=>'lgform']);?>
+                    <?php echo form_open('login/change_user',['class'=>'lgform']);?>
                      <br /><br />
                     <br />
+                      <?php if( $error = $this->session->flashdata('confirm')): ?>
+                                        <div class="alert alert-dismissible alert-success">
+                                            <?php echo $error; ?>
+                                        </div> 
+                                <?php endif; ?>
+                                 <?php if( $error = $this->session->flashdata('error')): ?>
+                                        <div class="alert alert-dismissible alert-danger">
+                                            <?php echo $error; ?>
+                                        </div> 
+                                <?php endif; ?>
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" name="username" id="username" class="form-control" />
+                        <input type="hidden" name="userID" value="<?php echo $_SESSION['userID'];?>">
+                        <input type="text" name="username" id="username" class="form-control" value="<?php echo $_SESSION['username'];?>" />
                         <?php echo '<h5 class="pulse animated" style="color: #ff4d4d;
                             "><strong>'.form_error('username').'</strong></h5>'; ?>
                     </div>
@@ -196,9 +207,9 @@
                     <div style="float:right;">
                     <button type="submit" class="btn btn-success btn-md">Save Changes</button>
                     <?php echo form_close();?>
-                    <?php echo form_open('...',['class'=>'lgform']);?>
-                    <button type="submit" class="btn btn-danger btn-md">Discard Changes</button>
-                    <?php echo form_close();?>
+                    
+           
+                   
                     </div>
                 </div>
     </div>
