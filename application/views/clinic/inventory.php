@@ -101,16 +101,51 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
                                     <i class="now-ui-icons location_world"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <?php
+                                if($record_dat['notif']!=0){
+                                    if(isset($record_dat['events'])){
+                                        $i=1;
+                                        foreach($record_dat['events'] as $e){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/schedule">
+                                                    Event no.'.$i.': '.$e['title'].', Desc:'.$e['description'].'
+                                                    </a>
+                                                ';
+                                            $i++;
+                                        }
+                                    }
+
+                                    if(isset($record_dat['items'])){
+                                        foreach($record_dat['items'] as $item){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/inventory" >
+                                                    Item #'.$item['itemid'].': '.$item['item_desc'].' has 0 quantity left!
+                                                    </a>
+                                                ';
+
+                                        }
+                                    }
+                                }
+
+
+                                    else {
+
+
+
+
+
+                                            echo    '<a class="dropdown-item">No new notification</a>
+
+
+                                            ';
+                                    }
+
+                                ?>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -141,18 +176,17 @@
                                         <thead>
                                         <tr class="th1">
                                             <th >
-                                                <div>
-                                                    <button type="button" class="btn btn-md" id="addbutn"  data-toggle="modal" data-target="#myModalNorm">
+                                                <div id="addbutn">
+                                                    <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalNorm">
                                                         <span class="glyphicon glyphicon-plus">
-                                                        <span class="tooltiptext">Add an item</span>
-                                                        </span>
+                                                        Add an Item
                                                     </button>
 
                                                 </div> 
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th class="text-primary" style="text-align:center;width:100px;">#</th>
+                                            <th class="text-primary" style="text-align:center;">Item ID</th>
                                             <th class="text-primary">Description</th>
                                             <th class="text-primary">Price</th>
                                             <th class="text-primary" >Stocks Left</th>
@@ -163,10 +197,10 @@
         
                                             <?php
                                                 $i=1;
-                                                            foreach($stock as $s){
+                                                            foreach($data['stock'] as $s){
                                                           
                                                                 echo '<tr  style="height:20px;padding:-10px;" class="'.($s['qty_left']==0?'redrow':'').'">  
-                                                                        <td style="text-align:center;width:100px;">'.$i.'</td>
+                                                                        <td style="text-align:center;">'.$i.'</td>
                                                                         <td style="text-align:center;"  >'.$s['item_desc'].'</td>
                                                                         <td style="text-align:center;">'.$s['item_cost'].'</td>
                                                                         <td style="text-align:center; ">'.$s['qty_left'].'</td>
@@ -184,15 +218,19 @@
                                                                     </form>
                                                                 </td>
                                                                     
-                                                                    <td >
+                                                                    <td style="width:100px;">
+																	<form>
                                                                   <div class="row">
+																	
                                                                      <div class="class="col-sm-6">
                                                                          <button type="button" data-toggle="modal" id="'.$s['itemid'].'" data-target="#editStock" onclick="populate(this.id)" class="btn btn-success" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</button>
                                                                       </div>
+																	  
                                                                   </div>
+																  </form>
                                                                 </td>
                                                                 
-                                                                <td>
+                                                                <td style="width:100px;">
                                                                         <form method="GET" action="">
                                                                             <div class="row">
                                                                             

@@ -101,16 +101,51 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
                                     <i class="now-ui-icons location_world"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <?php
+                                if($record_dat['notif']!=0){
+                                    if(isset($record_dat['events'])){
+                                        $i=1;
+                                        foreach($record_dat['events'] as $e){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/schedule">
+                                                    Event no.'.$i.': '.$e['title'].', Desc:'.$e['description'].'
+                                                    </a>
+                                                ';
+                                            $i++;
+                                        }
+                                    }
+
+                                    if(isset($record_dat['items'])){
+                                        foreach($record_dat['items'] as $item){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/inventory" >
+                                                    Item #'.$item['itemid'].': '.$item['item_desc'].' has 0 quantity left!
+                                                    </a>
+                                                ';
+
+                                        }
+                                    }
+                                }
+
+
+                                    else {
+
+
+
+
+
+                                            echo    '<a class="dropdown-item">No new notification</a>
+
+
+                                            ';
+                                    }
+
+                                ?>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -141,13 +176,11 @@
                                         <thead>
                                         <tr class="th1">
                                             <th >
-                                                <div>
-                                                    <button type="button" class="btn btn-md" id="addbutn"  data-toggle="modal" data-target="#myModalHistory">
-                                                        <span class="glyphicon glyphicon-plus">
-                                                        <span class="tooltiptext">Sold an item</span>
-                                                        </span>
+                                                <div id="addbutn">
+                                                    <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalHistory">
+                                                        Sold an Item
                                                     </button>
-                                                </div> 
+                                                </div>  
                                             </th>
                                         </tr>
                                         <tr>
@@ -160,7 +193,7 @@
                                         <tbody>
 
                                         <?php
-                                                foreach($itemhistory as $r){
+                                                foreach($data['itemhistory'] as $r){
                                                     echo '  <tr>    
                                                             <td style="text-align:center;">'.$r['itemid'].'</td>
                                                             <td style="text-align:left;">'.$r['action'].'</td>
@@ -187,18 +220,18 @@
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                            <button type="button" class="close" 
+                            <h4 class="modal-title text-center" id="LabelHistory" style="font-size:25px; font-weight:bold; margin-left:21%;">
+                               UPDATE ITEM USAGE
+                            </h4>
+							<button type="button" class="close" 
                                data-dismiss="modal">
                                    <span aria-hidden="true">&times;</span>
                                    <span class="sr-only">Close</span>
                             </button>
-                            <h4 class="modal-title text-center" id="LabelHistory" style="font-size:25px; font-weight:bold;">
-                               UPDATE ITEM USAGE
-                            </h4>
                         </div>
                 
             <!-- Modal Body -->
-            <div class="modal-body">
+            <div class="modal-body" style="padding:50px;">
                  <?php echo form_open(site_url("vetclinic/history/")) ?>
                 <form action="" method="POST"><div class="form-group">
                     <span  id="ins" class="valerror"></span>

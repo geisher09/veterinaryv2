@@ -101,16 +101,51 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
                                     <i class="now-ui-icons location_world"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <?php
+                                if($record_dat['notif']!=0){
+                                    if(isset($record_dat['events'])){
+                                        $i=1;
+                                        foreach($record_dat['events'] as $e){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/schedule">
+                                                    Event no.'.$i.': '.$e['title'].', Desc:'.$e['description'].'
+                                                    </a>
+                                                ';
+                                            $i++;
+                                        }
+                                    }
+
+                                    if(isset($record_dat['items'])){
+                                        foreach($record_dat['items'] as $item){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/inventory" >
+                                                    Item #'.$item['itemid'].': '.$item['item_desc'].' has 0 quantity left!
+                                                    </a>
+                                                ';
+
+                                        }
+                                    }
+                                }
+
+
+                                    else {
+
+
+
+
+
+                                            echo    '<a class="dropdown-item">No new notification</a>
+
+
+                                            ';
+                                    }
+
+                                ?>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -134,16 +169,15 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">Services Offered</h2>
+								<div id="addserv">
+									<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addservicemodal">
+									<span class="glyphicon glyphicon-plus"></span> Add Service</button>
+								</div>
                             </div>
                             <div class="card-body">
 <br/>
 	<div class="container-fluid box">
 	
-		<div id="servtitle"> Services Offered</div>
-        <div id="addserv">
-            <button type="button" class="btn btn-md" data-toggle="modal" data-target="#addservicemodal">
-			<span class="glyphicon glyphicon-plus"></span> Add Service</button>
-        </div>
 <!--
 <table class="table" id="mytable">
 	<thead>
@@ -159,7 +193,7 @@
 			<td></td><td></td><td></td>
 		</tr>-->
 			<?php 
-			foreach($grooming as $s){
+			foreach($data['grooming'] as $s){
 				echo '
 				<div class="col-lg-3 col-md-3 col-sm-3 boxed">
 					<ul> Grooming </ul> <hr />
@@ -179,7 +213,7 @@
 			<td></td><td></td><td></td>
 		</tr> -->
 				<?php 
-			foreach($treatment as $s){
+			foreach($data['treatment'] as $s){
 				echo '
 				<div class="col-lg-3 col-md-3 col-sm-3 boxed2">
 					<ul> Treatment </ul> <hr>
@@ -206,28 +240,28 @@
 
 	<!--  Add Service Modal -->
 	  <div class="modal fade" id="addservicemodal" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-md">
 		
 		  <!-- Modal content -->
 		  <div class="modal-content" id="registermodal">
 			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:33%;">ADD SERVICE</h3>
 			  <button type="button" class="close" data-dismiss="modal">&times;</button>
-			  <h3 class="modal-title text-center" style="font-size:25px; font-weight:bold;">ADD SERVICE</h3>
 			</div>
-			<div class="modal-body" style="padding:10px;padding-top:0px;">
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
 				  <form class="form-horizontal" action="" method="post">
 					
 					<br />
 					<div class="form-group">
-					  <label class=" col-sm-3" for="desc">Description:</label>
-					  <div class="col-sm-8">
+					  <label  for="desc">Description:</label>
+					  <div >
 						<input type="text" class="form-control" id="desc"  name="desc">
 					  </div>
 					</div>
 					<div class="form-group">
-					  <label class=" col-sm-3" for="serv_type">Type of Service:</label>
-					  <div class="col-sm-8">          
+					  <label  for="serv_type">Type of Service:</label>
+					  <div >          
 							<select class="form-control" id="serv_type" name="serv_type">
 								<option >Grooming</option>
 								<option >Treatment</option>							
@@ -249,35 +283,35 @@
 	  
 	  	<!-- Update Service Modal -->
 	  <div class="modal fade" id="updateservicemodal" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-md">
 		
 		  <!-- Modal content-->
 		  <div class="modal-content" id="registermodal">
 			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title text-center" style="font-size:25px; font-weight:bold; margin-left:30%;">UPDATE SERVICE</h3>
 			  <button type="button" class="close" data-dismiss="modal">&times;</button>
-			  <h3 class="modal-title text-center" style="font-size:25px; font-weight:bold;">UPDATE SERVICE</h3>
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
 					<br/>
 				  <form class="form-horizontal" action="" method="post">
 					<div class="form-group">
-					  <label class=" col-sm-3" >Service ID:</label>
-					  <div class="col-sm-8">
+					  <label  >Service ID:</label>
+					  <div >
 						<input type="text" class="form-control" id="serviceid"  name="serviceid" value="" readonly="readonly" >
 					  </div>
 					</div>
 					<br />
 					<div class="form-group">
-					  <label class=" col-sm-3" for="desc">Description:</label>
-					  <div class="col-sm-8">
+					  <label  for="desc">Description:</label>
+					  <div >
 						<input type="text" class="form-control" id="desc"  name="desc">
 					  </div>
 					</div>
 
 					<div class="form-group">
-					  <label class=" col-sm-3" for="serv_type">Type of Service:</label>
-					  <div class="col-sm-8">          
+					  <label  for="serv_type">Type of Service:</label>
+					  <div >          
 							<select class="form-control" id="serv_type" name="serv_type">
 								<option >Grooming</option>
 								<option >Treatment</option>

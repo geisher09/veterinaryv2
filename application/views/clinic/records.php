@@ -101,16 +101,51 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
                                     <i class="now-ui-icons location_world"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <?php
+                                if($record_dat['notif']!=0){
+                                    if(isset($record_dat['events'])){
+                                        $i=1;
+                                        foreach($record_dat['events'] as $e){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/schedule">
+                                                    Event no.'.$i.': '.$e['title'].', Desc:'.$e['description'].'
+                                                    </a>
+                                                ';
+                                            $i++;
+                                        }
+                                    }
+
+                                    if(isset($record_dat['items'])){
+                                        foreach($record_dat['items'] as $item){
+                                            echo '  
+                                                    <a class="dropdown-item" href="/veterinaryv2/vetclinic/inventory" >
+                                                    Item #'.$item['itemid'].': '.$item['item_desc'].' has 0 quantity left!
+                                                    </a>
+                                                ';
+
+                                        }
+                                    }
+                                }
+
+
+                                    else {
+
+
+
+
+
+                                            echo    '<a class="dropdown-item">No new notification</a>
+
+
+                                            ';
+                                    }
+
+                                ?>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -151,9 +186,9 @@
                                     <table class="table table-list-search" id="mytable">
                                         <thead>
                                         <tr class="th1">
-                                                    <button type="button" class="btn btn-md" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
+                                                    <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
                                                         <span class="glyphicon glyphicon-plus">
-                                                        <span class="tooltiptext">Add new client </span>
+                                                        <span class="tooltiptext" style="font-size:18px;">Add new client </span>
                                                         </span>
                                                     </button>
                                         </tr>
@@ -187,7 +222,7 @@
                                                 <td style="text-align:center;"><?php echo $client['pets']; ?></td>
                                                 <td style="text-align:center; width:260px;">    
                                                 <?php $c=$client['clientid'];?> 
-                                                <b class="btn viewdetailsbtn" style="font-size:15px;" id="<?php echo $c;?>" type="button" onclick="lol(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b>
+                                                <b class="btn btn-info viewdetailsbtn" style="font-size:10px;" id="<?php echo $c;?>" type="button" onclick="lol(this.id)">View<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -229,8 +264,9 @@
                   <div class="col-sm-2 col-md-2"></div>
                 </div>
                 <hr />
-              <div class="newClientboxHead"><h3 class="text-center"><b>Owner's Info</b></h3></div>
+              <div class="newClientboxHead">Owner's Info</div>
             <div class="newClientbox"> 
+                <br/>
                 <div class="form-group row" >
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="name">Name:</label>
@@ -284,8 +320,9 @@
                     </div>
                 </div>
             </div> 
-            <div class="newClientboxHead"><h3 class="text-center"><b>Pet's Info</b></h3></div>
+            <div class="newClientboxHead">Pet's Info</div>
             <div class="newClientbox">
+                <br/>
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="petname">Name:</label>
@@ -377,7 +414,7 @@
     </div>
   </div> 
 <!--end of add client modal-->
-  
+
 <!----------- Client Detail Modal -------------------->
   <div class="modal fade" id="clientModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -394,7 +431,7 @@
         
                     <div class="container-fluid window" id="clientDet">
                     <?php echo form_open('vetclinic/updateclient', ['class'=>'form-horizontal']); ?>
-                    <p class="lead text-center" style="font-size:32px; font-family:'Arvo'; color:#2471A3;">Client Details</p>
+                    <p class="lead text-center" style="font-size:32px;font-family:'Montserrat';font-weight:500; color:#2471A3;">Client Details</p>
                     <hr />
                         <div class="row">
                             <div class=" col-md-4 form-group text-center">
@@ -418,7 +455,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 form-group text-center" id="emaile">
-                                <label for="">Email</label>
+                                <label for="">E-mail</label>
                                 <input type="text" class="form-control line" id="custemail1" name="num2" value="<?php echo set_value('num2'); ?>"/>
                                 <p id="emailerror" class="valerror"></p>
                                         <p id="custemail"  value=""></p>
@@ -436,7 +473,7 @@
                     <hr />
                     <div class="row">
                         <div class="col-md-6">
-                                <p class="lead text-center" style="font-size: 25px;font-family:'Arvo'; color:#2471A3;">List of Owned Pet(s)</p>
+                                <p class="lead text-center" style="font-size: 25px;font-family:'Montserrat'; font-weight:500;color:#2471A3;">List of Owned Pet(s)</p>
                                 <div style="height: 300px; overflow: auto">
                                     <table id="petList" class="table table-hover" style="margin-top: 20px;">
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">Pet ID</th>
@@ -506,7 +543,7 @@
                 </div>
                     
                 <div class="container-fluid window" id="addPet">
-					<p class="lead text-center" style="font-size:32px; font-family:'Montserrat'; color:#2471A3;">Add Pet</p>
+					<p class="lead text-center" style="font-size:32px; font-family:'Montserrat'; font-weight:400;color:#2471A3;">Add Pet</p>
 					<hr />
 					<form></form>
 					<?php echo form_open('vetclinic/savepet', ['class'=>'form-horizontal','id'=>'addPetForm']); ?>
@@ -826,13 +863,15 @@
 									</table>
 
 									<div class="btn-group">
-										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row">+</a>
-										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row">-</a>
+										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><b>+</b></a>
+										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><b>-</b></a>
 									</div>
 
-								<div class=" col-md-12 form-group">
-									<h4 class="text-right">Total Cost: (Php)</h4>
-									<input type="number" name='totalCost' placeholder='0.00' class="form-control"/>
+								<div class=" row form-group">
+                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
+                                    <div class="col-md-8" style="padding-top:30px;">
+									<input type="number" name='totalCost' placeholder='0.00' class="form-control" readonly/>
+                                        </div>
 								</div>
 
 							
@@ -841,7 +880,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="submit" id="sbmtbtn" class="btn btn-primary">Save</button>
+							<button type="submit" id="sbmtbtn" class="btn btn-info">Save</button>
 						</div>
 				<?php echo form_close(); ?>
 
