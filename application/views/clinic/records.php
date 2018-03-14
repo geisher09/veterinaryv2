@@ -133,7 +133,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">List of Clients</h4>
+                                <h2 class="card-title">List of Clients</h2>
                             </div>
                             <div class="card-body">
                                 <?php if( $error = $this->session->flashdata('responsed')): ?>
@@ -159,9 +159,9 @@
                                         </tr>
                                         <tr>
                                             <th class="text-primary">Client ID</th>
-                                            <th>Client's Name</th>
-                                            <th>No. of Pets Owned</th>
-                                            <th class="text-right">Action</th>
+                                            <th class="text-primary">Client's Name</th>
+                                            <th class="text-primary">No. of Pets Owned</th>
+                                            <th class="text-primary" style="text-align:center">Action</th>
                                         </tr>
                                     </thead>
                                         <tbody>
@@ -928,7 +928,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
         function newp(type){
             $.ajax({
                     type: 'POST',
-                    url: 'vetclinic/ajax_list',
+                    url: 'ajax_list',
                     data:{id: $('#clientno').val()},
                         success: function(data) {
                             var obj = JSON.parse(data);
@@ -954,7 +954,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
             $('#fullVisitDet').hide();
             $.ajax({
                     type: 'POST',
-                    url: 'vetclinic/ajax_list',
+                    url: 'ajax_list',
                     data:{id: id},
                         success: function(data) {
                             var obj = JSON.parse(data);
@@ -979,7 +979,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
             document.getElementById("itemsused").innerHTML="";
             $.ajax({
                     type: 'POST',
-                    url: 'vetclinic/ajax_list',
+                    url: 'ajax_list',
                     data:{id: id},
                         success: function(data) {
                             var obj = JSON.parse(data);
@@ -1023,7 +1023,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
             document.getElementById("PetsVisits").innerHTML="";
             $.ajax({
                     type: 'POST',
-                    url: 'vetclinic/ajax_list',
+                    url: 'ajax_list',
                     data:{id: id},
                         success: function(data) {
                             var obj = JSON.parse(data);
@@ -1047,7 +1047,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
         function sos(id){
             $.ajax({
                     type: 'POST',
-                    url: 'vetclinic/ajax_list',
+                    url: 'ajax_list',
                     data:{id: id},
                         success: function(data) {
                             var obj = JSON.parse(data);
@@ -1106,7 +1106,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
             //$('#visitHistory').hide();
             $.ajax({
                     type: 'POST',
-                    url: 'vetclinic/ajax_list',
+                    url: 'ajax_list',
                     data:{id: id},
                         success: function(data) {
                             var obj = JSON.parse(data);

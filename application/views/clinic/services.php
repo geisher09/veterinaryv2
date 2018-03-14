@@ -133,12 +133,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Available Stocks</h4>
+                                <h2 class="card-title">Services Offered</h2>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-list-search" id="mytable">
-                                    	<div id="container">
 <br/>
 	<div class="container-fluid box">
 	
@@ -200,9 +197,7 @@
 <!--
 	</tbody>
 </table>-->
-                                </div>
-                            </div>
-                        </div>
+                            
                     </div>
                 </div>
             </div>

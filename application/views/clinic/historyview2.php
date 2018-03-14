@@ -133,7 +133,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Transactions</h4>
+                                <h2 class="card-title">Transactions</h2>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
