@@ -23,6 +23,16 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <?php
+                    if($_SESSION['isDoctor']==0){
+                        echo '<li>
+                            <a href="'.base_url('vetclinic/billing').'">
+                                <i class="now-ui-icons business_badge"></i>
+                                <p>Billing</p>
+                            </a>
+                        </li>';
+                    }
+                    ?>
                     <li>
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
                             <i class="now-ui-icons business_badge"></i>

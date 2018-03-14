@@ -8,6 +8,8 @@ class vetclinic extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+			if(!isset($_SESSION['username']))
+				redirect(base_url());
 			date_default_timezone_set('Asia/Manila');
 			$this->load->model('vet_model','vet_model');
 			$this->load->model('itemstock','itemstock');
@@ -821,42 +823,39 @@ $lastclient = $this->vet_model->getLastClient();
         return TRUE;
     	}
 		} 
-		//chrstnv
-		public function validateItem(){
 
-			// print_r($_POST);
-			$this->form_validation->set_rules('desc','Description','required|min_length[2]');
-	  		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
-		 	$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
+	//chrstnv
+	public function validateItem(){
 
-		 	if($this->form_validation->run()){
+		// print_r($_POST);
+		$this->form_validation->set_rules('desc','Description','required|min_length[2]');
+		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
+		$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
 
-		 		echo 'true';
+		if($this->form_validation->run()){
 
-
-		 	}
-		 	else{
-		 		if(form_error('desc')!=null){
-		 			$data['desc']=form_error('desc');
-		 		}
-		 			if(form_error('cost')!=null){
-		 			$data['cost']=form_error('cost');
-		 		}
-		 			if(form_error('qty')!=null){
-		 			$data['qty']= form_error('qty');
-		 			
-		 		}
-		 		echo json_encode($data);
+			echo 'true';
 
 
-
-		 	}
-
-
+		}
+		else{
+			if(form_error('desc')!=null){
+				$data['desc']=form_error('desc');
+			}
+				if(form_error('cost')!=null){
+				$data['cost']=form_error('cost');
+			}
+				if(form_error('qty')!=null){
+				$data['qty']= form_error('qty');
+				
+			}
+			echo json_encode($data);
 
 
 
 		}
+
+	}
 	public function validatePet()
 	{
 			$this->form_validation->set_rules('name','Pet name','required|min_length[2]|callback_space');
@@ -1002,6 +1001,27 @@ $lastclient = $this->vet_model->getLastClient();
 
 		$pdf->writeHTML($tbl);
 		$pdf->Output('test.pdf', 'I');
+	}
+
+	public function billing(){
+		$data['visits'] = $this->vet_model->getVisitForBilling();
+		$header_data['title'] = "Billing";
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/billing',['data'=>$data,'record_dat'=>$record_data]);
+		$this->load->view('include/footer');
+	}
+
+	public function updatehistory(){
+		$visitid = $this->input->post('visitid');
+		$visit_cost = $this->input->post('visit_cost');
+		$total = $this->input->post('totalCost');
+		$newRecord = array('visit_cost'=>$visit_cost, 'Total'=>$total+$visit_cost);
+		if($this->vet_model->updateVisit($newRecord, $visitid))
+			redirect(base_url('vetclinic/billing'));
 	}
 }
 

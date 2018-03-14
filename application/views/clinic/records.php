@@ -23,6 +23,16 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <?php
+                    if($_SESSION['isDoctor']==0){
+                        echo '<li>
+                            <a href="'.base_url('vetclinic/billing').'">
+                                <i class="now-ui-icons business_badge"></i>
+                                <p>Billing</p>
+                            </a>
+                        </li>';
+                    }
+                    ?>
                     <li class="active">
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
                             <i class="now-ui-icons business_badge"></i>
@@ -441,7 +451,7 @@
                 <div class="btn-group btn-group-lg">
                     <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
                     <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
-                    <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory'); " >Add History</button>
+                    <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory');" <?=$_SESSION['isDoctor']==0? 'disabled' : ''?> >Add History</button>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
