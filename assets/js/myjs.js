@@ -194,12 +194,12 @@ $(document).ready(function(){
 	   								 }
 						});
 
-							$(document).on('keyup','.globalDisable',function(){
-								 var num = this.value.match(/^\d+$/);
-									  if (num === null) {	
-	      							 this.value = "";
-	   								 }
-						});
+								$(document).on('keyup','.globalDisable',function(){
+									 var num = this.value.match(/^[0-9]*\.?[0-9]+$/);
+										  if (num === null) {	
+		      							 this.value = "";
+		   								 }
+							});
 
 				});
 
@@ -277,9 +277,15 @@ $(document).ready(function(){
 								if($("#btn_get").val()=='')
 								{
 
-									alert('Please select Service type');
-
+								
+										alert('Please add service type');
 									$(".srvcss").css("color","red");
+								}
+								else if($("#petfindings").val()=='')
+								{
+										$("#findingserror").html('You should add some Findings');
+										alert('Please add some findings');
+										  
 								}
 								else {
 								

@@ -5,10 +5,10 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    (Logo)
+                <a class="simple-text logo-mini">
+                    <img src="<?php echo base_url('assets/img/logo.png');?>">
                 </a>
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                <a class="simple-text logo-normal">
                     Deloso Vet Clinic
                 </a>
             </div>
@@ -33,18 +33,26 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('vetclinic/sales'); ?>">
-                            <i class="now-ui-icons business_chart-bar-32"></i>
+                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                            <i class="now-ui-icons business_money-coins"></i>
                             <p>Sales</p>
                         </a>
+                            <li>
+                            <div id="subPages" class="collapse">
+                                <ul class="nav">
+                                    <li><a href="<?php echo base_url('vetclinic/sales'); ?>" class=""><i class="now-ui-icons business_chart-bar-32"></i>Sales Chart</a></li>
+                                    <li><a href="<?php echo base_url('vetclinic/salesreport'); ?>" class=""><i class="now-ui-icons files_paper"></i>Sales Report</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </li>
                     <li>
-                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                        <a href="#subPages2" data-toggle="collapse" class="collapsed">
                             <i class="now-ui-icons shopping_basket"></i>
                             <p>Inventory</p>
                         </a>
                             <li>
-                            <div id="subPages" class="collapse ">
+                            <div id="subPages2" class="collapse">
                                 <ul class="nav">
                                     <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
                                     <li><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
@@ -81,22 +89,19 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                </span>
-                            </div>
-                        </form>
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <i class="now-ui-icons media-2_sound-wave"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Stats</span>
-                                    </p>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="now-ui-icons ui-2_settings-90"></i>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/accountsettings'); ?>">
+                                        Account Settings
+                                     </a>
+                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/adduser'); ?>">
+                                        Add New User
+                                     </a>
+                                </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -464,6 +469,230 @@
 <script>
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
+       initDashboardPageCharts();
     });
+
+    function initDashboardPageCharts(){
+        $.ajax({
+            url: 'vetclinic/ajax_yearly',
+            success: function(data) {
+                var obj = JSON.parse(data);
+                            
+                            var date = [];
+                            var total_cost = [];
+                            var visitdate = [];
+                            var visit_cost = [];
+          chartColor = "#FFFFFF";
+
+                            for(var i in obj.dates){
+                                date.push("Date: " + obj.dates[i]);
+                                visitdate.push("Date: " + obj.dates[i]);
+                            }
+
+                            for(var n in obj.sales1){
+                                visit_cost.push(obj.sales1[n]);
+                                total_cost.push(obj.sales2[n]);
+                            }
+      // General configuration for the charts with Line gradientStroke
+      gradientChartOptionsConfiguration = {
+          maintainAspectRatio: false,
+          legend: {
+              display: false
+          },
+          tooltips: {
+            bodySpacing: 4,
+            mode:"nearest",
+            intersect: 0,
+            position:"nearest",
+            xPadding:10,
+            yPadding:10,
+            caretPadding:10
+          },
+          responsive: 1,
+          scales: {
+              yAxes: [{
+                display:0,
+                gridLines:0,
+                ticks: {
+                    display: false
+                },
+                gridLines: {
+                    zeroLineColor: "transparent",
+                    drawTicks: false,
+                    display: false,
+                    drawBorder: false
+                }
+              }],
+              xAxes: [{
+                display:0,
+                gridLines:0,
+                ticks: {
+                    display: false
+                },
+                gridLines: {
+                  zeroLineColor: "transparent",
+                  drawTicks: false,
+                  display: false,
+                  drawBorder: false
+                }
+              }]
+          },
+          layout:{
+            padding:{left:0,right:0,top:15,bottom:15}
+          }
+      };
+
+      gradientChartOptionsConfigurationWithNumbersAndGrid = {
+          maintainAspectRatio: false,
+          legend: {
+              display: false
+          },
+          tooltips: {
+            bodySpacing: 4,
+            mode:"nearest",
+            intersect: 0,
+            position:"nearest",
+            xPadding:10,
+            yPadding:10,
+            caretPadding:10
+          },
+          responsive: true,
+          scales: {
+              yAxes: [{
+                gridLines:0,
+                gridLines: {
+                    zeroLineColor: "transparent",
+                    drawBorder: false
+                }
+              }],
+              xAxes: [{
+                display:0,
+                gridLines:0,
+                ticks: {
+                    display: false
+                },
+                gridLines: {
+                  zeroLineColor: "transparent",
+                  drawTicks: false,
+                  display: false,
+                  drawBorder: false
+                }
+              }]
+          },
+          layout:{
+            padding:{left:0,right:0,top:15,bottom:15}
+          }
+      };
+
+      var ctx = document.getElementById('bigDashboardChart').getContext("2d");
+
+      var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+      gradientStroke.addColorStop(0, '#80b6f4');
+      gradientStroke.addColorStop(1, chartColor);
+
+      var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
+      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+      gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
+
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+              datasets: [
+              {
+                  label: "Items",
+                  borderColor: chartColor,
+                  pointBorderColor: chartColor,
+                  pointBackgroundColor: "#1e3d60",
+                  pointHoverBackgroundColor: "#1e3d60",
+                  pointHoverBorderColor: chartColor,
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 7,
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 5,
+                  fill: true,
+                  backgroundColor: gradientFill,
+                  borderWidth: 2,
+                  data: total_cost
+              },
+              {
+                  label: "Visits",
+                  borderColor: chartColor,
+                  pointBorderColor: chartColor,
+                  pointBackgroundColor: "#1f611f",
+                  pointHoverBackgroundColor: "#1f611f",
+                  pointHoverBorderColor: chartColor,
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 7,
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 5,
+                  fill: true,
+                  backgroundColor: gradientFill,
+                  borderWidth: 2,
+                  data: visit_cost
+              }
+
+              ]
+          },
+          options: {
+              layout: {
+                  padding: {
+                      left: 20,
+                      right: 20,
+                      top: 0,
+                      bottom: 0
+                  }
+              },
+              maintainAspectRatio: false,
+              tooltips: {
+                backgroundColor: '#fff',
+                titleFontColor: '#333',
+                bodyFontColor: '#666',
+                bodySpacing: 4,
+                xPadding: 12,
+                mode: "nearest",
+                intersect: 0,
+                position: "nearest"
+              },
+              legend: {
+                  position: "bottom",
+                  fillStyle: "#FFF",
+                  display: false
+              },
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          fontColor: "rgba(255,255,255,0.4)",
+                          fontStyle: "bold",
+                          beginAtZero: true,
+                          maxTicksLimit: 5,
+                          padding: 10
+                      },
+                      gridLines: {
+                          drawTicks: true,
+                          drawBorder: false,
+                          display: true,
+                          color: "rgba(255,255,255,0.1)",
+                          zeroLineColor: "transparent"
+                      }
+
+                  }],
+                  xAxes: [{
+                      gridLines: {
+                          zeroLineColor: "transparent",
+                          display: false,
+
+                      },
+                      ticks: {
+                          padding: 10,
+                          fontColor: "rgba(255,255,255,0.4)",
+                          fontStyle: "bold"
+                      }
+                  }]
+              }
+          }
+      });
+    }
+        });
+    }   
 </script>

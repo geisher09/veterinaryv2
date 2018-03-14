@@ -42,6 +42,57 @@ class vetclinic extends CI_Controller {
 		//$this->load->view('include/footer');
 	}
 
+	public function accountsettings()
+	{
+		$header_data['title'] = "Account Settings";		
+		
+		$this->load->model('vet_model');
+		$clients = $this->vet_model->getClients();
+		$stocks = $this->vet_model->getStocks();
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/accountsettings', ['record_dat'=>$record_data]);			
+		//$this->load->view('include/footer');
+	}
+
+	public function changepassword()
+	{
+		$header_data['title'] = "Change Password";		
+		
+		$this->load->model('vet_model');
+		$clients = $this->vet_model->getClients();
+		$stocks = $this->vet_model->getStocks();
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/changepassword', ['record_dat'=>$record_data]);			
+		//$this->load->view('include/footer');
+	}
+
+	public function adduser()
+	{
+		$header_data['title'] = "Add New User";		
+		
+		$this->load->model('vet_model');
+		$clients = $this->vet_model->getClients();
+		$stocks = $this->vet_model->getStocks();
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/adduser', ['record_dat'=>$record_data]);			
+		//$this->load->view('include/footer');
+	}
+
 	public function records()
 	{
 		$header_data['title'] = "Records";		
@@ -326,7 +377,10 @@ $lastclient = $this->vet_model->getLastClient();
 	}
 
 	public function savehistory(){
-
+			$header_data['notif']=$this->vet_model->notification();
+			$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+			$header_data['eventCounter'] = count($header_data['events']);
+			$header_data['items'] = $this->vet_model->getAllZeroitems();
 
 			$this->form_validation->set_rules('findings', 'Findings', 'required');
 	  	// 	$this->form_validation->set_rules('birthday', 'Birthday', 'required');
@@ -343,18 +397,18 @@ $lastclient = $this->vet_model->getLastClient();
 				 else{
              		//$this->session->set_flashdata('response', 'Failed :(');
 				 }
-				return redirect('vetclinic');
+				return redirect('vetclinic/records');
 
             }
 
             else{
             	$this->session->set_flashdata('responsed', 'Failed to save! (Please input necessary details)');
             	$header_data['title'] = "Clinic";		
-				$this->load->view('include/header',$header_data);
+				$this->load->view('include/header2',$header_data);
 				$this->load->model('vet_model');
 				$clients = $this->vet_model->getClients();
 				$lastclient = $this->vet_model->getLastClient();	
-				$this->load->view('clinic/vet_home', ['cl'=>$clients,'al'=>$lastclient]);
+				$this->load->view('clinic/records', ['cl'=>$clients,'al'=>$lastclient,'record_dat'=>$header_data]);
 				$this->load->view('include/footer');
             }
 
@@ -768,7 +822,7 @@ $lastclient = $this->vet_model->getLastClient();
 		public function validateItem(){
 
 			// print_r($_POST);
-			$this->form_validation->set_rules('desc','Description','required|min_length[2]|callback_space');
+			$this->form_validation->set_rules('desc','Description','required|min_length[2]');
 	  		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
 		 	$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
 

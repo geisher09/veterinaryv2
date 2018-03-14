@@ -7,11 +7,11 @@
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-            <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    (Logo)
+        <div class="logo">
+                <a class="simple-text logo-mini">
+                    <img src="<?php echo base_url('assets/img/logo.png');?>">
                 </a>
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                <a class="simple-text logo-normal">
                     Deloso Vet Clinic
                 </a>
             </div>
@@ -36,18 +36,26 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('vetclinic/sales'); ?>">
-                            <i class="now-ui-icons business_chart-bar-32"></i>
+                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                            <i class="now-ui-icons business_money-coins"></i>
                             <p>Sales</p>
                         </a>
+                            <li>
+                            <div id="subPages" class="collapse">
+                                <ul class="nav">
+                                    <li><a href="<?php echo base_url('vetclinic/sales'); ?>" class=""><i class="now-ui-icons business_chart-bar-32"></i>Sales Chart</a></li>
+                                    <li><a href="<?php echo base_url('vetclinic/salesreport'); ?>" class=""><i class="now-ui-icons files_paper"></i>Sales Report</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </li>
                     <li>
-                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                        <a href="#subPages2" data-toggle="collapse" class="collapsed">
                             <i class="now-ui-icons shopping_basket"></i>
                             <p>Inventory</p>
                         </a>
                             <li>
-                            <div id="subPages" class="collapse ">
+                            <div id="subPages2" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
                                     <li><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
@@ -92,18 +100,23 @@
                             </div>
                         </form>
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <i class="now-ui-icons media-2_sound-wave"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Stats</span>
-                                    </p>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="now-ui-icons ui-2_settings-90"></i>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/accountsettings'); ?>">
+                                        Account Settings
+                                     </a>
+                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/adduser'); ?>">
+                                        Add New User
+                                     </a>
+                                </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
-                                    <i class="now-ui-icons location_world"></i>
+                                    <i class="now-ui-icons ui-1_bell-53"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
@@ -134,11 +147,6 @@
 
 
                                     else {
-
-
-
-
-
                                             echo    '<a class="dropdown-item">No new notification</a>
 
 
@@ -183,7 +191,7 @@
                                         </div> 
                                 <?php endif; ?>
                                 <div class="table-responsive">
-                                    <table class="table table-list-search" id="mytable">
+                                    <table class="table table-list-search" >
                                         <thead>
                                         <tr class="">
                                                     <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
@@ -336,11 +344,32 @@
              
                     </div>
                 </div>
+				<div class="form-group row">
+                  <div class="col-sm-1 col-md-1"></div>
+                  <label class=" col-sm-2 col-md-2" for="species">Species:</label>
+                  <div class="col-sm-8 col-md-8" id="CSerror">
+					<select class="sb" name="species" id="petspecies">
+						<option value="Dog">Dog </option>
+						<option value="Cat">Cat</option>
+					</select>
+                    <!-- <input type="text" class="form-control" id="petspecies"  name="species"> -->
+                    <p id="CStext" class="valerror"></p>
+                  </div>
+                  <div class="col-sm-1 col-md-1"></div>
+                  <div class="col-lg-8">
+                        <div><br></div>
+        
+                    </div>
+                </div>
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="petbreed">Breed:</label>
                   <div class="col-sm-8 col-md-8" id="CBerror">
-                    <input type="text" class="form-control" id="petbreed"  name="breed">
+					<select class="sb" name="breed" id="petbreed">
+						<option value="LR">Loverador Retriever</option>
+						<option value="GR">Golden Retriever</option>
+					</select>
+                    <!-- <input type="text" class="form-control" id="petbreed"  name="breed"> -->
                     <p id="CBtext" class="valerror"></p>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
@@ -362,19 +391,7 @@
 
                     </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-1 col-md-1"></div>
-                  <label class=" col-sm-2 col-md-2" for="species">Species:</label>
-                  <div class="col-sm-8 col-md-8" id="CSerror">
-                    <input type="text" class="form-control" id="petspecies"  name="species">
-                    <p id="CStext" class="valerror"></p>
-                  </div>
-                  <div class="col-sm-1 col-md-1"></div>
-                  <div class="col-lg-8">
-                        <div><br></div>
-        
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="birthday">Birthday:</label>
@@ -421,9 +438,11 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
-                <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
-                <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory'); " >Add History</button>
+                <div class="btn-group btn-group-lg">
+                    <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
+                    <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
+                    <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory'); " >Add History</button>
+                </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
         
@@ -499,7 +518,7 @@
                                     </div>
                             
                                     <div class="col-md-6 form-group text-center">
-                                        <label for="">Pet id:</label>
+                                        <label for="">Pet ID:</label>
                                         <!-- <input type="text" class="form-control" id="petsid" name="petsid" value="" disabled="true"/> -->
                                         <p id="petsid"></p>
                                     </div>
@@ -696,10 +715,10 @@
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center bg-info">
+                                                <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Used ID
                                                 </th>
-                                                <th class="text-center bg-info">
+                                                <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Description
                                                 </th>
                                             </tr>
@@ -713,20 +732,22 @@
                             </div>
                         
                             <hr />
+                        
+                                <!-- service fee field -->
                             <div class="row">
-                                <div class=" col-md-6 form-group">
-                                    <h4 class="text-right">Service Fee: (Php)</h4>
+                                <div class=" col-md-5 form-group">
+                                    <p class="text-right" style="font-size:19px;">Service Fee: (Php)</p>
                                 </div>
-                                <div class=" col-md-6 form-inline pull-to-left">
-                                    <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="servicecost" readonly />
+                                <div class=" col-md-7 form-inline pull-to-left">
+                                    <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="servicecost" readonly style="width:200px;"/>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class=" col-md-6 form-group">
-                                    <h4 class="text-right">Total Cost: (Php)</h4>
+                                <div class=" col-md-5 form-group">
+                                    <p class="text-right" style="font-size:19px;">Total Cost: (Php)</p>
                                 </div>
-                                <div class=" col-md-6 form-inline pull-to-left">
-                                        <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="visitcost" readonly />
+                                <div class=" col-md-7 form-inline pull-to-left">
+                                        <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="visitcost" readonly  style="width:200px;"/>
                                     <div id="" ></div>
                                 </div>
                             </div>
@@ -745,8 +766,7 @@
 								$attributes = array('class'=>'form-horizontal','id'=>'hstryform');
 								echo form_open('vetclinic/savehistory', $attributes); ?>
 								<div class="row">
-										<div class="col-md-6">
-                                            <br/>
+										<div class="col-md-6" style="padding-top:30px;">
                                         <div class="row">
                                             <div class="col-md-2">
                                             <label>Pet:</label></div>
@@ -762,7 +782,7 @@
 										$date=date('m-d-Y');
 										?>
 										<div class="col-md-6">
-											<h4 name="date" class="text-center"><label>Date:&nbsp;</label><?php echo $date;?></h4>
+											<h4 name="date" class=""><label>Date:&nbsp;</label><?php echo $date;?></h4>
 										</div>
 									<hr />
 									<div class="col-md-12 form-group">
@@ -772,11 +792,13 @@
 										</select>
 									</div>
 									<br />
+                                   
 									<div class=" col-md-12 form-group">
-										<label for="">Diagnosis :</label>
-										<textarea placeholder="Diagnosis" class="form-control" name="findings" rows="4"></textarea>
+										<label for="">Diagnosis :</label><span id="findingserror" class="valerror"></span>
+										<textarea placeholder="Diagnosis" id="petfindings" class="form-control" name="findings" rows="4"></textarea>
+
 									</div>
-				
+				             
 									<div class="col-md-12 form-group">
 										<label for="">Recommendations :</label>
 										<textarea placeholder="Recommendations" class="form-control" name="recom" rows="4"></textarea>
@@ -792,10 +814,10 @@
 							<div class="col-md-12">
 									<label>Service Type:</label>
 									<div class="col-md-12">
-										<label class="radio-inline" style="cursor:pointer;">
+										<label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;">
 											<input value="Grooming" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Grooming&nbsp;&nbsp;</span>
 										</label>
-										<label class="radio-inline" style="cursor:pointer;" >
+										<label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;" >
 											<input value="Treatment" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Treatment</span>
 										</label>
                                         <br />
@@ -805,15 +827,20 @@
 
 									<select class="form-control" name="Select1" id="Select1">
 									</select>
-									</br>
+									<br/>
+                            <?=$_SESSION['isDoctor']!=0?'':'<div class="row form-group">
+                                <div class="col-md-3"><label>Service Fee:</label></div>
+                                <div class="col-md-9">
+                                <input type="number" placeholder="" id="" name="" class="form-control"/></div>'?>
+                            </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
 											<tr>
-												<th class="text-center" style="background-color:#d9d9d9">#</th>
-												<th class="text-center" style="background-color:#d9d9d9;width:300px;">Item Used</th>
-												<th class="text-center" style="background-color:#d9d9d9">Quantity</th>
-												<th class="text-center" style="background-color:#d9d9d9">Unit price</th>
-												<th class="text-center" style="background-color:#d9d9d9">Amount</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">#</th>
+												<th class="text-center" style="background-color:#d9d9d9;width:300px;font-size:18px;">Item Used</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Quantity</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Unit price</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Amount</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -863,18 +890,17 @@
 									</table>
 
 									<div class="btn-group">
-										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><b>+</b></a>
-										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><b>-</b></a>
+										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-add" aria-hidden="true"></span></a>
+										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-delete" aria-hidden="true"></span></a>
 									</div>
 
-								<div class=" row form-group">
+								<?=$_SESSION['isDoctor']!=0?'':'<div class=" row form-group"><br/>
                                     <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
-									<input type="number" name='totalCost' placeholder='0.00' class="form-control" readonly/>
+									<input type="number" name="totalCost" placeholder="0.00" class="form-control" readonly/>
                                         </div>
-								</div>
-
-							
+								</div>'?>
+						
 							</div>
       
 						</div>
@@ -901,6 +927,13 @@
     </div>
     </div>
 </div>
+
+<!--Script for select2-->
+<script>
+	$(document).ready(function() {
+		$('.sb').select2({ width : '100%'});
+	});
+</script>
 
 
 <!--Script for the item used-->
@@ -1062,10 +1095,10 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var s="";
                             var r="";
                             var t="";
-                            s = '<h5 align="center">Visit ID: '+obj.visit.visitid+'<br/>'+'Visit Date: '+obj.visit.visitdate+'</h5>';
-                            t = '<h5 align="center">Vet ID: '+obj.visit.vetid+'</h5>';
-                            r = '<h5 align="center">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</h5>';
-                            q = '<h5 align="center">Pet ID: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</h5>';
+                            s = '<p align="center" style="font-size:20px;">Visit ID: '+obj.visit.visitid+'<br/>'+'Visit Date: '+obj.visit.visitdate+'</p>';
+                            t = '<p align="center" style="font-size:20px;">Vet ID: '+obj.visit.vetid+'</p>';
+                            r = '<p align="center" style="font-size:20px;">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</p>';
+                            q = '<p align="center" style="font-size:20px;">Pet ID: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</p>';
                             var item = "";
                             if(parseInt(obj.items.length) > 0){
                                 for(var i=0; i<parseInt(obj.items.length); i++){
@@ -1107,7 +1140,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
                             if(parseInt(obj.visits.length) > 0){
                                 for(var i=0; i<parseInt(obj.visits.length); i++){
-                                    s += '<tr><td>'+obj.visits[i].visitdate+'</td><td>'+obj.visits[i].petid+'</td><td>'+obj.visits[i].case_type+'</td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" onclick="history(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td></tr>';
+                                    s += '<tr><td>'+obj.visits[i].visitdate+'</td><td>'+obj.visits[i].petid+'</td><td>'+obj.visits[i].case_type+'</td><td><button class="btn btn-info" id="'+obj.visits[i].visitid+'"type="button" onclick="history(this.id)"><span class="now-ui-icons files_single-copy-04" aria-hidden="true"></span></button></td></tr>';
                                 }
                                 $("#PetsVisits").html(s);                               
                             }
@@ -1155,7 +1188,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
         //                  if(parseInt(obj.pets.length) > 0){
         //                      for(var i=0; i<parseInt(obj.pets.length); i++){
         //                          s += '<option value="+obj.pets[i].petid+">'+obj.pets[i].pname+'</option>';
-        //                          // s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td><td><button class="tablink btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></button></tr>';
+        //                          // s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="now-ui-icons files_single-copy-04" aria-hidden="true"></span></button></td><td><button class="tablink btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="now-ui-icons location_pin" aria-hidden="true"></span></button></tr>';
         //                      }
         //                      $("#VpetsOwned").html(s);                               
         //                  }
@@ -1195,7 +1228,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var ai = "", hi="";
                             if(parseInt(obj.pets.length) > 0){
                                 for(var i=0; i<parseInt(obj.pets.length); i++){
-                                    s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button></td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></button></tr>';
+                                    s += '<tr><td>'+obj.pets[i].petid+'</td><td>'+obj.pets[i].pname+'</td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="pop(this.id)"><span class="now-ui-icons files_single-copy-04" aria-hidden="true"></span></button></td><td><button class="btn btn-info" id="'+obj.pets[i].petid+'"type="button" onclick="visit(this.id)"><span class="now-ui-icons location_pin" aria-hidden="true"></span></button></tr>';
                                     v += '<option value='+obj.pets[i].petid+'>'+obj.pets[i].pname+'</option>';
 
                                 }

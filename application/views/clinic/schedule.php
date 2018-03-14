@@ -48,7 +48,6 @@
 
         #calendar {
             margin-top: 50px;
-            margin-left: 12%;
             max-width: 1000px;
         }
         
@@ -58,7 +57,47 @@
         .btn-default.active {background-color: #3498DB; color: white;}
         .btn-default.active:hover {background-color: #3498DB; color: white;}
         .btn-default.active:focus {background-color: #3498DB; color: white;}
-        .fc-center {font-size:50px !important; font-family: Arvo; color: #2980B9;}
+		
+		.fc-prev-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-prev-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-prev-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-next-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-next-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-next-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-today-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-today-button.disabled {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+		.fc-today-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-today-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		
+		.fc-month-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-month-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-month-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-month-button.active {background-color: #3498DB; color: white;}
+        .fc-month-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-month-button.active:focus {background-color: #3498DB; color: white;}
+		
+		.fc-agendaWeek-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-agendaWeek-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-agendaWeek-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-agendaWeek-button.active {background-color: #3498DB; color: white;}
+        .fc-agendaWeek-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-agendaWeek-button.active:focus {background-color: #3498DB; color: white;}
+		
+		.fc-agendaDay-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-agendaDay-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-agendaDay-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-agendaDay-button.active {background-color: #3498DB; color: white;}
+        .fc-agendaDay-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-agendaDay-button.active:focus {background-color: #3498DB; color: white;}
+		
+		.fc-listWeek-button {background-color: #AED6F1; color: #000; border-color: #2980B9;}
+        .fc-listWeek-button:hover {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+        .fc-listWeek-button:focus {background-color: #D6EAF8; color: #000; border-color: #2980B9;}
+		.fc-listWeek-button.active {background-color: #3498DB; color: white;}
+        .fc-listWeek-button.active:hover {background-color: #3498DB; color: white;}
+        .fc-listWeek-button.active:focus {background-color: #3498DB; color: white;}
+		
+        .fc-center { font-family: Poppins; color: #2980B9;}
         .fc-day-header {color:#2980B9; background-color: #F2F4F4;}
         th.fc-week-number {color:#2980B9; background-color: #F2F4F4;}
         .fc-day-top {font-weight: bold;}
@@ -76,10 +115,10 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    (Logo)
+                <a class="simple-text logo-mini">
+                    <img src="<?php echo base_url('assets/img/logo.png');?>">
                 </a>
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                <a class="simple-text logo-normal">
                     Deloso Vet Clinic
                 </a>
             </div>
@@ -104,18 +143,26 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('vetclinic/sales'); ?>">
-                            <i class="now-ui-icons business_chart-bar-32"></i>
+                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                            <i class="now-ui-icons business_money-coins"></i>
                             <p>Sales</p>
                         </a>
+                            <li>
+                            <div id="subPages" class="collapse">
+                                <ul class="nav">
+                                    <li><a href="<?php echo base_url('vetclinic/sales'); ?>" class=""><i class="now-ui-icons business_chart-bar-32"></i>Sales Chart</a></li>
+                                    <li><a href="<?php echo base_url('vetclinic/salesreport'); ?>" class=""><i class="now-ui-icons files_paper"></i>Sales Report</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </li>
                     <li>
-                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                        <a href="#subPages2" data-toggle="collapse" class="collapsed">
                             <i class="now-ui-icons shopping_basket"></i>
                             <p>Inventory</p>
                         </a>
                             <li>
-                            <div id="subPages" class="collapse ">
+                            <div id="subPages2" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
                                     <li><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
@@ -151,27 +198,25 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" class="form-control" id="search" onkeyup="search()" name="q" placeholder="Search for" required>
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                </span>
-                            </div>
-                        </form>
+                        
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <i class="now-ui-icons media-2_sound-wave"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Stats</span>
-                                    </p>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="now-ui-icons ui-2_settings-90"></i>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/accountsettings'); ?>">
+                                        Account Settings
+                                     </a>
+                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/adduser'); ?>">
+                                        Add New User
+                                     </a>
+                                </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
-                                    <i class="now-ui-icons location_world"></i>
+                                    <i class="now-ui-icons ui-1_bell-53"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
@@ -245,8 +290,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+					<h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:10%;">View/Update Calendar Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold;">View/Update Calendar Event</h4>
                 </div>
                 <div class="modal-body">
                     <?php echo form_open(site_url("vetclinic/edit_event"), array("class" => "form-horizontal")) ?>
@@ -304,10 +349,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header edit" style="background-color:rgba(128, 191, 255,0.9);">
+					<h3 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left: 35%;">ADD EVENT</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold;">ADD EVENT</h3>
+                    
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                     <?php echo form_open(site_url("vetclinic/add_event"), array("class" => "form-horizontal")) ?>
                     <div class="form-group">
                         <label for="p-in" class="col-md-4 label-heading">Event Title:</label>
@@ -343,7 +389,7 @@
 
                 init: function(themeSystem) {
                     $('#calendar').fullCalendar({
-                        themeSystem: 'bootstrap3',
+                        themeSystem: 'bootstrap4',
                         header: {
                             left: 'prev,next today',
                             center: 'title',
