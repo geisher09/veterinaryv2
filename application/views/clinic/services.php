@@ -169,16 +169,15 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">Services Offered</h2>
+								<div id="addserv">
+									<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addservicemodal">
+									<span class="glyphicon glyphicon-plus"></span> Add Service</button>
+								</div>
                             </div>
                             <div class="card-body">
 <br/>
 	<div class="container-fluid box">
 	
-		<div id="servtitle"> Services Offered</div>
-        <div id="addserv">
-            <button type="button" class="btn btn-md" data-toggle="modal" data-target="#addservicemodal">
-			<span class="glyphicon glyphicon-plus"></span> Add Service</button>
-        </div>
 <!--
 <table class="table" id="mytable">
 	<thead>
@@ -241,28 +240,28 @@
 
 	<!--  Add Service Modal -->
 	  <div class="modal fade" id="addservicemodal" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-md">
 		
 		  <!-- Modal content -->
 		  <div class="modal-content" id="registermodal">
 			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:33%;">ADD SERVICE</h3>
 			  <button type="button" class="close" data-dismiss="modal">&times;</button>
-			  <h3 class="modal-title text-center" style="font-size:25px; font-weight:bold;">ADD SERVICE</h3>
 			</div>
-			<div class="modal-body" style="padding:10px;padding-top:0px;">
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
 				  <form class="form-horizontal" action="" method="post">
 					
 					<br />
 					<div class="form-group">
-					  <label class=" col-sm-3" for="desc">Description:</label>
-					  <div class="col-sm-8">
+					  <label  for="desc">Description:</label>
+					  <div >
 						<input type="text" class="form-control" id="desc"  name="desc">
 					  </div>
 					</div>
 					<div class="form-group">
-					  <label class=" col-sm-3" for="serv_type">Type of Service:</label>
-					  <div class="col-sm-8">          
+					  <label  for="serv_type">Type of Service:</label>
+					  <div >          
 							<select class="form-control" id="serv_type" name="serv_type">
 								<option >Grooming</option>
 								<option >Treatment</option>							
@@ -284,35 +283,35 @@
 	  
 	  	<!-- Update Service Modal -->
 	  <div class="modal fade" id="updateservicemodal" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-md">
 		
 		  <!-- Modal content-->
 		  <div class="modal-content" id="registermodal">
 			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title text-center" style="font-size:25px; font-weight:bold; margin-left:30%;">UPDATE SERVICE</h3>
 			  <button type="button" class="close" data-dismiss="modal">&times;</button>
-			  <h3 class="modal-title text-center" style="font-size:25px; font-weight:bold;">UPDATE SERVICE</h3>
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
 					<br/>
 				  <form class="form-horizontal" action="" method="post">
 					<div class="form-group">
-					  <label class=" col-sm-3" >Service ID:</label>
-					  <div class="col-sm-8">
+					  <label  >Service ID:</label>
+					  <div >
 						<input type="text" class="form-control" id="serviceid"  name="serviceid" value="" readonly="readonly" >
 					  </div>
 					</div>
 					<br />
 					<div class="form-group">
-					  <label class=" col-sm-3" for="desc">Description:</label>
-					  <div class="col-sm-8">
+					  <label  for="desc">Description:</label>
+					  <div >
 						<input type="text" class="form-control" id="desc"  name="desc">
 					  </div>
 					</div>
 
 					<div class="form-group">
-					  <label class=" col-sm-3" for="serv_type">Type of Service:</label>
-					  <div class="col-sm-8">          
+					  <label  for="serv_type">Type of Service:</label>
+					  <div >          
 							<select class="form-control" id="serv_type" name="serv_type">
 								<option >Grooming</option>
 								<option >Treatment</option>

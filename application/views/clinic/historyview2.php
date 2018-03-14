@@ -176,13 +176,11 @@
                                         <thead>
                                         <tr class="th1">
                                             <th >
-                                                <div>
-                                                    <button type="button" class="btn btn-md" id="addbutn"  data-toggle="modal" data-target="#myModalHistory">
-                                                        <span class="glyphicon glyphicon-plus">
-                                                        <span class="tooltiptext">Sold an item</span>
-                                                        </span>
+                                                <div id="addbutn">
+                                                    <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalHistory">
+                                                        Sold an Item
                                                     </button>
-                                                </div> 
+                                                </div>  
                                             </th>
                                         </tr>
                                         <tr>
@@ -222,18 +220,18 @@
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                            <button type="button" class="close" 
+                            <h4 class="modal-title text-center" id="LabelHistory" style="font-size:25px; font-weight:bold; margin-left:21%;">
+                               UPDATE ITEM USAGE
+                            </h4>
+							<button type="button" class="close" 
                                data-dismiss="modal">
                                    <span aria-hidden="true">&times;</span>
                                    <span class="sr-only">Close</span>
                             </button>
-                            <h4 class="modal-title text-center" id="LabelHistory" style="font-size:25px; font-weight:bold;">
-                               UPDATE ITEM USAGE
-                            </h4>
                         </div>
                 
             <!-- Modal Body -->
-            <div class="modal-body">
+            <div class="modal-body" style="padding:50px;">
                  <?php echo form_open(site_url("vetclinic/history/")) ?>
                 <form action="" method="POST"><div class="form-group">
                     <span  id="ins" class="valerror"></span>

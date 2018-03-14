@@ -10,11 +10,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- CSS Files -->
+	<link href="<?php echo base_url('assets/css/new.css'); ?>" rel="stylesheet" type="text/css"  />
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/css/now-ui-dashboard.css?v=1.0.1');?>" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="<?php echo base_url('assets/demo/demo.css');?>" rel="stylesheet" />
-    <link href="<?php echo base_url('assets/css/overallcss.css'); ?>" rel="stylesheet" type="text/css"  />
                 <!--   Core JS Files   -->
     <script src="<?php echo base_url("assets/js/core/jquery.min.js");?>"></script>
     <script src="<?php echo base_url("assets/js/core/popper.min.js");?>"></script>

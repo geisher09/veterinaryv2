@@ -7,18 +7,17 @@
             <!-- Modal Header -->
 
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                <button type="button" class="close" 
+                <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:33%;">
+                    ADD AN ITEM </h4>
+				<button type="button" class="close" 
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold;">
-                    ADD AN ITEM
-                </h4>
             </div>
             
             <!-- Modal Body -->
-            <div class="modal-body">
+            <div class="modal-body" style="padding:50px;">
             <?php echo form_open("vetclinic/inventory/",['id'=>'addInventory']) ?>
             <form action="" method="POST">
 				  <div class="form-group" >
@@ -111,18 +110,19 @@
             <!-- Modal Header -->
 
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+				<h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:33%;">
+                    Update Item
+                </h4>
                 <button type="button" class="close" 
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold;">
-                    Update Item
-                </h4>
+                
             </div>
             
             <!-- Modal Body -->
-            <div class="modal-body">
+            <div class="modal-body" style="padding:50px;">
             <?php echo form_open("vetclinic/updateItem/",['id'=>'editItem']) ?>
             <form action="" method="POST">
           <div class="form-group" >
