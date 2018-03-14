@@ -1,37 +1,4 @@
-<!-- 
-PS: ginawa ko munang comment to kasi nakakaapekto sa calendar... ewan ko kung bakit. ayusin na lang minsan. -carlo
 
-<style type="text/css">
-    .beta thead, .beta tbody, .beta tr, .beta td, .beta th { display: block; }
-
-    .beta tr:after {
-        content: ' ';
-        display: block;
-        visibility: hidden;
-        clear: both;
-    }
-
-    .beta thead th {
-        height: 30px;
-        /*text-align: left;*/
-    }
-
-    .beta tbody {
-        height: 1000px;
-    /*    width: 1068px;*/
-        overflow-y: hidden;
-    }
-
-    .beta thead {
-        /* fallback */
-    }
-
-
-    .beta tbody td, thead th {
-        width: 25%;
-        float: left;
-    }
-</style> -->
 <style>
 	#mytable thead th {
 		width:10%;

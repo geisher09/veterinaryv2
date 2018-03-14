@@ -55,7 +55,7 @@
                             <p>Inventory</p>
                         </a>
                             <li>
-                            <div id="subPages2" class="collapsed">
+                            <div id="subPages2" class="collapse">
                                 <ul class="nav">
                                     <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
                                     <li class="active"><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
@@ -142,10 +142,6 @@
 
 
                                     else {
-
-
-
-
 
                                             echo    '<a class="dropdown-item">No new notification</a>
 

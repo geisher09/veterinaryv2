@@ -517,11 +517,6 @@
     }
 	
     .salesDate{
-        width:100%;
-        margin:0px auto;
-        padding:10px 0px 50px;
+        padding:20px 0px 50px;
         margin-top: 20px;
-/*        bottom: 0;*/
-        /*position:absolute;*/
-        background-color: rgba(225,225,225,0.5);
     }
