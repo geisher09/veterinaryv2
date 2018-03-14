@@ -377,7 +377,10 @@ $lastclient = $this->vet_model->getLastClient();
 	}
 
 	public function savehistory(){
-
+			$header_data['notif']=$this->vet_model->notification();
+			$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+			$header_data['eventCounter'] = count($header_data['events']);
+			$header_data['items'] = $this->vet_model->getAllZeroitems();
 
 			$this->form_validation->set_rules('findings', 'Findings', 'required');
 	  	// 	$this->form_validation->set_rules('birthday', 'Birthday', 'required');
@@ -401,11 +404,11 @@ $lastclient = $this->vet_model->getLastClient();
             else{
             	$this->session->set_flashdata('responsed', 'Failed to save! (Please input necessary details)');
             	$header_data['title'] = "Clinic";		
-				$this->load->view('include/header',$header_data);
+				$this->load->view('include/header2',$header_data);
 				$this->load->model('vet_model');
 				$clients = $this->vet_model->getClients();
 				$lastclient = $this->vet_model->getLastClient();	
-				$this->load->view('clinic/vet_home', ['cl'=>$clients,'al'=>$lastclient]);
+				$this->load->view('clinic/records', ['cl'=>$clients,'al'=>$lastclient,'record_dat'=>$header_data]);
 				$this->load->view('include/footer');
             }
 
