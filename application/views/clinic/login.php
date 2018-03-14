@@ -81,7 +81,7 @@
 			</div> <br />
 
 			<div class="form-group">
-				<input align="center" id="pass" type="text" class="form-control input-underline" name="pass" placeholder="Password">
+				<input align="center" id="pass" type="Password" class="form-control input-underline" name="pass" placeholder="Password">
 				<span style="color: White; "><strong> </strong></span>
 			</div> <br /><br />
 

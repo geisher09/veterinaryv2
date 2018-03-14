@@ -12,10 +12,12 @@ class Login extends CI_Controller {
             $this->load->view('clinic/login');
         }
         else {
-            if($this->session->userdata('isDoctor')>0)
-                echo 'DOCTOR!';
-            else
-                echo 'NOT DOCTOR!';
+            // if($this->session->userdata('isDoctor')>0)
+            //     echo 'DOCTOR!';
+            // else
+            //     echo 'NOT DOCTOR!';
+            // print_r($_SESSION['isDoctor']);
+            redirect('vetclinic','refresh');        
         }
 	}
     
@@ -30,6 +32,7 @@ class Login extends CI_Controller {
             foreach($result_array as $row){
                 $this->session->set_userdata('username', $row['username']);
                 $this->session->set_userdata('isDoctor', $row['isDoctor']);
+                
                 /*$sess_data=array(
                     'username' => $row['username'],
                     'isDoctor' => $row['isDoctor']

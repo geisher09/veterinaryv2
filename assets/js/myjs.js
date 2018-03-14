@@ -194,12 +194,12 @@ $(document).ready(function(){
 	   								 }
 						});
 
-							$(document).on('keyup','.globalDisable',function(){
-								 var num = this.value.match(/^\d+$/);
-									  if (num === null) {	
-	      							 this.value = "";
-	   								 }
-						});
+								$(document).on('keyup','.globalDisable',function(){
+									 var num = this.value.match(/^[0-9]*\.?[0-9]+$/);
+										  if (num === null) {	
+		      							 this.value = "";
+		   								 }
+							});
 
 				});
 
