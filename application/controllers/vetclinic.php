@@ -8,6 +8,8 @@ class vetclinic extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+			if(!isset($_SESSION['username']))
+				redirect(base_url());
 			date_default_timezone_set('Asia/Manila');
 			$this->load->model('vet_model','vet_model');
 			$this->load->model('itemstock','itemstock');
