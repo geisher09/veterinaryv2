@@ -999,6 +999,27 @@ $lastclient = $this->vet_model->getLastClient();
 		$pdf->writeHTML($tbl);
 		$pdf->Output('test.pdf', 'I');
 	}
+
+	public function billing(){
+		$data['visits'] = $this->vet_model->getVisitForBilling();
+		$header_data['title'] = "Billing";
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/billing',['data'=>$data,'record_dat'=>$record_data]);
+		$this->load->view('include/footer');
+	}
+
+	public function updatehistory(){
+		$visitid = $this->input->post('visitid');
+		$visit_cost = $this->input->post('visit_cost');
+		$total = $this->input->post('totalCost');
+		$newRecord = array('visit_cost'=>$visit_cost, 'Total'=>$total+$visit_cost);
+		if($this->vet_model->updateVisit($newRecord, $visitid))
+			redirect(base_url('vetclinic/billing'));
+	}
 }
 
 ?>

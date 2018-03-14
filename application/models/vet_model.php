@@ -442,6 +442,22 @@
 			return $query->row();
 		}
 
+		public function getVisitForBilling(){
+			$this->db->select('*');
+			$this->db->from('visit');
+			$this->db->where('visit_cost',0);
+			$this->db->order_by('visitdate', 'DESC');
+
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function updateVisit($newRecord, $id){
+			$this->db->where('visitid', $id);
+			$this->db->update('visit',$newRecord);
+			return true;
+		}
+
 
 
 
