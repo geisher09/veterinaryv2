@@ -33,12 +33,13 @@ class vetclinic extends CI_Controller {
 		$clients = $this->vet_model->getClients();
 		$stocks = $this->vet_model->getStocks();
 		$lastclient = $this->vet_model->getLastClient();
+		$sales_data['items']=$this->vet_model->getTotalSalesSum();
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$record_data['eventCounter'] = count($record_data['events']);
 		$record_data['items'] = $this->vet_model->getAllZeroitems();	
 		$this->load->view('include/header2',$header_data);
-		$this->load->view('clinic/dashboard', ['record_dat'=>$record_data]);			
+		$this->load->view('clinic/dashboard', ['record_dat'=>$record_data,'sales_dat'=>$sales_data]);			
 		//$this->load->view('include/footer');
 	}
 

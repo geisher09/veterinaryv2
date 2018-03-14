@@ -1619,6 +1619,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     border: 1px solid transparent; }
   .navbar .navbar-brand {
     text-transform: uppercase;
+    margin-left: 400%;
     font-size: 0.8571em;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;

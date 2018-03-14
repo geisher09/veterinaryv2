@@ -199,6 +199,22 @@
 				return $result['visit_cost'];
 		}
 
+		public function getTotalSalesSum(){
+			date_default_timezone_set('Asia/Manila');
+			$date=date('Y-m-d');
+			$serv = "Sold Item";
+			$this->db->select_sum('total_cost');
+			$this->db->from('itemhistory');
+			$this->db->where("CAST(date as date) = '$date' AND action='$serv'");
+
+			$query = $this->db->get();
+			$result = $query->row_array();
+			if($result['total_cost'] == null)
+				return 0;
+			else
+				return $result['total_cost'];
+		}
+
 		public function getSales2($date=null, $month=null, $year=null){
 			$serv="Sold Item";
 			$this->db->select('a.itemid,a.item_desc,b.itemid,b.action,b.date,b.total_cost,b.qty');
