@@ -1,0 +1,656 @@
+
+	body { 
+		/*background: url(http://localhost/veterinary/assets/images/background6.png) no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;*/
+	}
+
+
+	.Vitems{
+		width:140px;
+
+
+
+	}
+	.Tamount{
+		width:60px;
+
+
+
+	}
+		.ITprice{
+		width:60px;
+
+
+
+	}
+	#btnfordetails{
+		background-color: red;
+		color: red;
+	}
+	input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+    .valerror{   color:red;    }
+    .window2{
+        display: none;
+    }
+
+    .option{ color:red; }
+    .redrow { color: red; }
+	.logo{
+		height: 40px;
+		width: 40px;
+		margin-left: 50px;
+		margin-top: 10px;
+		float:left;
+		border-radius: 10px;
+	}
+	.badge1{
+		position:relative;
+	}
+	
+	.badge1[data-badge]:after {
+		content:attr(data-badge);
+		position:absolute;
+		bottom:25px;
+		left:20px;
+		font-size:.8em;
+		background: red;
+		color:white;
+		width:15px;height:15px;
+		text-align:center;
+		line-height:15px;
+		border-radius:50%;
+		border: none;
+	}
+    label, .btn {
+        font-family: Poppins;
+        font-size:17px;
+        font-weight: 500;
+    }
+	.navbar-nav {
+		-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+		-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+	}
+	
+	#menu {
+		list-style-type: none; 
+		margin: 0; 
+		padding: 0; 
+		width: 100%;
+		background-color: #fff;  
+		position: fixed; 
+		top: 0; 
+		z-index: 999;
+	}
+	#menu li a {
+		display: block; color: grey; text-decoration: none; padding-top:25px;
+		font-family: Champagne&Limousines; font-size: 14px; 
+		transition: 0.1s; margin-right: 30px;
+	}
+	#menu li a:hover {  color:#3498DB; border-top:2px solid #3498DB; background-color: #fff;}
+    .active {  color:#3498DB; }
+    .activeLink {  color:#3498DB; border-top:2px solid #3498DB; background-color: #fff;}
+
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	.nd {
+		position: absolute;
+		background-color: #f9f9f9;
+		z-index: 1000;
+	}
+	
+	.nd a {
+		color: black;
+		padding: 10px;
+		line-height: 7px;
+		top:0;
+		width: 100%;
+		text-decoration: none;
+		display: block;
+	}
+	
+	.md {
+		position: absolute;
+		background-color: #f9f9f9;
+		z-index: 1000;
+		min-width: 400px;
+	}
+	
+
+	.md a {
+		color: black;
+		padding: 10px;
+		line-height: 7px;
+		top:0;
+		width: 100%;
+		text-decoration: none;
+		display: block;
+		border-bottom:.05px solid #EBEDEF;
+	}
+	
+	#title{
+		font-family: Cambria; font-size: 31px; padding:2px;
+		background-color:#fff; -webkit-text-stroke: 0.5px black; color: #3385ff;
+	}
+	#container{
+		width: 100%;
+		margin: 0px auto;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        min-height: 100px;
+	}
+    .reminder{
+        width:20%;
+        height:100%;
+        position:fixed;
+        right:0;
+        margin-top: 10px;
+/*        margin-right: 5px;*/
+        padding:10px;
+        background-color: #f1f3f3;
+        overflow: auto;
+    }
+    .badge{
+        background-color: #ff3333;
+        margin-top: -5px;
+    }
+	
+	.select2-selection__rendered {
+		line-height: 32px !important;
+	}
+
+	.select2-selection {
+		height: 34px !important;
+	}
+	/************* home page *************/
+	#addbutn {
+		display: inline-block;
+		font-size: 14px;
+		cursor: pointer;
+		float: right;
+		background-color:#2E86C1;
+		width: 50px;
+		height: 40px;
+		outline: none;
+		border-radius: 50px;
+        box-shadow: 0px 3px 3px #3175A2;
+        transition:0.1s;
+	}
+	#addbutn:hover { color: #fff;}
+	#addbutn:focus { color: #fff; box-shadow: 0px 1px 2px #3175A2 inset;}
+	
+	.bellShow{
+		
+		display:block;
+		color:red;
+		z-index:99999;
+	}
+	
+	.nonotif {
+		position: absolute;
+		bottom: -20px;
+		left: 30px;
+		visibility: hidden;
+		background: none;
+		color: red;
+		font-size: 12px;
+	}
+	
+	.nonotifShow {
+		visibility: visible;
+	}
+	
+	.tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		color: #fff;
+		background-color:none;
+		text-align: center;
+		border-radius: 0px;
+		border: 0px;
+		position: absolute;
+		top: -8px;
+		right: 170%;
+		font-family: Calibri;
+		padding: 3px;
+		outline: none;
+	}
+	#addbutn:hover .tooltiptext {
+		visibility: visible;
+		outline: none;
+	}
+	#mytable{
+		border-collapse: collapse;
+	}
+	#mytable th{
+		color: white;
+		height: 30px;
+		border: none;
+		text-align: left;
+		font-family: 'Poppins';
+        font-weight: normal;
+        padding: 5px 10px;
+	}
+	
+	.th1 {
+		background-color: #3498DB;
+		padding-top: 15px;
+		padding-bottom: 25px;
+		padding-left: 20px;
+		padding-right: 20px;
+		font-size: 25px;
+        text-shadow: 1px 2px 1px grey;
+	}
+	
+	.th2{
+		background-color: #5DADE2;
+		padding-top: 8px;
+		padding-bottom: 8px;
+		font-size: 20px;
+        text-shadow: 1px 2px 1px grey;
+	}
+	
+	#mytable td{
+		background-color: #E5E8E8;
+		padding-top: 13px;
+		padding-bottom: 13px;
+		padding-left: 20px;
+	}
+	#mytable tbody {
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	#mytable tbody tr:hover td{
+		background-color:rgb(255,255,255);
+		color: #3498DB;
+	}
+	
+	.btn{ outline:none; 
+			margin: 0px;
+/*			padding: 0px;*/
+}
+			
+	.viewdetailsbtn {
+		color: #7F8C8D;
+		background-color:none;
+		width: 18px;
+		height: 18px;
+		text-align: center-left;
+	}
+	
+	.tooltiptext2 {
+		visibility: hidden;
+		width: 100px;
+		color: #3498DB;
+		background-color: none;
+		text-align: center;
+		border-radius: 0px;
+		position: absolute;
+		top: -5px;
+		left: 120%;
+		font-family: Calibri;
+		padding: 3px;
+	}
+	
+	.viewdetailsbtn:hover .tooltiptext2 {
+		visibility: visible;
+	}
+	
+	input[type=text].line {
+		border-top: 0px;
+		border-left: 0px;
+		border-right: 0px;
+		border-bottom: 3px solid #3498DB;
+		margin-left: 30px;
+		width: 80%;
+		border-radius: 0px;
+	}
+	
+	input[type=number].line {
+		border-top: 0px;
+		border-left: 0px;
+		border-right: 0px;
+		border-bottom: 3px solid #3498DB;
+		margin-left: 30px;
+		width: 80%;
+		border-radius: 0px;
+	}
+	
+	.ecbtn {
+		border-radius: 0px;
+	}
+	
+	#pet_detail {
+		border-top: 0px;
+		border-left: 1px solid #D5D8DC;
+		border-right: 0px;
+		border-bottom: 0px;
+	}
+	/************* search bars *************/
+	/*
+	input[type=text]#search {
+		width: 100%;
+		height: 10px;
+		outline:none;
+		border: 1px solid #F2F2F2;
+		font-size: 16px;
+		background-color: #FFFFFF;
+		border-radius:15px;
+		padding: 15px 5px;
+		margin: 11px 0px 10px 10px;
+		transition: 0.5s;
+		align:right;
+	}
+	input[type=text]#search:hover,
+	input[type=text]#search:focus{
+		border: 1px solid #F2F2F2;
+		background-color: #FFFFFF;
+	} */
+	
+	@media all and (max-width: 500px) {
+		.search input > .btnmod { display: none; }
+	}
+	
+	.search {
+        padding: 5px 0;
+        position: relative;
+        top: 14px;
+    }
+	.search > .btnmod {
+		font-size: 14px;
+		font-family: "Verdana";
+		right: 15px;
+		position: absolute;
+		background-color: #fff;
+		color: grey;
+		width: 40px;
+		height: 33px;
+		padding: 5px;
+		border: 0px;
+	}
+	
+	.search > .btnmod:hover {
+		color: #3498DB;
+		border: 0px;
+	}
+	.search > .btnmod:focus {
+		color: #3498DB;
+		border: 0px;
+		outline: none;
+	}
+	
+    .search input {
+        position: absolute;
+        width: 0px;
+		right: 15px;
+        margin-left: 210px;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        height: 30px;
+        padding: 0 2px 0 2px;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+		border-color: #3498DB;
+    }
+	
+    .search:hover input, .search input:focus {
+            width: 200px;
+            margin-left: 0px;
+			outline: none;
+    }
+	/************* inventory page *************/
+	#inventorytable {
+		width: 100%;
+		font-family: Arial;
+		border-collapse: collapse;
+		overflow: auto;
+		margin-bottom: 30px;
+	}
+	#inventorytable  th {
+		background-color: #3399FF;
+		color: white;
+		height: 35px;
+		padding: 2px 6px;
+		border-bottom: 1px solid #000;
+		border-top: 1px solid #000;
+		text-align: left;
+	}
+	#inventorytable  td{
+		border-bottom: 1px solid #CCC;
+		padding: 5px 6px;
+		height: 20px;
+	}
+	#inventorytable tr:hover{
+		background-color: rgba(255,255,255,0.7);
+		cursor: arrow;
+	}
+	
+	/*
+	section {
+		position: relative;
+		height: 10%;
+		display: inline-block
+	}*/
+	
+	#section1 {
+		flex: 0 0 auto;
+	}
+	
+	#section2 {
+		flex: 0 0 auto;
+	}
+	
+	.demo a {
+		position: relative;
+		top: 500px;
+		left: 40%;
+		z-index: 2;
+		display: inline-block;
+		-webkit-transform: translate(0, -50%);
+		transform: translate(0, -50%);
+		color: #000;
+		font : normal 400 15px/1 'Josefin Sans', sans-serif;
+		letter-spacing: .1em;
+		text-decoration: none;
+		transition: opacity .3s;
+	}
+
+	.demo a:hover {
+		opacity: .5;
+		text-decoration: none;
+	}
+	
+	#section1 a {
+		padding-top: 60px;
+	}
+	
+	#section1 a span {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 24px;
+		height: 24px;
+		margin-left: -12px;
+		border-left: 1px solid #000;
+		border-bottom: 1px solid #000;
+		-webkit-transform: rotate(-135deg);
+		transform: rotate(-135deg);
+		-webkit-animation: sdb04 2s infinite;
+		animation: sdb04 2s infinite;
+		box-sizing: border-box;
+	}
+	
+	@-webkit-keyframes sdb04 {
+		0% {
+			-webkit-transform: rotate(-135deg) translate(0, 0);
+		}
+		20% {
+			-webkit-transform: rotate(-135deg) translate(-10px, 10px);
+		}
+		40% {
+			-webkit-transform: rotate(-135deg) translate(0, 0);
+		}
+	}
+	
+	@keyframes sdb04 {
+		0% {
+			transform: rotate(-135deg) translate(0, 0);
+		}
+		20% {
+			transform: rotate(-135deg) translate(-10px, 10px);
+		}
+		40% {
+			transform: rotate(-135deg) translate(0, 0);
+		}
+	}
+	
+	.horizontal {
+		overflow-x: hidden;
+		flex-wrap: nowrap;
+		display: flex;
+	}
+	
+	/************* schedule page *************/
+	#back{
+		padding: 0;
+		height: 550px;
+		width: 44%;
+		margin: 0px 75px 20px 40px;
+	}
+	
+	/************* modal *************/
+	.registerModal{
+/*		background-color:#F2F2F2;*/
+		border-radius:5px;
+        
+	}
+    .registerModal label {
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 18px;
+        margin:auto;
+    }
+	input[type=radio]{ cursor: pointer;}
+	#clientModal{
+		margin: 0 auto;
+	}
+    .newClientbox{
+        background-color: #F2F2F2;
+        padding:50px 0px 10px 0px;
+        border-radius: 25px;
+        border: 1px solid #CCCCCC;
+    }
+    .newClientboxHead{
+        background-color: white;
+        padding: 0px 0px 8px 0px;
+        width: 180px;
+        margin-left: 50px;
+        position: relative;
+        top: 28;
+        z-index: 100;
+        border-radius: 20px;
+        border: 1px solid #CCCCCC;
+    }
+	/************* services ************/
+	.boxed {
+		float: left;
+		background-color: #5DADE2;
+        padding: 20px 10px;
+		margin-right: 30px;
+		margin-top: 50px;
+		margin-left: 30px;
+		text-align: center;
+		position: static;
+        box-shadow:5px 5px 15px grey;
+		font-family: Poppins;
+	}
+	
+	.boxed > ul {
+		color: #000;
+		font-size: 25px;
+		margin-right: 30px;
+	}
+	
+	.boxed > li {
+		list-style: none;
+		color: #000;
+		font-size: 20px;
+	}
+	
+	.box {
+		margin-left: 100px;
+	}
+	
+	.boxed2 {
+		float: left;
+		background-color: #2874A6;
+        padding: 20px 10px;
+		margin-right: 30px;
+		margin-top: 50px;
+		margin-left: 30px;
+		text-align: center;
+		position: static;
+        box-shadow:5px 5px 15px grey;
+		font-family: Poppins;
+	}
+	
+	.boxed2 > ul {
+		color: #fff;
+		font-size: 25px;
+		margin-right: 30px;
+	}
+	
+	.boxed2 > li {
+		list-style: none;
+		color: #fff;
+		font-size: 20px;
+	}
+	
+	#servtitle {
+		text-align: center;
+		color: #2471A3;
+		font-family: 'Arvo';
+		font-size: 50px;
+		margin-right: 100px;
+	}
+	
+	#addserv {
+		color: #2471A3; 
+		text-align: center; 
+		margin-right: 100px;
+	}
+
+	#addserv button {
+		 background-color:  #F8F9F9;
+		 outline: none;
+	}
+	
+	#addserv button:hover, button:focus {
+		 color: #fff;
+		 background-color:  #2471A3;
+		 outline: none;
+	}
+    .salesDate{
+        width:100%;
+        margin:0px auto;
+        padding:10px 0px 50px;
+        margin-top: 20px;
+/*        bottom: 0;*/
+        /*position:absolute;*/
+        background-color: rgba(225,225,225,0.5);
+    }
