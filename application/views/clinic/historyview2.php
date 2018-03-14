@@ -36,18 +36,26 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('vetclinic/sales'); ?>">
-                            <i class="now-ui-icons business_chart-bar-32"></i>
+                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                            <i class="now-ui-icons business_money-coins"></i>
                             <p>Sales</p>
                         </a>
+                            <li>
+                            <div id="subPages" class="collapse">
+                                <ul class="nav">
+                                    <li><a href="<?php echo base_url('vetclinic/sales'); ?>" class=""><i class="now-ui-icons business_chart-bar-32"></i>Sales Chart</a></li>
+                                    <li><a href="<?php echo base_url('vetclinic/salesreport'); ?>" class=""><i class="now-ui-icons files_paper"></i>Sales Report</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </li>
                     <li class="active">
-                        <a href="#subPages" data-toggle="collapse" class="collapsed">
+                        <a href="#subPages2" data-toggle="collapse" class="collapsed">
                             <i class="now-ui-icons shopping_basket"></i>
                             <p>Inventory</p>
                         </a>
                             <li>
-                            <div id="subPages" class="collapsed">
+                            <div id="subPages2" class="collapsed">
                                 <ul class="nav">
                                     <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
                                     <li class="active"><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
