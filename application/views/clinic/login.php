@@ -1,9 +1,11 @@
 <html>
 
 <head>
+	<link href="<?php echo base_url('assets/css/overallcss.css'); ?>" rel="stylesheet" type="text/css"  />
+    <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" />
 	<style>
 		body {
-			background: url(http://localhost/veterinary/assets/images/dog.jpg) no-repeat center center fixed; 
+			background: url(http://localhost/veterinaryv2/assets/img/dog.jpg) no-repeat center center fixed; 
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -69,7 +71,7 @@
 		
 		<form action="<?php echo base_url('login'); ?>" method="post">
 			<div class="form-group">
-			<img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo" class="img-reponsive logo " /> 
+			<img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo" class="img-reponsive logo " /> 
 			<p class="lgntitle "> Deloso Veterinary Clinic </p>
 			</div>
 			
