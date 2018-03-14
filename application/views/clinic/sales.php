@@ -204,10 +204,6 @@
 
                                     else {
 
-
-
-
-
                                             echo    '<a class="dropdown-item">No new notification</a>
 
 
@@ -237,15 +233,15 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-    <div class="btn-group" style="margin-left:50px;">
-	    <button type="button" class="button" onclick="realTimeSalesChart()">Weekly</button>
-	    <button type="button" class="button" onclick="monthlySalesChart()">Monthly</button>
-	    <button type="button" class="button" onclick="yearlySalesChart()">Yearly</button>
-    </div>
+        <div class="btn-group" style="margin-left:50px;">
+            <button type="button" class="button" onclick="realTimeSalesChart()">Weekly</button>
+            <button type="button" class="button" onclick="monthlySalesChart()">Monthly</button>
+            <button type="button" class="button" onclick="yearlySalesChart()">Yearly</button>
+        </div>
 
-	<div id="chart-container" style="margin-top:-40px;">
-			<canvas id="mycanvas"></canvas>
-	</div>
+        <div id="chart-container" style="margin-top:-40px;">
+                <canvas id="mycanvas"></canvas>
+        </div>
 	    <!-- <form method="POST" action="<?php echo base_url('vetclinic/sales');?>" > -->
 		<div id="chart-date" class="row salesDate" >
             <div class="col-md-2 col-sm-2"></div>
@@ -259,7 +255,7 @@
                 <div id="toShow" class="spanhidden"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Please enter start date</div>
             </div>            
             <div class="col-md-2 col-sm-2">
-                <button type="button" onclick="realTimeSalesChart()" class="button">Save</button>
+                <button type="button" onclick="realTimeSalesChart()" class="button">Show</button>
             </div>
             <div class="col-md-2 col-sm-2"></div>
 		</div>

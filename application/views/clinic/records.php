@@ -147,11 +147,6 @@
 
 
                                     else {
-
-
-
-
-
                                             echo    '<a class="dropdown-item">No new notification</a>
 
 
@@ -443,9 +438,11 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
-                <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
-                <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory'); " >Add History</button>
+                <div class="btn-group btn-group-lg">
+                    <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
+                    <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
+                    <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory'); " >Add History</button>
+                </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
         
@@ -521,7 +518,7 @@
                                     </div>
                             
                                     <div class="col-md-6 form-group text-center">
-                                        <label for="">Pet id:</label>
+                                        <label for="">Pet ID:</label>
                                         <!-- <input type="text" class="form-control" id="petsid" name="petsid" value="" disabled="true"/> -->
                                         <p id="petsid"></p>
                                     </div>
@@ -718,10 +715,10 @@
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center bg-info">
+                                                <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Used ID
                                                 </th>
-                                                <th class="text-center bg-info">
+                                                <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Description
                                                 </th>
                                             </tr>
@@ -736,19 +733,19 @@
                         
                             <hr />
                             <div class="row">
-                                <div class=" col-md-6 form-group">
-                                    <h4 class="text-right">Service Fee: (Php)</h4>
+                                <div class=" col-md-5 form-group">
+                                    <p class="text-right" style="font-size:19px;">Service Fee: (Php)</p>
                                 </div>
-                                <div class=" col-md-6 form-inline pull-to-left">
-                                    <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="servicecost" readonly />
+                                <div class=" col-md-7 form-inline pull-to-left">
+                                    <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="servicecost" readonly style="width:200px;"/>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class=" col-md-6 form-group">
-                                    <h4 class="text-right">Total Cost: (Php)</h4>
+                                <div class=" col-md-5 form-group">
+                                    <p class="text-right" style="font-size:19px;">Total Cost: (Php)</p>
                                 </div>
-                                <div class=" col-md-6 form-inline pull-to-left">
-                                        <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="visitcost" readonly />
+                                <div class=" col-md-7 form-inline pull-to-left">
+                                        <input type="text" name='totalCost' placeholder='0.00' class="form-control ad" id="visitcost" readonly  style="width:200px;"/>
                                     <div id="" ></div>
                                 </div>
                             </div>
@@ -767,8 +764,7 @@
 								$attributes = array('class'=>'form-horizontal','id'=>'hstryform');
 								echo form_open('vetclinic/savehistory', $attributes); ?>
 								<div class="row">
-										<div class="col-md-6">
-                                            <br/>
+										<div class="col-md-6" style="padding-top:30px;">
                                         <div class="row">
                                             <div class="col-md-2">
                                             <label>Pet:</label></div>
@@ -784,7 +780,7 @@
 										$date=date('m-d-Y');
 										?>
 										<div class="col-md-6">
-											<h4 name="date" class="text-center"><label>Date:&nbsp;</label><?php echo $date;?></h4>
+											<h4 name="date" class=""><label>Date:&nbsp;</label><?php echo $date;?></h4>
 										</div>
 									<hr />
 									<div class="col-md-12 form-group">
@@ -814,10 +810,10 @@
 							<div class="col-md-12">
 									<label>Service Type:</label>
 									<div class="col-md-12">
-										<label class="radio-inline" style="cursor:pointer;">
+										<label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;">
 											<input value="Grooming" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Grooming&nbsp;&nbsp;</span>
 										</label>
-										<label class="radio-inline" style="cursor:pointer;" >
+										<label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;" >
 											<input value="Treatment" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Treatment</span>
 										</label>
                                         <br />
@@ -827,15 +823,20 @@
 
 									<select class="form-control" name="Select1" id="Select1">
 									</select>
-									</br>
+									<br/>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Service Fee:</label></div>
+                                <div class="col-md-9">
+                                <input type="number" placeholder="" id="" name="" class="form-control"/></div>
+                            </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
 											<tr>
-												<th class="text-center" style="background-color:#d9d9d9">#</th>
-												<th class="text-center" style="background-color:#d9d9d9;width:300px;">Item Used</th>
-												<th class="text-center" style="background-color:#d9d9d9">Quantity</th>
-												<th class="text-center" style="background-color:#d9d9d9">Unit price</th>
-												<th class="text-center" style="background-color:#d9d9d9">Amount</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">#</th>
+												<th class="text-center" style="background-color:#d9d9d9;width:300px;font-size:18px;">Item Used</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Quantity</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Unit price</th>
+												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Amount</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -885,11 +886,11 @@
 									</table>
 
 									<div class="btn-group">
-										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><b>+</b></a>
-										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><b>-</b></a>
+										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-add" aria-hidden="true"></span></a>
+										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-delete" aria-hidden="true"></span></a>
 									</div>
 
-								<div class=" row form-group">
+								<div class=" row form-group"><br/>
                                     <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
 									<input type="number" name='totalCost' placeholder='0.00' class="form-control" readonly/>
@@ -1091,10 +1092,10 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var s="";
                             var r="";
                             var t="";
-                            s = '<h5 align="center">Visit ID: '+obj.visit.visitid+'<br/>'+'Visit Date: '+obj.visit.visitdate+'</h5>';
-                            t = '<h5 align="center">Vet ID: '+obj.visit.vetid+'</h5>';
-                            r = '<h5 align="center">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</h5>';
-                            q = '<h5 align="center">Pet ID: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</h5>';
+                            s = '<p align="center" style="font-size:20px;">Visit ID: '+obj.visit.visitid+'<br/>'+'Visit Date: '+obj.visit.visitdate+'</p>';
+                            t = '<p align="center" style="font-size:20px;">Vet ID: '+obj.visit.vetid+'</p>';
+                            r = '<p align="center" style="font-size:20px;">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</p>';
+                            q = '<p align="center" style="font-size:20px;">Pet ID: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</p>';
                             var item = "";
                             if(parseInt(obj.items.length) > 0){
                                 for(var i=0; i<parseInt(obj.items.length); i++){
