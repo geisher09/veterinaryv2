@@ -1,3 +1,22 @@
+	.badge1{
+		position:relative;
+	}
+	
+	.badge1[data-badge]:after {
+		content:attr(data-badge);
+		position:absolute;
+		bottom:11px;
+		left: 11px;
+		font-size:.8em;
+		background: red;
+		color:white;
+		width:15px;height:15px;
+		text-align:center;
+		line-height:15px;
+		border-radius:50%;
+		border: none;
+	}
+
 /************* services ************/
 	.boxed {
 		float: left;
