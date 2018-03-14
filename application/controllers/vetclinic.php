@@ -42,6 +42,57 @@ class vetclinic extends CI_Controller {
 		//$this->load->view('include/footer');
 	}
 
+	public function accountsettings()
+	{
+		$header_data['title'] = "Account Settings";		
+		
+		$this->load->model('vet_model');
+		$clients = $this->vet_model->getClients();
+		$stocks = $this->vet_model->getStocks();
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/accountsettings', ['record_dat'=>$record_data]);			
+		//$this->load->view('include/footer');
+	}
+
+	public function changepassword()
+	{
+		$header_data['title'] = "Change Password";		
+		
+		$this->load->model('vet_model');
+		$clients = $this->vet_model->getClients();
+		$stocks = $this->vet_model->getStocks();
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/changepassword', ['record_dat'=>$record_data]);			
+		//$this->load->view('include/footer');
+	}
+
+	public function adduser()
+	{
+		$header_data['title'] = "Add New User";		
+		
+		$this->load->model('vet_model');
+		$clients = $this->vet_model->getClients();
+		$stocks = $this->vet_model->getStocks();
+		$lastclient = $this->vet_model->getLastClient();
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$this->load->view('include/header2',$header_data);
+		$this->load->view('clinic/adduser', ['record_dat'=>$record_data]);			
+		//$this->load->view('include/footer');
+	}
+
 	public function records()
 	{
 		$header_data['title'] = "Records";		

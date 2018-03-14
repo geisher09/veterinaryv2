@@ -17,7 +17,7 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li>
+                    <li class="active">
                         <a href="<?php echo base_url('vetclinic'); ?>">
                             <i class="now-ui-icons design_app"></i>
                             <p>Dashboard</p>
@@ -49,7 +49,7 @@
                             </div>
                         </li>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="#subPages2" data-toggle="collapse" class="collapsed">
                             <i class="now-ui-icons shopping_basket"></i>
                             <p>Inventory</p>
@@ -58,7 +58,7 @@
                             <div id="subPages2" class="collapse">
                                 <ul class="nav">
                                     <li><a href="<?php echo base_url('vetclinic/inventory'); ?>" class=""><i class="now-ui-icons shopping_box"></i>Stocks</a></li>
-                                    <li class="active"><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
+                                    <li><a href="<?php echo base_url('vetclinic/history'); ?>" class=""><i class="now-ui-icons arrows-1_refresh-69"></i>History</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -91,14 +91,7 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" class="form-control" id="search" onkeyup="search()" name="q" placeholder="Search for" required>
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                </span>
-                            </div>
-                        </form>
+                        
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,6 +141,10 @@
 
                                     else {
 
+
+
+
+
                                             echo    '<a class="dropdown-item">No new notification</a>
 
 
@@ -177,106 +174,51 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Transactions</h4>
+                                <h2 class="card-title">Add New User</h2>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-list-search" >
-                                        <thead>
-                                        <tr>
-                                            <th >
-                                                <div id="addbutn">
-                                                    <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalHistory">
-                                                        Sold an Item
-                                                    </button>
-                                                </div>  
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-primary">Item ID.</th>
-                                            <th class="text-primary">Action</th>
-                                            <th class="text-primary">Description</th>
-                                            <th class="text-primary">Date</th>
-                                        </tr>
-                                    </thead>
-                                        <tbody>
-
-                                        <?php
-                                                foreach($data['itemhistory'] as $r){
-                                                    echo '  <tr>    
-                                                            <td style="text-align:center;">'.$r['itemid'].'</td>
-                                                            <td style="text-align:left;">'.$r['action'].'</td>
-                                                            <td style="text-align:left;">'.$r['description'].'</td>
-                                                            <td style="text-align:left;">'.$r['date'].'</td>
-                                                        </tr>
-                                                        ';
-                                                }
-                                                ?>
-                                    </tbody>
-                                    </table>
-                                </div>
-                            </div>
+<br/>
+	<div class="container-fluid box">
+	               
+                   <div class="row" id="inner-div" style="color:white;">
+                <div class="col-md-6 col-sm-12">
+                    <?php echo form_open('...',['class'=>'lgform']);?>
+                <br /><br /><br />
+                <div class="col-md-6 col-sm-12">
+                <!--    <h3>ACCOUNT</h3>   -->
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <?php echo form_input(['name'=>'username','class'=>'form-control','placeholder'=>'Username', 'value'=>set_value('username')]); ?>
+                        <?php echo '<h5 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('username').'</strong></h5>'; ?>
+                      </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <?php echo form_input(['name'=>'password','type'=>'password','class'=>'form-control','placeholder'=>'Password', 'value'=>set_value('password')]); ?>
+                        <?php echo '<h5 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('password').'</strong></h5>'; ?>
+                      </div>
+                    <div class="form-group">
+                        <label for="pwd_2">Confirm Password:</label>
+                        <input name="password_confirm" type="password" class="form-control" id="pwd_2">
+                        <?php echo '<h5 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('password_confirm').'</strong></h5>'; ?>
+                    </div>
+                        <br />
+                        <div style="float:right;">
+                        <button type="submit" class="btn btn-success btn-lg">Create account</button>
+                        <a href="<?php echo site_url('Home'); ?>" class="btn btn-default btn-lg" role="button">Cancel</a>
                         </div>
+                        
+                    <?php  echo form_close(); ?>
+                </div>
+            </div>
+                            
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Update History Modal -->
-            <div class="modal fade" id="myModalHistory" tabindex="-1" role="dialog" 
-                 aria-labelledby="LabelHistory" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                            <h4 class="modal-title text-center" id="LabelHistory" style="font-size:25px; font-weight:bold; margin-left:21%;">
-                               UPDATE ITEM USAGE
-                            </h4>
-							<button type="button" class="close" 
-                               data-dismiss="modal">
-                                   <span aria-hidden="true">&times;</span>
-                                   <span class="sr-only">Close</span>
-                            </button>
-                        </div>
-                
-            <!-- Modal Body -->
-            <div class="modal-body" style="padding:50px;">
-                 <?php echo form_open(site_url("vetclinic/history/")) ?>
-                <form action="" method="POST"><div class="form-group">
-                    <span  id="ins" class="valerror"></span>
-                                        <label>Item</label>
-                                        <select class="form-control" id="itemid" name="itemid">
-                                            <?php
-                                            foreach($stock as $s){
-                                                echo '<option value="'.$s['itemid'].'">'.$s['itemid'].'-'.$s['item_desc'].'</option>';
-                                            }
-                                            ?>
-                                        </select> <br />
-                    <label for="qty_used">Quantity</label>
-                      <input type="number" class="form-control globalDisable" id="qty_used" name="qty_used" placeholder="Quantity"/>
 
-               
-            </div>
-            
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
-                            Cancel
-                </button>
-                <button type="submit" id="sbmtMyItem" class="btn btn-primary" name="itemuse" onclick="">
-                    Update
-                </button>
-                <?php echo form_close() ?>
-            </div>
-        </div>
-    </div>
+
 </div>
-</div> 
-</body>
-    <script>
-function myFunction() {
-    location.reload();
-}
-</script>
-</html>
