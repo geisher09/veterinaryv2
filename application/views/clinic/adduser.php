@@ -190,7 +190,8 @@
                       
                     <?php echo form_open('login/create',['class'=>'lgform']);?>
                 <br /><br /><br />
-                <div class="col-md-6 col-sm-12">
+				
+                <div style="left:20%;"class="col-lg-6 col-md-6 col-sm-6">
                 <!--    <h3>ACCOUNT</h3>   -->
                     <div class="form-group">
                         <label for="username">Username:</label>
@@ -218,6 +219,7 @@
                         
                     <?php  echo form_close(); ?>
                 </div>
+				
             </div>
                             
                     </div>

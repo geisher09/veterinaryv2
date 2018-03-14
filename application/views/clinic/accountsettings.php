@@ -203,9 +203,9 @@
                             "><strong>'.form_error('username').'</strong></h5>'; ?>
                     </div>
                     <br />
-                    <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password...</a>
-                    <div style="float:right;">
-                    <button type="submit" class="btn btn-success btn-md">Save Changes</button>
+                    <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password</a>
+                    <div style="float: right;" >
+                    <button style="position:absolute; right:180px; background-color:#28B463;" type="submit" class="btn btn-success btn-md">Save Changes</button>
                     <?php echo form_close();?>
                     
            

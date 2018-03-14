@@ -180,6 +180,7 @@
 <br/>
 	<div class="container-fluid box">
 	               
+				 <div style="left:20%; margin-bottom:20px;" class="col-lg-8 col-sm-8">
                    <div id="password-change">
                 <?php echo form_open('login/changepass',['class'=>'lgform']);?>
                 <br /><br />
@@ -211,6 +212,7 @@
             <?php echo form_close(); ?>
                             
                     </div>
+					</div>
                 </div>
             </div>
         </div>
