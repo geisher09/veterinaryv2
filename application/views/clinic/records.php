@@ -28,7 +28,7 @@
                         echo '<li>
                             <a href="'.base_url('vetclinic/billing').'">
                                 <i class="now-ui-icons business_badge"></i>
-                                <p>Billing</p>
+                                <p>Billing<span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
                             </a>
                         </li>';
                     }
