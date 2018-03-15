@@ -204,7 +204,7 @@
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
 								echo
-								($final < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo $final?>%</span>
+								($final < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo number_format($final,2,'.',',');?>%</span>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -221,6 +221,7 @@
                             </div>
                             <div class="card-body">
                                 <?php
+                                if($sales_dat['visits']!=0){
 								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
 								$newper2=$percent2/$sales_dat['visits'];
 								$final2=$newper2*100;
@@ -229,19 +230,21 @@
                                     <div style="font-size: 20px">Todays Income: Php '.$sales_dat['visits'].'</div>
 									<br />
 									<div style="font-size: 20px">Percentage Change from yesterdays income:</div>
-                                ';
+                                ';}
                                 ?>
 								<span style="font-size: 25px; color: <?php 
+                                if($sales_dat['visits']!=0){
 								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
 								$newper2=$percent2/$sales_dat['visits'];
 								$final2=$newper2*100;
 								echo
-								($final2 < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo $final2?>%</span>
+								($final2 < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo number_format($final2,2,'.',','); }?>%</span>
+
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="now-ui-icons loader_refresh spin"></i> Just Updated
-                                </div>
+                                </br>
+                                    <?=isset($final2)?'<i class="now-ui-icons loader_refresh spin"></i> Just Updated':'<h7>No visits yet</h7>'?>                                </div>
                             </div>
                         </div>
                     </div>
