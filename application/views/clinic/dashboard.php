@@ -189,9 +189,14 @@
                             </div>
                             <div class="card-body">
                                 <?php
+								$percent=$sales_dat['items2']-$sales_dat['items'];
+								$newper=$percent/$sales_dat['items'];
+								$final=$newper*100;
                                 echo '
                                     <br /><br />
                                     <div style="font-size: 20px">Todays Sale: Php '.$sales_dat['items'].'</div>
+									<br />
+									<div style="font-size: 20px">Percentage Change from yesterdays sales: '.$final.'%</div>
                                 ';
                                 ?>
                             </div>
@@ -210,9 +215,14 @@
                             </div>
                             <div class="card-body">
                                 <?php
+								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
+								$newper2=$percent2/$sales_dat['visits'];
+								$final2=$newper2*100;
                                 echo '
                                     <br /><br />
                                     <div style="font-size: 20px">Todays Income: Php '.$sales_dat['visits'].'</div>
+									<br />
+									<div style="font-size: 20px">Percentage Change from yesterdays income: '.$final2.'%</div>
                                 ';
                                 ?>
                             </div>
