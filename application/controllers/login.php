@@ -70,7 +70,7 @@ class Login extends CI_Controller {
                     'name'=>$this->input->post('name'),
                     'isDoctor'=>$isDoctor);
             
-            $this->form_validation->set_rules('username', 'Username', 'trim|required');
+            $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[user.username]');
             $this->form_validation->set_rules('name', 'Name', 'trim|required');
 
                 if($this->form_validation->run()){
