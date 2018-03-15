@@ -256,7 +256,7 @@
                                                 <label>Visit ID:</label>
                                                 <input name="visitid" class="form-control" id="Vdoctors" readonly>
                                                     
-                                                </input>
+    
                                             </div>
                                             <div class="col-md-6" style="padding-top:30px;">
                                             <div class="row">
@@ -281,8 +281,6 @@
                                         <div class="col-md-12 form-group">
                                             <label>Doctor:</label>
                                             <input name="doctor" class="form-control" id="Vdoctors" disabled>
-                                                
-                                            </input>
                                         </div>
                                         <br />
                                         <div class=" col-md-12 form-group">
@@ -323,6 +321,10 @@
                                     <div class="col-md-9">
                                     <input type="number" placeholder="" id="" name="visit_cost" class="form-control"/></div>'?>
                                 </div><br/>
+                                <div class="row form-group">
+                                    <div class="col-md-3"><label>Item Cost:</label></div>
+                                    <div class="col-md-9">
+                                    <input type="number" placeholder="" id="" name="item_cost" class="form-control" disabled        /></div>
                                         <!--
                                         <table class="table table-bordered table-hover" id="tab_logic">
                                             <thead>
@@ -408,7 +410,7 @@
         function updateModal(id){
             $.ajax({
                 type: 'POST',
-                url: 'ajax_list',
+                url: 'ajax_getVisits',
                 data:{id: id},
                     success: function(data) {
                         var obj = JSON.parse(data);
@@ -417,6 +419,7 @@
                         $("[name='date']").val(obj.visit['visitdate']);
 
                         $("[name='pet']").val(obj.visit['pname']);
+                        $("[name='doctor']").val(obj.visit['name']);
 
                         $("[name='svctype']").val(obj.visit['case_type']);
                         $("[name='Select1']").val(obj.visit['desc']);
@@ -428,7 +431,8 @@
 
                         $("[name='findings']").val(obj.visit['findings']);
                         $("[name='recom']").val(obj.visit['recommendation']);
-
+                        
+                        $("[name='item_cost']").val(obj.visit['itemCost']);
                         $("[name='totalCost']").val(obj.visit['Total']);
                     }
             });
