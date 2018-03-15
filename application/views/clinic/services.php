@@ -169,7 +169,7 @@
                                     <i class="now-ui-icons users_single-02"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/logout'); ?>">
+                                    <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
                                         Logout
                                      </a>
                                 </div>
@@ -324,16 +324,6 @@
 					  <label  for="desc">Description:</label>
 					  <div >
 						<input type="text" class="form-control" id="desc"  name="desc">
-					  </div>
-					</div>
-
-					<div class="form-group">
-					  <label  for="serv_type">Type of Service:</label>
-					  <div >          
-							<select class="form-control" id="serv_type" name="serv_type">
-								<option >Grooming</option>
-								<option >Treatment</option>
-							</select>
 					  </div>
 					</div>
 

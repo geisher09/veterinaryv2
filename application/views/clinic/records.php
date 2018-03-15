@@ -171,7 +171,7 @@
                                     <i class="now-ui-icons users_single-02"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/logout'); ?>">
+                                    <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
                                         Logout
                                      </a>
                                 </div>
