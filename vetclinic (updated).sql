@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2018 at 04:17 AM
+-- Generation Time: Mar 15, 2018 at 04:25 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -86,7 +86,12 @@ INSERT INTO `itemhistory` (`id`, `itemid`, `serviceid`, `action`, `description`,
 (17, 3, 'SER-000', 'Add Product', 'Add Product: Item 3 - Pet Shampoo with 100 pc/s and price of 12 added ', '2017-10-11 15:44:15', 100, '12.00'),
 (18, 1, 'SER-000', 'Add Stock', 'Add Stock: Item 1 - Anti bacteria added 3 pc/s', '2017-11-01 12:53:13', 10, '300.00'),
 (19, 1, 'SER-000', 'Sold Item', 'Sold Item: Item 1 - Anti bacteria sold 2 pc/s with total cost of 600. Only 8 pc/s left ', '2017-11-01 12:54:30', 2, '600.00'),
-(20, 2, 'SER-000', 'Add Stock', 'Add Stock: Item 2 - Paracetamol for pups added 1 pc/s', '2018-03-04 02:06:47', 1, '250.00');
+(20, 2, 'SER-000', 'Add Stock', 'Add Stock: Item 2 - Paracetamol for pups added 1 pc/s', '2018-03-04 02:06:47', 1, '250.00'),
+(21, 2, '', 'Sold Item', 'Sold Item: Item 2-Paracetamol for pups sold 1 pc/s with total cost of 250 only 0 pc/s left', '2018-03-14 18:32:38', 1, '250.00'),
+(22, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold  pc/s with total cost of 0 only 8 pc/s left', '2018-03-15 02:20:08', 0, '0.00'),
+(23, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 7 pc/s left', '2018-03-15 02:20:08', 1, '300.00'),
+(24, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 6 pc/s left', '2018-03-15 02:29:53', 1, '300.00'),
+(25, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 5 pc/s left', '2018-03-15 02:32:36', 1, '300.00');
 
 -- --------------------------------------------------------
 
@@ -106,8 +111,8 @@ CREATE TABLE `itemstock` (
 --
 
 INSERT INTO `itemstock` (`itemid`, `item_desc`, `qty_left`, `item_cost`) VALUES
-(1, 'Anti bacteria', 8, '300.00'),
-(2, 'Paracetamol for pups', 1, '250.00'),
+(1, 'Anti bacteria', 5, '300.00'),
+(2, 'Paracetamol for pups', 0, '250.00'),
 (3, 'Pet Shampoo', 97, '12.00');
 
 -- --------------------------------------------------------
@@ -130,7 +135,12 @@ INSERT INTO `items_used` (`items_used_id`, `visitid`, `items_used`) VALUES
 (12, '17-3-1-1', '1'),
 (11, '17-3-1-1', '1'),
 (10, '17-5-1-1', '2'),
-(9, '17-1000-1-1', '1');
+(9, '17-1000-1-1', '1'),
+(13, '18-1-1-2', '2'),
+(14, '18-1-1-2', '1'),
+(15, '18-1-1-2', '1'),
+(16, '18-5-1-2', '1'),
+(17, '18-5-1-2', '1');
 
 -- --------------------------------------------------------
 
@@ -316,18 +326,22 @@ INSERT INTO `stock` (`stockno`, `item_desc`, `qty_left`, `item_cost`) VALUES
 --
 
 CREATE TABLE `user` (
+  `userID` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `isDoctor` tinyint(1) NOT NULL
+  `isDoctor` tinyint(1) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `password`, `isDoctor`) VALUES
-('doctor', '1234', 1),
-('secretary', '1234', 0);
+INSERT INTO `user` (`userID`, `username`, `password`, `isDoctor`, `name`) VALUES
+(1, 'doctor', '1234', 1, ''),
+(2, 'secretary', '1234', 0, ''),
+(3, 'doctor2', '12345', 0, 'doctor2'),
+(4, 'secre2', '12345', 0, 'secre2');
 
 -- --------------------------------------------------------
 
@@ -376,7 +390,8 @@ INSERT INTO `visit` (`visitid`, `petid`, `vetid`, `serviceid`, `visitdate`, `fin
 ('17-5-1-1', '5-1', '301-001', '170011', '2017-10-11 02:50:11', 'Findings here.', 'Recommendations.', 'Grooming', '300.00', '0.00', '0.00'),
 ('17-1000-1-1', '1000-1', '301-001', '170011', '2017-10-11 02:35:02', 'None', 'None', 'Grooming', '500.00', '0.00', '0.00'),
 ('17-3-1-1', '3-1', '301-001', '170007', '2017-10-11 11:02:59', 'Findings here.', 'Recommendations.', 'Treatment', '700.00', '0.00', '0.00'),
-('18-1-1-1', '1-1', '301-001', '170007', '2018-02-17 13:49:49', 'Findings here.', 'Recommendations.', 'Treatment', '0.00', '0.00', '0.00');
+('18-1-1-1', '1-1', '301-001', '170007', '2018-02-17 13:49:49', 'Findings here.', 'Recommendations.', 'Treatment', '0.00', '0.00', '0.00'),
+('18-5-1-2', '5-1', '301-001', '170007', '2018-03-15 02:37:44', 'test', '', 'Treatment', '0.00', '300.00', '300.00');
 
 --
 -- Indexes for dumped tables
@@ -440,7 +455,7 @@ ALTER TABLE `stock`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- Indexes for table `veterinarian`
@@ -467,7 +482,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `itemhistory`
 --
 ALTER TABLE `itemhistory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `itemstock`
 --
@@ -477,7 +492,7 @@ ALTER TABLE `itemstock`
 -- AUTO_INCREMENT for table `items_used`
 --
 ALTER TABLE `items_used`
-  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
@@ -488,6 +503,11 @@ ALTER TABLE `schedule`
 --
 ALTER TABLE `services`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170013;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

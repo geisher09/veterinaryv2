@@ -43,6 +43,7 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('userID', $row['userID']);
                 $this->session->set_userdata('username', $row['username']);
                 $this->session->set_userdata('isDoctor', $row['isDoctor']);
+                $this->session->set_userdata('name', $row['name']);
                 
                 /*$sess_data=array(
                     'username' => $row['username'],
@@ -60,14 +61,23 @@ class Login extends CI_Controller {
 
 
     public function change_user(){
+         if($this->input->post('isDoctor')!=null)
+                $isDoctor=1;
+            else
+                $isDoctor=0;
             $data=array('userID'=>$this->input->post('userID'),
-                    'username'=>$this->input->post('username'));
+                    'username'=>$this->input->post('username'),
+                    'name'=>$this->input->post('name'),
+                    'isDoctor'=>$isDoctor);
             
-            $this->form_validation->set_rules('username', 'username', 'trim|required');
+            $this->form_validation->set_rules('username', 'Username', 'trim|required');
+            $this->form_validation->set_rules('name', 'Name', 'trim|required');
 
                 if($this->form_validation->run()){
                     $this->um->update($data);
                         $this->session->set_userdata('username',$data['username']);
+                        $this->session->set_userdata('isDoctor',$data['isDoctor']);
+                        $this->session->set_userdata('name',$data['name']);
                    $this->session->set_flashdata('confirm', 'Saved Succesfully!');
                 }
                 else{
@@ -78,10 +88,8 @@ class Login extends CI_Controller {
 
                 redirect('vetclinic/accountsettings');
 
-
-
-
     }
+
     public function confirmpass($condition){
 
  $condition = array('userid'=>$this->input->post('userID'), 'password'=>$this->input->post('password'));
@@ -94,7 +102,6 @@ class Login extends CI_Controller {
                 else{
                     return true;
                 }
-
 
     }
     public function changepass(){
@@ -119,13 +126,7 @@ class Login extends CI_Controller {
                 $this->um->updatepass($data);
             redirect('vetclinic/changepassword','refresh');        
         }
-
-
-
-
     }
-
-
 
     public function create(){
            // print_r($_POST);
@@ -157,16 +158,6 @@ class Login extends CI_Controller {
                      $this->session->set_flashdata('success', 'user '.$data['username'].' Succesfully added!');
             redirect('vetclinic/adduser','refresh');        
         }
-
-
-
-
-
-
-
-
-
-
     }
     
     public function logout(){
