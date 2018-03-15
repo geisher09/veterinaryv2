@@ -214,10 +214,41 @@
 			else
 				return $result['total_cost'];
 		}
+		
+		public function getTotalSalesSumYesterday(){
+			date_default_timezone_set('Asia/Manila');
+			$date=date('Y-m-d',strtotime("-1 days"));
+			$serv = "Sold Item";
+			$this->db->select_sum('total_cost');
+			$this->db->from('itemhistory');
+			$this->db->where("CAST(date as date) = '$date' AND action='$serv'");
+
+			$query = $this->db->get();
+			$result = $query->row_array();
+			if($result['total_cost'] == null)
+				return 0;
+			else
+				return $result['total_cost'];
+		}
 
 		public function getTotalSalesSum2(){
 			date_default_timezone_set('Asia/Manila');
 			$date=date('Y-m-d');
+			$this->db->select_sum('visit_cost');
+			$this->db->from('visit');
+			$this->db->where("CAST(visitdate as date) = '$date'");
+
+			$query = $this->db->get();
+			$result = $query->row_array();
+			if($result['visit_cost'] == null)
+				return 0;
+			else
+				return $result['visit_cost'];
+		}
+		
+		public function getTotalSalesSumYesterday2(){
+			date_default_timezone_set('Asia/Manila');
+			$date=date('Y-m-d',strtotime("-1 days"));
 			$this->db->select_sum('visit_cost');
 			$this->db->from('visit');
 			$this->db->where("CAST(visitdate as date) = '$date'");
