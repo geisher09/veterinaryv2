@@ -446,7 +446,7 @@
 			$vdata = array(
 				  'visitid' => $yr.'-'.$pet.'-'.$petv,
 				  'petid' => $this->input->post('pet'),
-			      'vetid' => $this->input->post('doctor'),
+			      'userID' => $this->input->post('userID'),
 			      'serviceid' => $this->input->post('Select1') ,
 			      'visitdate' => $date,
 			      'findings' => $this->input->post('findings') ,
@@ -498,10 +498,11 @@
 
 		public function getvisit_by_id($id)
 		{
-			$this->db->select('a.petid,b.pname,a.visitid,a.vetid,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
+			$this->db->select('a.petid,b.pname,d.name,d.userID,a.visitid,a.userID,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
 			$this->db->from('visit a');
 			$this->db->join('pet b','a.petid = b.petid');
 			$this->db->join('services c','a.serviceid = c.id');
+			$this->db->join('user d','a.userID = d.userID');
 			// $this->db->group_by('b.clientid');     
 			$this->db->where('a.visitid',$id);
 			$query = $this->db->get();
