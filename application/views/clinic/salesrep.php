@@ -182,9 +182,9 @@
 <br/><br/><br/>
 	<div class="container-fluid box">
 	                           <div>
-                                    <button type="submit" class="btn btn-info btn-md">Daily Report</button>
+                                    <a href="<?php echo base_url('vetclinic/getSalesReport?range=daily'); ?>"><button type="submit" class="btn btn-info btn-md">Daily Report</button></a>
                                     <br/>
-                                    <button type="submit" class="btn btn-info btn-md">Monthly Report</button>
+                                    <a href="<?php echo base_url('vetclinic/getSalesReport?range=monthly'); ?>"><button type="submit" class="btn btn-info btn-md">Monthly Report</button></a>
                                 </div>
                    
                             
