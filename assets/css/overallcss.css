@@ -6,6 +6,16 @@
 		-o-background-size: cover;
 		background-size: cover;*/
 	}
+	#svctype{
+
+		font-size: 20px;
+		text-decoration: underline;
+	}
+	#Select1{
+
+		font-size: 20px;
+		/*text-decoration: underline;*/
+	}
 
 
 	.Vitems{
