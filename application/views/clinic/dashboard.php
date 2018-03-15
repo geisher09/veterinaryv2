@@ -410,7 +410,7 @@
                   pointBorderColor: chartColor,
                   pointBackgroundColor: "#1e3d60",
                   pointHoverBackgroundColor: "#1e3d60",
-                  pointHoverBorderColor: chartColor,
+                  pointHoverBorderColor: chartColor,    
                   pointBorderWidth: 1,
                   pointHoverRadius: 7,
                   pointHoverBorderWidth: 2,
