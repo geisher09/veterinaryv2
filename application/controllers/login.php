@@ -130,11 +130,12 @@ class Login extends CI_Controller {
     public function create(){
            // print_r($_POST);
 //Array ( [username] => 123 [password] => 123 [password_confirm] => 123 )
-       $this->form_validation->set_rules('username', 'Current password', 'trim|required|min_length[5]|is_unique[user.username]');
-            $this->form_validation->set_rules('password', 'new password', 'trim|min_length[5]|required');
+       $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|is_unique[user.username]');
+            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[5]|required');
        $this->form_validation->set_rules('password_confirm2', 'confirm password', 'trim|min_length[5]|required|matches[password]');
+       $this->form_validation->set_rules('name', 'Name', 'trim|required');
         if($this->form_validation->run()==FALSE){
-                $record_data['title']='Change password';
+                $record_data['title']='Add New User';
         $record_data['notif']=$this->vet_model->notification();
         $record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
         $record_data['eventCounter'] = count($record_data['events']);
@@ -143,10 +144,15 @@ class Login extends CI_Controller {
                $this->load->view('clinic/adduser',['record_dat'=>$record_data]);
         }
         else {
-
+            if($this->input->post('isDoctor')!=null)
+                $isDoctor=1;
+            else
+                $isDoctor=0;
             $data=array('username'=>$this->input->post('username'),
-                'password'=>$this->input->post('password_confirm2'));
-
+                'password'=>$this->input->post('password_confirm2'),
+                'name'=>$this->input->post('name'),
+                'isDoctor'=>$isDoctor);
+            
                 $this->um->create($data);
                      $this->session->set_flashdata('success', 'user '.$data['username'].' Succesfully added!');
             redirect('vetclinic/adduser','refresh');        

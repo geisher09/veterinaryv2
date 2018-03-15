@@ -211,6 +211,18 @@
                         <?php echo '<h7 class="pulse animated" style="color: red;
                         "><strong>'.form_error('password_confirm2').'</strong></h7>'; ?>
                     </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input name="name" type="text" class="form-control" id="name">
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('name').'</strong></h7>'; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="isDoctor">is Doctor?:</label>
+                        <input name="isDoctor" type="checkbox" class="form-control" id="isDoctor">
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('isDoctor').'</strong></h7>'; ?>
+                    </div>
                         <br />
                         <div style="float:right;">
                         <button type="submit" class="btn btn-success btn-lg">Create account</button>
