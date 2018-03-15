@@ -167,8 +167,8 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="now-ui-icons users_single-02"></i>Hello, <?=$_SESSION['name']?>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
                                     <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
@@ -194,9 +194,9 @@
 <br/><br/><br/>
 	<div class="container-fluid box">
 	                           <div>
-                                    <button type="submit" class="btn btn-info btn-md">Daily Report</button>
+                                    <a href="<?php echo base_url('vetclinic/getSalesReport?range=daily'); ?>"><button type="submit" class="btn btn-info btn-md">Daily Report</button></a>
                                     <br/>
-                                    <button type="submit" class="btn btn-info btn-md">Monthly Report</button>
+                                    <a href="<?php echo base_url('vetclinic/getSalesReport?range=monthly'); ?>"><button type="submit" class="btn btn-info btn-md">Monthly Report</button></a>
                                 </div>
                    
                             

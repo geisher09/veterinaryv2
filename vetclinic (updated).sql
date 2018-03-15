@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2018 at 04:25 AM
+-- Generation Time: Mar 15, 2018 at 05:46 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -91,7 +91,8 @@ INSERT INTO `itemhistory` (`id`, `itemid`, `serviceid`, `action`, `description`,
 (22, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold  pc/s with total cost of 0 only 8 pc/s left', '2018-03-15 02:20:08', 0, '0.00'),
 (23, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 7 pc/s left', '2018-03-15 02:20:08', 1, '300.00'),
 (24, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 6 pc/s left', '2018-03-15 02:29:53', 1, '300.00'),
-(25, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 5 pc/s left', '2018-03-15 02:32:36', 1, '300.00');
+(25, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 5 pc/s left', '2018-03-15 02:32:36', 1, '300.00'),
+(26, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold  pc/s with total cost of 0 only 5 pc/s left', '2018-03-15 12:39:44', 0, '0.00');
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,8 @@ INSERT INTO `items_used` (`items_used_id`, `visitid`, `items_used`) VALUES
 (14, '18-1-1-2', '1'),
 (15, '18-1-1-2', '1'),
 (16, '18-5-1-2', '1'),
-(17, '18-5-1-2', '1');
+(17, '18-5-1-2', '1'),
+(18, '18-5-1-4', '1');
 
 -- --------------------------------------------------------
 
@@ -340,7 +342,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`userID`, `username`, `password`, `isDoctor`, `name`) VALUES
 (1, 'doctor', '1234', 1, ''),
 (2, 'secretary', '1234', 0, ''),
-(3, 'doctor2', '12345', 0, 'doctor2'),
+(3, 'doctor2', '12345', 1, 'doctor2'),
 (4, 'secre2', '12345', 0, 'secre2');
 
 -- --------------------------------------------------------
@@ -371,7 +373,7 @@ INSERT INTO `veterinarian` (`vetid`, `vetname`) VALUES
 CREATE TABLE `visit` (
   `visitid` varchar(30) NOT NULL,
   `petid` varchar(20) NOT NULL,
-  `vetid` varchar(20) NOT NULL,
+  `userID` int(11) NOT NULL,
   `serviceid` varchar(20) NOT NULL,
   `visitdate` varchar(25) NOT NULL,
   `findings` varchar(20) NOT NULL,
@@ -386,12 +388,13 @@ CREATE TABLE `visit` (
 -- Dumping data for table `visit`
 --
 
-INSERT INTO `visit` (`visitid`, `petid`, `vetid`, `serviceid`, `visitdate`, `findings`, `recommendation`, `case_type`, `visit_cost`, `Total`, `itemCost`) VALUES
-('17-5-1-1', '5-1', '301-001', '170011', '2017-10-11 02:50:11', 'Findings here.', 'Recommendations.', 'Grooming', '300.00', '0.00', '0.00'),
-('17-1000-1-1', '1000-1', '301-001', '170011', '2017-10-11 02:35:02', 'None', 'None', 'Grooming', '500.00', '0.00', '0.00'),
-('17-3-1-1', '3-1', '301-001', '170007', '2017-10-11 11:02:59', 'Findings here.', 'Recommendations.', 'Treatment', '700.00', '0.00', '0.00'),
-('18-1-1-1', '1-1', '301-001', '170007', '2018-02-17 13:49:49', 'Findings here.', 'Recommendations.', 'Treatment', '0.00', '0.00', '0.00'),
-('18-5-1-2', '5-1', '301-001', '170007', '2018-03-15 02:37:44', 'test', '', 'Treatment', '0.00', '300.00', '300.00');
+INSERT INTO `visit` (`visitid`, `petid`, `userID`, `serviceid`, `visitdate`, `findings`, `recommendation`, `case_type`, `visit_cost`, `Total`, `itemCost`) VALUES
+('17-5-1-1', '5-1', 301, '170011', '2017-10-11 02:50:11', 'Findings here.', 'Recommendations.', 'Grooming', '300.00', '0.00', '0.00'),
+('17-1000-1-1', '1000-1', 301, '170011', '2017-10-11 02:35:02', 'None', 'None', 'Grooming', '500.00', '0.00', '0.00'),
+('17-3-1-1', '3-1', 301, '170007', '2017-10-11 11:02:59', 'Findings here.', 'Recommendations.', 'Treatment', '700.00', '0.00', '0.00'),
+('18-1-1-1', '1-1', 301, '170007', '2018-02-17 13:49:49', 'Findings here.', 'Recommendations.', 'Treatment', '0.00', '0.00', '0.00'),
+('18-5-1-2', '5-1', 301, '170007', '2018-03-15 02:37:44', 'test', '', 'Treatment', '0.00', '300.00', '300.00'),
+('18-5-1-3', '5-1', 3, '170007', '2018-03-15 12:39:42', 'test', '', 'Treatment', '0.00', '0.00', '0.00');
 
 --
 -- Indexes for dumped tables
@@ -482,7 +485,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `itemhistory`
 --
 ALTER TABLE `itemhistory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `itemstock`
 --
@@ -492,7 +495,7 @@ ALTER TABLE `itemstock`
 -- AUTO_INCREMENT for table `items_used`
 --
 ALTER TABLE `items_used`
-  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `schedule`
 --

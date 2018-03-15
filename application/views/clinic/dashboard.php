@@ -165,7 +165,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>
+                                    <i class="now-ui-icons users_single-02"></i>Hello, <?=$_SESSION['name']?>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
                                     <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
@@ -415,7 +415,7 @@
                   pointBorderColor: chartColor,
                   pointBackgroundColor: "#1e3d60",
                   pointHoverBackgroundColor: "#1e3d60",
-                  pointHoverBorderColor: chartColor,
+                  pointHoverBorderColor: chartColor,    
                   pointBorderWidth: 1,
                   pointHoverRadius: 7,
                   pointHoverBorderWidth: 2,

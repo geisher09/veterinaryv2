@@ -176,6 +176,12 @@ class vetclinic extends CI_Controller {
 		echo json_encode($output);
 
 	}
+
+	public function ajax_getVisits(){
+		$visit = $this->vet_model->getvisit_by_id($this->input->post('id'));
+		$output = array('visit'=>$visit);
+		echo json_encode($output);
+	}
 	public function filter_date()
 	{
 		$datestart = date("Y-m-d", strtotime("-6 days"));

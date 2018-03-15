@@ -435,26 +435,27 @@
 
 
 
-			// }
-			public function saveHistory(){
-				date_default_timezone_set('Asia/Manila');
-				$date=date('Y-m-d H:i:s');
-				$pet=$this->input->post('pet');
-				$yr=date('y');
-				$petv=$this->getLastpetvisit();
-				$petv=$petv+1;
-				$vdata = array(
-					  'visitid' => $yr.'-'.$pet.'-'.$petv,
-					  'petid' => $this->input->post('pet'),
-				      'vetid' => $this->input->post('doctor'),
-				      'serviceid' => $this->input->post('Select1') ,
-				      'visitdate' => $date,
-				      'findings' => $this->input->post('findings') ,
-				      'recommendation' => $this->input->post('recom'),
-				      'case_type' => $this->input->post('optradio'),
-				      //'visit_cost' => $this->input->post('totalCost'),
-				      'total' => $this->input->post('totalCost')+$this->input->post('hiddenSum'),
-				      'itemCost'=> $this->input->post('hiddenSum')  );
+
+		// }
+		public function saveHistory(){
+			date_default_timezone_set('Asia/Manila');
+			$date=date('Y-m-d H:i:s');
+			$pet=$this->input->post('pet');
+			$yr=date('y');
+			$petv=$this->getLastpetvisit();
+			$petv=$petv+1;
+			$vdata = array(
+				  'visitid' => $yr.'-'.$pet.'-'.$petv,
+				  'petid' => $this->input->post('pet'),
+			      'userID' => $this->input->post('userID'),
+			      'serviceid' => $this->input->post('Select1') ,
+			      'visitdate' => $date,
+			      'findings' => $this->input->post('findings') ,
+			      'recommendation' => $this->input->post('recom'),
+			      'case_type' => $this->input->post('optradio'),
+			      //'visit_cost' => $this->input->post('totalCost'),
+			      'total' => $this->input->post('totalCost')+$this->input->post('hiddenSum'),
+			      'itemCost'=> $this->input->post('hiddenSum')  );
 
 
 			return $this->db->insert('visit', $vdata);
@@ -498,10 +499,11 @@
 
 		public function getvisit_by_id($id)
 		{
-			$this->db->select('a.petid,b.pname,a.visitid,a.vetid,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
+			$this->db->select('a.petid,b.pname,d.name,d.userID,a.visitid,a.userID,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
 			$this->db->from('visit a');
 			$this->db->join('pet b','a.petid = b.petid');
 			$this->db->join('services c','a.serviceid = c.id');
+			$this->db->join('user d','a.userID = d.userID');
 			// $this->db->group_by('b.clientid');     
 			$this->db->where('a.visitid',$id);
 			$query = $this->db->get();

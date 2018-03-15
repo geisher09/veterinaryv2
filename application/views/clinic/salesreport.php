@@ -3,11 +3,13 @@
     <link href="<?php echo base_url('assets/css/salesreport.css'); ?>" rel="stylesheet" type="text/css"  />
 </head>
 <body>
+    <h1><?php echo ucwords($_GET['range']); ?> Sales Report</h1>
+    <h3>Items Sold</h3>
     <table>
         <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th><strong>Item</strong></th>
+            <th><strong>Quantity</strong></th>
+            <th><strong>Total</strong></th>
         </tr>
         <?php
             if(isset($itemsReport)){
@@ -24,11 +26,12 @@
     <br />
     <br />
     <br />
+    <h3>Services Rendered</h3>
     <table>
         <tr>
-            <th>Service</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th><strong>Service</strong></th>
+            <th><strong>Quantity</strong></th>
+            <th><strong>Total</strong></th>
         </tr>
         <?php
             if(isset($servReport)){
