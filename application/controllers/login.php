@@ -27,7 +27,7 @@ class Login extends CI_Controller {
             // else
             //     echo 'NOT DOCTOR!';
             // print_r($_SESSION['isDoctor']);
-            redirect('vetclinic','refresh');        
+             redirect('vetclinic','refresh');        
         }
 	}
     

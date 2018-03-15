@@ -25,7 +25,8 @@
                         echo '<li class="active">
                             <a href="'.base_url('vetclinic/billing').'">
                                 <i class="now-ui-icons business_badge"></i>
-                                <p>Billing</p>
+                                <p>Billing
+                                <span class="badge1" data-badge="'.$data['bills'].'" style="background-color: red;"></span></p>
                             </a>
                         </li>';
                     }
@@ -299,7 +300,7 @@
                                 <div class="col-md-12">
                                         <label>Service Type:</label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" name="svctype" disabled>
+                                            <span   id="svctype">
                                             <!--
                                             <label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;">
                                                 <input value="Grooming" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Grooming&nbsp;&nbsp;</span>
@@ -313,8 +314,7 @@
                                             -->
                                         </div>
     
-                                        <input type="text" class="form-control" name="Select1" id="Select1" disabled>
-                                        </input>
+                                       
                                         <br/>
                                 <?=$_SESSION['isDoctor']!=0?'':'<div class="row form-group">
                                     <div class="col-md-3"><label>Service Fee:</label></div>
@@ -421,8 +421,8 @@
                         $("[name='pet']").val(obj.visit['pname']);
                         $("[name='doctor']").val(obj.visit['name']);
 
-                        $("[name='svctype']").val(obj.visit['case_type']);
-                        $("[name='Select1']").val(obj.visit['desc']);
+                        $("[id='svctype']").text(obj.visit['case_type']+': '+obj.visit['desc']);
+                        $("[id='Select1']").text();
                         
                         if(obj.visit['case_type']==='Grooming')
                             $("input[value='Grooming']").prop("checked", true);

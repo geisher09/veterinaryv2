@@ -30,7 +30,8 @@ class vetclinic extends CI_Controller {
 	public function index()
 	{
 		$header_data['title'] = "Dashboard";		
-		
+				$record_data['bills'] = $this->vet_model->getbill();
+
 		$this->load->model('vet_model');
 		$clients = $this->vet_model->getClients();
 		$stocks = $this->vet_model->getStocks();
@@ -69,7 +70,8 @@ class vetclinic extends CI_Controller {
 	public function salesreport()
 	{
 		$header_data['title'] = "Sales Report";		
-		
+				$record_data['bills'] = $this->vet_model->getbill();
+
 		$this->load->model('vet_model');
 		$clients = $this->vet_model->getClients();
 		$stocks = $this->vet_model->getStocks();
@@ -120,7 +122,8 @@ class vetclinic extends CI_Controller {
 	public function records()
 	{
 		$header_data['title'] = "Records";		
-		
+				$record_data['bills'] = $this->vet_model->getbill();
+
 		$this->load->model('vet_model');
 		$clients = $this->vet_model->getClients();
 		$stocks = $this->vet_model->getStocks();
@@ -227,7 +230,8 @@ class vetclinic extends CI_Controller {
 	}
 	
 	public function services(){
-		
+				$record_data['bills'] = $this->vet_model->getbill();
+
 		if(isset($_POST['add'])){
 			
 			$desc = $_POST['desc'];
@@ -460,6 +464,8 @@ $lastclient = $this->vet_model->getLastClient();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$record_data['eventCounter'] = count($record_data['events']);
 		$record_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['bills'] = $this->vet_model->getbill();
+
 		$this->load->view('include/header2',$header_data);
 		$this->load->model('vet_model','schedule');
 		$this->load->view('clinic/schedule',['record_dat'=>$record_data]);
@@ -469,6 +475,8 @@ $lastclient = $this->vet_model->getLastClient();
 
 	public function sales()
 	{
+		$record_data['bills'] = $this->vet_model->getbill();
+
 		$header_data['title'] = "Sales";
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
@@ -647,6 +655,8 @@ $lastclient = $this->vet_model->getLastClient();
 		$header_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$header_data['eventCounter'] = count($header_data['events']);
 		$header_data['items'] = $this->vet_model->getAllZeroitems();
+				$record_data['bills'] = $this->vet_model->getbill();
+
 		if(isset($_POST['item_desc'])){
 		
 			
@@ -775,6 +785,7 @@ $lastclient = $this->vet_model->getLastClient();
 	}
 	//chrstnv history
 	public function history(){
+		$record_data['bills'] = $this->vet_model->getbill();
 
 		if(isset($_POST['itemuse'])){
 			$option = $this->input->post("itemid", TRUE);
@@ -1030,6 +1041,8 @@ $lastclient = $this->vet_model->getLastClient();
 
 	public function billing(){
 		$data['visits'] = $this->vet_model->getVisitForBilling();
+		$data['bills'] = $this->vet_model->getbill();
+
 		$header_data['title'] = "Billing";
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
