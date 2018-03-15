@@ -194,11 +194,17 @@
 								$final=$newper*100;
                                 echo '
                                     <br /><br />
-                                    <div style="font-size: 20px">Todays Sale: Php '.$sales_dat['items'].'</div>
+                                    <div style="font-size: 20px">Todays Sales: Php '.$sales_dat['items'].'</div>
 									<br />
-									<div style="font-size: 20px">Percentage Change from yesterdays sales: '.$final.'%</div>
+									<div style="font-size: 20px">Percentage Change from yesterdays sales:</div>
                                 ';
                                 ?>
+								<span style="font-size: 25px; color: <?php 
+								$percent=$sales_dat['items2']-$sales_dat['items'];
+								$newper=$percent/$sales_dat['items'];
+								$final=$newper*100;
+								echo
+								($final < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo $final?>%</span>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -222,9 +228,15 @@
                                     <br /><br />
                                     <div style="font-size: 20px">Todays Income: Php '.$sales_dat['visits'].'</div>
 									<br />
-									<div style="font-size: 20px">Percentage Change from yesterdays income: '.$final2.'%</div>
+									<div style="font-size: 20px">Percentage Change from yesterdays income:</div>
                                 ';
                                 ?>
+								<span style="font-size: 25px; color: <?php 
+								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
+								$newper2=$percent2/$sales_dat['visits'];
+								$final2=$newper2*100;
+								echo
+								($final2 < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo $final2?>%</span>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -243,7 +255,7 @@
                                 <?php
                                 echo '
                                     <br /><br />
-                                    <div style="font-size: 20px">Total of Patients: '.$sales_dat['patients'].'</div>
+                                    <div style="font-size: 30px">Total of Patients: '.$sales_dat['patients'].'</div>
                                 ';
                                 ?>
                             </div>
