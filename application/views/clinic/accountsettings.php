@@ -181,8 +181,13 @@
 	<div class="container-fluid box">
 	               
                    <div class="row" id="settingsdiv">
+<<<<<<< HEAD
                 <div class="col-md-8 col-sm-12">
                     <?php echo form_open('login/change_user',['class'=>'lgform']);?>
+=======
+                <div style="left: 20%;"class="col-md-6 col-sm-12">
+                    <?php echo form_open('...',['class'=>'lgform']);?>
+>>>>>>> 24790466bd4d9778adb7c4bf84482b9a30bc5f7f
                      <br /><br />
                     <br />
                       <?php if( $error = $this->session->flashdata('confirm')): ?>
@@ -207,9 +212,15 @@
                     <div style="float: right;" >
                     <button style="position:absolute; right:180px; background-color:#28B463;" type="submit" class="btn btn-success btn-md">Save Changes</button>
                     <?php echo form_close();?>
+<<<<<<< HEAD
                     
            
                    
+=======
+                    <?php echo form_open('...',['class'=>'lgform']);?>
+                    <button style="background-color:#E74C3C;" type="submit" class="btn btn-danger btn-md">Discard Changes</button>
+                    <?php echo form_close();?>
+>>>>>>> 24790466bd4d9778adb7c4bf84482b9a30bc5f7f
                     </div>
                 </div>
     </div>
