@@ -16,7 +16,7 @@ class Login extends CI_Controller {
         if($this->form_validation->run()==TRUE)
             $this->form_validation->set_rules('pass','Password','callback_verifyLogin');
         if($this->form_validation->run()==FALSE){
-            $this->load->view('clinic/login');
+            $this->load->view('clinic/login',$uname);
         }
         else {
             // if($this->session->userdata('isDoctor')>0)
@@ -37,7 +37,7 @@ class Login extends CI_Controller {
         
         if($result_array){
             foreach($result_array as $row){
-               $this->session->set_userdata('userID', $row['userID']);
+               //$this->session->set_userdata('userID', $row['userID']);
                 $this->session->set_userdata('username', $row['username']);
                 $this->session->set_userdata('isDoctor', $row['isDoctor']);
                 

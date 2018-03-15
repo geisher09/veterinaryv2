@@ -197,7 +197,7 @@
                                             <th >
                                                 <div id="addbutn">
                                                     <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalHistory">
-                                                        Sold an Item
+                                                        Sell an Item
                                                     </button>
                                                 </div>  
                                             </th>
