@@ -76,16 +76,16 @@
 			</div>
 			
 			<div class="form-group"> 
-				<input align="center" id="uname" type="text" class="form-control input-underline" name="uname" placeholder="User Name">
+				<input align="center" id="uname" type="text" class="form-control input-underline" name="uname" placeholder="User Name" value="<?php echo set_value('uname'); ?>">
 				<span style="color: White; "><strong> </strong></span>
 			</div> <br />
 
 			<div class="form-group">
-				<input align="center" id="pass" type="Password" class="form-control input-underline" name="pass" placeholder="Password">
+				<input align="center" id="pass" type="Password" class="form-control input-underline" name="pass" placeholder="Password" value="<?php echo set_value('pass'); ?>">
 				<span style="color: White; "><strong> </strong></span>
 			</div> <br /><br />
 
-			<?php echo validation_errors(); ?>
+			<div class="text-center valerror"><?php echo validation_errors(); ?></div>
 
 			<div class="form-group">
 				<button align="center" type="submit" class="btn btn-md lgbtn"> LOG IN </button> <br /><br /><br /><br >
