@@ -6,15 +6,15 @@ class Login extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        if(isset($_SESSION['userID'])){
-            redirect('vetclinic','refresh');
-        }
         $this->load->model('vet_model','vet_model');
         $this->load->model('user_model','um');
        
     }
 	public function index()
 	{
+        if(isset($_SESSION['userID'])){
+            redirect('vetclinic','refresh');
+        }
 		$this->form_validation->set_rules('uname','Username','required', array('required' => 'Invalid Username or Password.'));
         if($this->form_validation->run()==TRUE)
             $this->form_validation->set_rules('pass','Password','callback_verifyLogin');
