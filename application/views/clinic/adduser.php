@@ -181,6 +181,7 @@
 	<div class="container-fluid box">
       
                    <div class="row" id="inner-div" style="color:white;">
+<<<<<<< HEAD
                 <div class="col-md-6 col-sm-12">
                            <?php if( $error = $this->session->flashdata('success')): ?>
             <div class="alert alert-dismissible alert-success">
@@ -189,8 +190,13 @@
     <?php endif; ?>
                       
                     <?php echo form_open('login/create',['class'=>'lgform']);?>
+=======
+                <div style="margin-bottom:40px;"class="col-lg-12 col-sm-12">
+                    <?php echo form_open('...',['class'=>'lgform']);?>
+>>>>>>> 24790466bd4d9778adb7c4bf84482b9a30bc5f7f
                 <br /><br /><br />
-                <div class="col-md-6 col-sm-12">
+				
+                <div style="left:20%;"class="col-lg-6 col-md-6 col-sm-6">
                 <!--    <h3>ACCOUNT</h3>   -->
                     <div class="form-group">
                         <label for="username">Username:</label>
@@ -212,12 +218,18 @@
                     </div>
                         <br />
                         <div style="float:right;">
+<<<<<<< HEAD
                         <button type="submit" class="btn btn-success btn-lg">Create account</button>
                         <a href="<?php echo site_url('vetclinic'); ?>" class="btn btn-default btn-lg" role="button">Cancel</a>
+=======
+                        <button style="background-color:#28B463;" type="submit" class="btn btn-success btn-lg">Create account</button>
+                        <a href="<?php echo site_url('Home'); ?>" class="btn btn-default btn-lg" role="button">Cancel</a>
+>>>>>>> 24790466bd4d9778adb7c4bf84482b9a30bc5f7f
                         </div>
                         
                     <?php  echo form_close(); ?>
                 </div>
+				
             </div>
                             
                     </div>

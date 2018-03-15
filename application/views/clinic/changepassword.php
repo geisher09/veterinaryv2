@@ -180,6 +180,7 @@
 <br/>
 	<div class="container-fluid box">
 	               
+				 <div style="left:20%; margin-bottom:20px;" class="col-lg-8 col-sm-8">
                    <div id="password-change">
                 <?php echo form_open('login/changepass',['class'=>'lgform']);?>
                 <br /><br />
@@ -205,12 +206,18 @@
             </div>
             <br />
             <div class="text-center">
+<<<<<<< HEAD
                 <button type="submit" class="btn btn-info btn-md">Change Password</button>
                 <a href="<?php echo site_url('vetclinic/accountsettings'); ?>" class="btn btn-danger btn-md" role="button">Cancel</a>
+=======
+                <button type="submit" class="btn btn-info btn-md" style="background-color:#3498DB;">Change Password</button>
+                <a href="<?php echo site_url('..'); ?>" class="btn btn-danger btn-md" style="background-color:#E74C3C;" role="button">Cancel</a>
+>>>>>>> 24790466bd4d9778adb7c4bf84482b9a30bc5f7f
             </div>
             <?php echo form_close(); ?>
                             
                     </div>
+					</div>
                 </div>
             </div>
         </div>
