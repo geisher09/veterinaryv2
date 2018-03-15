@@ -16,7 +16,7 @@ class Login extends CI_Controller {
         if($this->form_validation->run()==TRUE)
             $this->form_validation->set_rules('pass','Password','callback_verifyLogin');
         if($this->form_validation->run()==FALSE){
-            $this->load->view('clinic/login',$uname);
+            $this->load->view('clinic/login');
         }
         else {
             // if($this->session->userdata('isDoctor')>0)
