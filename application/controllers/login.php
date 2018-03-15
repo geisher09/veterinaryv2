@@ -6,17 +6,20 @@ class Login extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-    $this->load->model('vet_model','vet_model');
-            $this->load->model('user_model','um');
+        $this->load->model('vet_model','vet_model');
+        $this->load->model('user_model','um');
        
     }
 	public function index()
 	{
+        if(isset($_SESSION['userID'])){
+            redirect('vetclinic','refresh');
+        }
 		$this->form_validation->set_rules('uname','Username','required', array('required' => 'Invalid Username or Password.'));
         if($this->form_validation->run()==TRUE)
             $this->form_validation->set_rules('pass','Password','callback_verifyLogin');
         if($this->form_validation->run()==FALSE){
-            $this->load->view('clinic/login',$uname);
+            $this->load->view('clinic/login');
         }
         else {
             // if($this->session->userdata('isDoctor')>0)
@@ -37,9 +40,10 @@ class Login extends CI_Controller {
         
         if($result_array){
             foreach($result_array as $row){
-               //$this->session->set_userdata('userID', $row['userID']);
+                $this->session->set_userdata('userID', $row['userID']);
                 $this->session->set_userdata('username', $row['username']);
                 $this->session->set_userdata('isDoctor', $row['isDoctor']);
+                $this->session->set_userdata('name', $row['name']);
                 
                 /*$sess_data=array(
                     'username' => $row['username'],
@@ -57,14 +61,23 @@ class Login extends CI_Controller {
 
 
     public function change_user(){
+         if($this->input->post('isDoctor')!=null)
+                $isDoctor=1;
+            else
+                $isDoctor=0;
             $data=array('userID'=>$this->input->post('userID'),
-                    'username'=>$this->input->post('username'));
+                    'username'=>$this->input->post('username'),
+                    'name'=>$this->input->post('name'),
+                    'isDoctor'=>$isDoctor);
             
-            $this->form_validation->set_rules('username', 'username', 'trim|required');
+            $this->form_validation->set_rules('username', 'Username', 'trim|required');
+            $this->form_validation->set_rules('name', 'Name', 'trim|required');
 
                 if($this->form_validation->run()){
                     $this->um->update($data);
                         $this->session->set_userdata('username',$data['username']);
+                        $this->session->set_userdata('isDoctor',$data['isDoctor']);
+                        $this->session->set_userdata('name',$data['name']);
                    $this->session->set_flashdata('confirm', 'Saved Succesfully!');
                 }
                 else{
@@ -75,10 +88,8 @@ class Login extends CI_Controller {
 
                 redirect('vetclinic/accountsettings');
 
-
-
-
     }
+
     public function confirmpass($condition){
 
  $condition = array('userid'=>$this->input->post('userID'), 'password'=>$this->input->post('password'));
@@ -91,7 +102,6 @@ class Login extends CI_Controller {
                 else{
                     return true;
                 }
-
 
     }
     public function changepass(){
@@ -116,22 +126,17 @@ class Login extends CI_Controller {
                 $this->um->updatepass($data);
             redirect('vetclinic/changepassword','refresh');        
         }
-
-
-
-
     }
-
-
 
     public function create(){
            // print_r($_POST);
 //Array ( [username] => 123 [password] => 123 [password_confirm] => 123 )
-       $this->form_validation->set_rules('username', 'Current password', 'trim|required|min_length[5]|is_unique[user.username]');
-            $this->form_validation->set_rules('password', 'new password', 'trim|min_length[5]|required');
+       $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|is_unique[user.username]');
+            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[5]|required');
        $this->form_validation->set_rules('password_confirm2', 'confirm password', 'trim|min_length[5]|required|matches[password]');
+       $this->form_validation->set_rules('name', 'Name', 'trim|required');
         if($this->form_validation->run()==FALSE){
-                $record_data['title']='Change password';
+                $record_data['title']='Add New User';
         $record_data['notif']=$this->vet_model->notification();
         $record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
         $record_data['eventCounter'] = count($record_data['events']);
@@ -140,24 +145,19 @@ class Login extends CI_Controller {
                $this->load->view('clinic/adduser',['record_dat'=>$record_data]);
         }
         else {
-
+            if($this->input->post('isDoctor')!=null)
+                $isDoctor=1;
+            else
+                $isDoctor=0;
             $data=array('username'=>$this->input->post('username'),
-                'password'=>$this->input->post('password_confirm2'));
-
+                'password'=>$this->input->post('password_confirm2'),
+                'name'=>$this->input->post('name'),
+                'isDoctor'=>$isDoctor);
+            
                 $this->um->create($data);
                      $this->session->set_flashdata('success', 'user '.$data['username'].' Succesfully added!');
             redirect('vetclinic/adduser','refresh');        
         }
-
-
-
-
-
-
-
-
-
-
     }
     
     public function logout(){

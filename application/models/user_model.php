@@ -26,6 +26,8 @@ class User_model extends CI_Model {
     function update($data){
      
                 $this->db->set('username',$data['username']);
+                $this->db->set('name',$data['name']);
+                $this->db->set('isDoctor',$data['isDoctor']);
              
                 $this->db->where('userID',$data['userID']);
                 $this->db->update('user');

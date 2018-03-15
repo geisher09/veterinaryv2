@@ -204,6 +204,18 @@
                         <?php echo '<h5 class="pulse animated" style="color: #ff4d4d;
                             "><strong>'.form_error('username').'</strong></h5>'; ?>
                     </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input name="name" type="text" class="form-control" id="name" value="<?php echo $_SESSION['name'];?>" />
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('name').'</strong></h7>'; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="isDoctor">is Doctor?:</label>
+                        <input name="isDoctor" type="checkbox" class="form-control" id="isDoctor" <?php echo ($_SESSION['isDoctor']>0)? 'checked':'';?> />
+                        <?php echo '<h7 class="pulse animated" style="color: red;
+                        "><strong>'.form_error('isDoctor').'</strong></h7>'; ?>
+                    </div>
                     <br />
                     <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password</a>
                     <div style="float: right;" >
