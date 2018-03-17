@@ -24,8 +24,7 @@
                         </a>
                     </li>
                     <?php
-                    if($_SESSION['isDoctor']==0){
-                        echo '<li>
+                         echo '<li>
                             <a href="'.base_url('vetclinic/billing').'">
                                 <i class="now-ui-icons business_badge"></i>
                                 <p>billing
@@ -33,7 +32,7 @@
 
                             </a>
                         </li>';
-                    }
+                    
                     ?>
                     <li>
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
@@ -105,18 +104,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         
                         <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons ui-2_settings-90"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
-                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/accountsettings'); ?>">
-                                        Account Settings
-                                     </a>
-                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/adduser'); ?>">
-                                        Add New User
-                                     </a>
-                                </div>
+                           
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

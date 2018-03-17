@@ -24,14 +24,14 @@
                         </a>
                     </li>
                     <?php
-                    if($_SESSION['isDoctor']==0){
+                   
                         echo '<li>
                             <a href="'.base_url('vetclinic/billing').'">
                                 <i class="now-ui-icons business_badge"></i>
                                 <p>Billing<span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
                             </a>
                         </li>';
-                    }
+                
                     ?>
                     <li class="active">
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
@@ -453,7 +453,7 @@
                 <div class="btn-group btn-group-lg">
                     <button class="tablink btn btn-info" onclick="details(event, 'clientDet')">Client Details</button>
                     <button class="tablink btn btn-info" onclick="details(event, 'addPet')">Add Pet</button>
-                    <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory');" <?=$_SESSION['isDoctor']==0? 'disabled' : ''?> >Add History</button>
+                    <button class="tablink btn btn-info" id="hstry" onclick="details(event, 'addHistory');" >Add History</button>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
@@ -899,12 +899,12 @@
 										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-delete" aria-hidden="true"></span></a>
 									</div>
 
-								<?=$_SESSION['isDoctor']!=0?'':'<div class=" row form-group"><br/>
+							<div class=" row form-group"><br/>
                                     <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
 									<input type="number" name="totalCost" placeholder="0.00" class="form-control" readonly/>
                                         </div>
-								</div>'?>
+								</div>
 						
 							</div>
       
