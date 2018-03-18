@@ -1,4 +1,4 @@
-<body class="">
+f<body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="blue">
             <!--
@@ -175,6 +175,7 @@
                             </div>
                             <div class="card-body">
                                 <?php
+                                if($sales_dat['items']!=0){
 								$percent=$sales_dat['items2']-$sales_dat['items'];
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
@@ -190,7 +191,7 @@
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
 								echo
-								($final < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo number_format($final,2,'.',',');?>%</span>
+								($final < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo number_format($final,2,'.',',');}?>%</span>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">

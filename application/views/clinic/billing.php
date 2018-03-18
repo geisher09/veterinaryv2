@@ -171,8 +171,7 @@
                             </li>
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>Hello, <?=$_SESSION['name']?>
-                                </a>
+                                    <i class="now-ui-icons users_single-02"></i>Hello
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
                                     <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
                                         Logout
@@ -316,10 +315,10 @@
     
                                        
                                         <br/>
-                                <?=$_SESSION['isDoctor']!=0?'':'<div class="row form-group">
+                           <div class="row form-group">
                                     <div class="col-md-3"><label>Service Fee:</label></div>
                                     <div class="col-md-9">
-                                    <input type="number" placeholder="" id="" name="visit_cost" class="form-control"/></div>'?>
+                                    <input type="number" placeholder="" id="" name="visit_cost" class="form-control"/></div>
                                 </div><br/>
                                 <div class="row form-group">
                                     <div class="col-md-3"><label>Item Cost:</label></div>
@@ -385,12 +384,12 @@
     
                                         
     
-                                    <?=$_SESSION['isDoctor']!=0?'':'<div class=" row form-group"><br/>
+                                   <div class=" row form-group"><br/>
                                         <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                         <div class="col-md-8" style="padding-top:30px;">
                                         <input type="number" name="totalCost" placeholder="0.00" class="form-control" readonly/>
                                             </div>
-                                    </div>'?>
+                                    </div>
                             
                                 </div>
           
