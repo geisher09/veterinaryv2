@@ -131,7 +131,7 @@
                         </a>
                     </li>
                     <?php
-                    if($_SESSION['isDoctor']==0){
+                    
                         echo '<li>
                             <a href="'.base_url('vetclinic/billing').'">
                                 <i class="now-ui-icons business_badge"></i>
@@ -139,7 +139,7 @@
                                 <span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
                             </a>
                         </li>';
-                    }
+                    
                     ?>
                     <li>
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
