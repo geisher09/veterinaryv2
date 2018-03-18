@@ -168,7 +168,7 @@
                             </li>
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>Hello, <?=$_SESSION['name']?>
+                                    <i class="now-ui-icons users_single-02"></i>Hello
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
                                     <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
@@ -797,8 +797,8 @@
 									<hr />
 									<div class="col-md-12 form-group">
 										<label>Doctor:</label>
-										<input name="doctor" class="form-control" id="Vdoctors" value="<?=$_SESSION['name']?>" readonly />
-                                        <input type="hidden" name="userID" value="<?=$_SESSION['userID']?>" />
+										<input name="doctor" class="form-control" id="Vdoctors" value="" readonly />
+                                        <input type="hidden" name="userID" value="" />
 									</div>
 									<br />
                                    
@@ -833,10 +833,10 @@
 									<select class="form-control" name="Select1" id="Select1">
 									</select>
 									<br/>
-                            <?=$_SESSION['isDoctor']!=0?'':'<div class="row form-group">
+                          <div class="row form-group">
                                 <div class="col-md-3"><label>Service Fee:</label></div>
                                 <div class="col-md-9">
-                                <input type="number" placeholder="" id="" name="" class="form-control"/></div>'?>
+                                <input type="number" placeholder="" id="" name="" class="form-control"/></div>
                             </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
