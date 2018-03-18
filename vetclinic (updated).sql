@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2018 at 05:46 AM
+-- Generation Time: Mar 18, 2018 at 01:12 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -43,7 +43,8 @@ INSERT INTO `client` (`clientid`, `cname`, `email`, `contactno`, `address`) VALU
 (3, 'Glenwin Bernabe', 'glenwinbernabe@gmail.com', '09212156798', 'Tondo,Manila'),
 (4, 'Jayson Cruz', 'jayson@cruz.com', '09091765432', 'Makati'),
 (5, 'Gerwin Bernabe', 'vangiecusi@ymail.com', '09091765432', 'Tondo,Manila'),
-(6, 'John', 'john@yahoo.com', '09822227651', '761 Marcelino St.');
+(6, 'John', 'john@yahoo.com', '09822227651', '761 Marcelino St.'),
+(7, 'Sheira Man-awit', 'shira@yahoo.com', '09994566789', 'Bulacan');
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,13 @@ INSERT INTO `itemhistory` (`id`, `itemid`, `serviceid`, `action`, `description`,
 (23, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 7 pc/s left', '2018-03-15 02:20:08', 1, '300.00'),
 (24, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 6 pc/s left', '2018-03-15 02:29:53', 1, '300.00'),
 (25, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 5 pc/s left', '2018-03-15 02:32:36', 1, '300.00'),
-(26, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold  pc/s with total cost of 0 only 5 pc/s left', '2018-03-15 12:39:44', 0, '0.00');
+(26, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold  pc/s with total cost of 0 only 5 pc/s left', '2018-03-15 12:39:44', 0, '0.00'),
+(27, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 4 pc/s left', '2018-03-15 13:41:25', 1, '300.00'),
+(28, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 1 pc/s with total cost of 300 only 5 pc/s left', '2018-03-15 14:28:28', 1, '300.00'),
+(29, 8, '', 'Sold Item', 'Sold Item: Item 8-Pedigree Adult 1kg sold 1 pc/s with total cost of 105 only 20 pc/s left', '2018-03-15 14:34:57', 1, '105.00'),
+(30, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 2 pc/s with total cost of 600 only 3 pc/s left', '2018-03-15 15:39:04', 2, '600.00'),
+(31, 2, '', 'Sold Item', 'Sold Item: Item 2-Paracetamol for pups sold 10 pc/s with total cost of 2500 only 0 pc/s left', '2018-03-15 15:39:04', 10, '2500.00'),
+(32, 1, '', 'Sold Item', 'Sold Item: Item 1-Anti bacteria sold 2 pc/s with total cost of 600 only 1 pc/s left', '2018-03-15 15:40:36', 2, '600.00');
 
 -- --------------------------------------------------------
 
@@ -112,9 +119,24 @@ CREATE TABLE `itemstock` (
 --
 
 INSERT INTO `itemstock` (`itemid`, `item_desc`, `qty_left`, `item_cost`) VALUES
-(1, 'Anti bacteria', 5, '300.00'),
+(1, 'Anti bacteria', 1, '300.00'),
 (2, 'Paracetamol for pups', 0, '250.00'),
-(3, 'Pet Shampoo', 97, '12.00');
+(3, 'Pet Shampoo', 97, '12.00'),
+(4, 'Beef Pro Adult 1kg', 22, '90.00'),
+(5, 'Vitality Puppy 1kg', 32, '135.00'),
+(6, 'Holistic Puppy 1kg ', 16, '135.00'),
+(7, 'Holistic Adult 1kg ', 31, '130.00'),
+(8, 'Pedigree Adult 1kg', 20, '105.00'),
+(9, 'Pedigree Puppy 1kg', 23, '145.00'),
+(10, 'Dog Finishing Comb', 10, '500.00'),
+(11, 'Dog Grooming Rake', 12, '350.00'),
+(12, 'Scourvet Oral Anti-Diarrheal for Dog/Cats 60ml', 100, '155.00'),
+(13, 'Drontal Flavor Plus Dog Dewormer', 150, '100.00'),
+(14, 'Papi Pirantel Dewormer for Dogs', 210, '42.00'),
+(15, 'Detick Anti-Tick Flea Control for Dogs Cats 1cc', 123, '299.00'),
+(16, 'Lactomate Milk Stimulant for Lactating Dogs', 200, '150.00'),
+(17, 'Bravecto for Dogs', 25, '1400.00'),
+(18, 'Nexgard Anti Tick and Flea Chewable Tablets 1kg', 40, '150.75');
 
 -- --------------------------------------------------------
 
@@ -142,7 +164,13 @@ INSERT INTO `items_used` (`items_used_id`, `visitid`, `items_used`) VALUES
 (15, '18-1-1-2', '1'),
 (16, '18-5-1-2', '1'),
 (17, '18-5-1-2', '1'),
-(18, '18-5-1-4', '1');
+(18, '18-5-1-4', '1'),
+(19, '18-5-1-4', '1'),
+(20, '18-1-1-1', '1'),
+(21, '18-7-1-1', '8'),
+(22, '18-5-1-3', '1'),
+(23, '18-5-1-3', '2'),
+(24, '18-7-1-2', '1');
 
 -- --------------------------------------------------------
 
@@ -211,7 +239,9 @@ INSERT INTO `pet` (`petid`, `clientid`, `pname`, `breed`, `species`, `sex`, `bir
 ('1002-1', '1002', 'Winter', 'Siberian Husky', 'Dog', 'f', '2016-10-21', 'Black & Yellow'),
 ('1000-1', '1000', 'Flicka', 'Husky', 'Dog', 'f', '2016-12-07', 'White'),
 ('1001-1', '1001', 'Dags', 'Corgi', 'Dog', 'm', '2016-09-09', 'Brown'),
-('1-1', '1', 'dsa', 'dsa', 'dsa', 'm', '2018-02-22', 'dsa');
+('1-1', '1', 'dsa', 'dsa', 'dsa', 'm', '2018-02-22', 'dsa'),
+('5-2', '5', 'test', 'corgi', 'Dog', 'm', '2017-11-01', 'est'),
+('7-1', '7', 'shi', 'corgi', 'Dog', 'm', '2018-01-02', 'black');
 
 -- --------------------------------------------------------
 
@@ -292,11 +322,20 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `desc`, `type`) VALUES
-(170007, 'Sample 2 Description Treatment', 'Treatment'),
-(170009, 'dfghjk', 'Grooming'),
-(170010, 'ganon parin', 'Treatment'),
-(170011, 'summer cut', 'Grooming'),
-(170012, 'puppy cut', 'Grooming');
+(170013, 'Paw Trimming', 'Grooming'),
+(170014, 'Ear cleaning', 'Grooming'),
+(170015, 'Nail Clipping', 'Grooming'),
+(170016, 'Bath', 'Grooming'),
+(170017, 'Summer Cut (Kalbo)', 'Grooming'),
+(170018, 'Puppy Cut (Lion''s Cut)', 'Grooming'),
+(170019, 'Medicated Bath', 'Grooming'),
+(170020, 'Anti Rabies Vaccine', 'Treatment'),
+(170021, 'Deworming', 'Treatment'),
+(170022, 'Ivomec Injection', 'Treatment'),
+(170023, 'Urinalysis', 'Treatment'),
+(170024, 'Skin Craping', 'Treatment'),
+(170025, 'Direct Fecal Smear', 'Treatment'),
+(170026, 'Flourecien Eye Test', 'Treatment');
 
 -- --------------------------------------------------------
 
@@ -343,7 +382,9 @@ INSERT INTO `user` (`userID`, `username`, `password`, `isDoctor`, `name`) VALUES
 (1, 'doctor', '1234', 1, ''),
 (2, 'secretary', '1234', 0, ''),
 (3, 'doctor2', '12345', 1, 'doctor2'),
-(4, 'secre2', '12345', 0, 'secre2');
+(4, 'secre2', '12345', 0, 'secre2'),
+(5, 'DrCerdz', '12345', 1, 'Cerdy Deloso'),
+(6, 'SecGerwin', '12345', 0, 'Gerwin Gonzalo');
 
 -- --------------------------------------------------------
 
@@ -389,12 +430,11 @@ CREATE TABLE `visit` (
 --
 
 INSERT INTO `visit` (`visitid`, `petid`, `userID`, `serviceid`, `visitdate`, `findings`, `recommendation`, `case_type`, `visit_cost`, `Total`, `itemCost`) VALUES
-('17-5-1-1', '5-1', 301, '170011', '2017-10-11 02:50:11', 'Findings here.', 'Recommendations.', 'Grooming', '300.00', '0.00', '0.00'),
-('17-1000-1-1', '1000-1', 301, '170011', '2017-10-11 02:35:02', 'None', 'None', 'Grooming', '500.00', '0.00', '0.00'),
-('17-3-1-1', '3-1', 301, '170007', '2017-10-11 11:02:59', 'Findings here.', 'Recommendations.', 'Treatment', '700.00', '0.00', '0.00'),
-('18-1-1-1', '1-1', 301, '170007', '2018-02-17 13:49:49', 'Findings here.', 'Recommendations.', 'Treatment', '0.00', '0.00', '0.00'),
-('18-5-1-2', '5-1', 301, '170007', '2018-03-15 02:37:44', 'test', '', 'Treatment', '0.00', '300.00', '300.00'),
-('18-5-1-3', '5-1', 3, '170007', '2018-03-15 12:39:42', 'test', '', 'Treatment', '0.00', '0.00', '0.00');
+('18-7-1-2', '7-1', 5, '170021', '2018-03-15 15:40:36', 'SICK', 'DRINK MEDS', 'Treatment', '400.00', '1000.00', '600.00'),
+('18-7-1-1', '7-1', 5, '170013', '2018-03-15 14:34:57', 'payat na', 'Kain pa', 'Grooming', '0.00', '105.00', '105.00'),
+('18-1-1-1', '1-1', 5, '170020', '2018-03-15 14:28:28', 'sick', 'drink med', 'Treatment', '0.00', '300.00', '300.00'),
+('18-5-1-3', '5-1', 3, '170007', '2018-03-15 12:39:42', 'test', '', 'Treatment', '300.00', '200.00', '0.00'),
+('18-5-1-4', '5-1', 3, '170007', '2018-03-15 13:41:25', 'test test test', 'test', 'Treatment', '200.00', '500.00', '300.00');
 
 --
 -- Indexes for dumped tables
@@ -480,22 +520,22 @@ ALTER TABLE `visit`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `clientid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `itemhistory`
 --
 ALTER TABLE `itemhistory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `itemstock`
 --
 ALTER TABLE `itemstock`
-  MODIFY `itemid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `itemid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `items_used`
 --
 ALTER TABLE `items_used`
-  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
@@ -505,12 +545,12 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170013;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170027;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

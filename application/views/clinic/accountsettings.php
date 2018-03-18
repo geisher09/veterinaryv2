@@ -183,7 +183,7 @@
 	<div class="container-fluid box">
 	               
                    <div class="row" id="settingsdiv">
-                <div class="col-md-8 col-sm-12">
+                <div style="left:20%;" class="col-md-8 col-sm-12">
                     <?php echo form_open('login/change_user',['class'=>'lgform']);?>
                      <br /><br />
                     <br />
@@ -217,9 +217,11 @@
                         "><strong>'.form_error('isDoctor').'</strong></h7>'; ?>
                     </div>
                     <br />
-                    <a href="<?php echo site_url('vetclinic/changepassword');?>" role="button" class="btn btn-primary btn-md btn-block">Change Password</a>
-                    <div style="float: right;" >
                     <button style="position:absolute; right:180px; background-color:#28B463;" type="submit" class="btn btn-success btn-md">Save Changes</button>
+                    
+                    <a href="<?php echo site_url('vetclinic/changepassword');?>" style="width:300px;"role="button" class="btn btn-primary btn-md btn-block">Change Password</a>
+                    
+                    <div class="form-group" style="float: right;" >
                     <?php echo form_close();?>
                     
            

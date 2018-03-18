@@ -377,11 +377,12 @@
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="petbreed">Breed:</label>
                   <div class="col-sm-8 col-md-8" id="CBerror">
-					<select class="sb" name="breed" id="petbreed">
+                  <input type="text" class="form-control" id="petbreed"  name="breed">
+					<!--<select class="sb" name="breed" id="petbreed">
 						<option value="LR">Loverador Retriever</option>
 						<option value="GR">Golden Retriever</option>
-					</select>
-                    <!-- <input type="text" class="form-control" id="petbreed"  name="breed"> -->
+					</select>-->
+                    <!--  -->
                     <p id="CBtext" class="valerror"></p>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
@@ -600,8 +601,6 @@
 								<select class="sb" name="species" id="addpetype">
 									<option value="Dog">Dog</option>
 									<option value="Cat">Cat</option>
-									<option value="Hedgehog">Hedgehog</option>
-									<option value="Rabbit">Rabbit</option>
 								</select>
                                 </div>
                                 <div class=" col-sm-1 col-md-1"></div>
@@ -613,13 +612,14 @@
                                 <div class=" col-sm-1 col-md-1"></div>
 								<label class=" col-sm-2 col-md-2" for="">Breed:</label>
                                 <div class="col-sm-8 col-md-8">
-								<select class="sb" name="breed" id="addpetbreed">
+                                <input type="text" class="form-control" id="addpetbreed" name="breed"/>
+								<!--<select class="sb" name="breed" id="addpetbreed">
 									<option value="Labrador">Loverador Retriever</option>
 									<option value="Golden Retriever">Golden Retriever</option>
-								</select>
+								</select>-->
                                 </div>
                                 <div class=" col-sm-1 col-md-1"></div>
-								<!-- <input type="text" class="form-control" id="addpetbreed" name="breed"/> -->
+								
 								<p id="Breerror" class="valerror"></p>
 							</div>
 							<br/>

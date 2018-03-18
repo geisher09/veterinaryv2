@@ -216,8 +216,8 @@ class vetclinic extends CI_Controller {
 	public function ajax_yearly(){
 		$year=date('Y');
 		for($month=1;$month<=12;$month++){
-			$sales1[] = $this->vet_model->getSalesSumPerMonth($month,2017);
-			$sales2[] = $this->vet_model->getSalesSumPerMonth2($month,2017);
+			$sales1[] = $this->vet_model->getSalesSumPerMonth($month,$year);
+			$sales2[] = $this->vet_model->getSalesSumPerMonth2($month,$year);
 			$dates[] = date('F',mktime(0,0,0,$month));	
 		}
 		
@@ -292,7 +292,7 @@ $lastclient = $this->vet_model->getLastClient();
 		if (($this->vet_model->saveClients($data,$finalid))&&($this->vet_model->savePets($finalid))){
             		$this->session->set_flashdata('response', 'Saved Succesfully!');
 				 }
-				 return redirect('vetclinic');
+				 return redirect('vetclinic/records');
 
 	}
 	public function validateClient(){
@@ -367,7 +367,7 @@ $lastclient = $this->vet_model->getLastClient();
 				 else{
              		//$this->session->set_flashdata('response', 'Failed :(');
 				 }
-				return redirect('vetclinic');
+				return redirect('vetclinic/records');
 
          
 
