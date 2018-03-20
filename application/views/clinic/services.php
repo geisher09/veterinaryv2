@@ -174,22 +174,41 @@
                             </div>
                             <div class="card-body">
 <br/>
-	<div class="container-fluid box">
-	
-<!--
-<table class="table" id="mytable">
-	<thead>
-		<tr>
-			<th>Service ID</th>
-			<th>Description</th>
-			<th style="text-align:center;">Action</th>
-		</tr>
-	</thead>
-	<tbody> 
-		<tr> 
-			<td style="width:400px;"><b>Grooming Services</b></td>
-			<td></td><td></td><td></td>
-		</tr>-->
+								<div class="table-responsive">
+                                    <table class="table table-list-search" >
+										<thead>
+											<tr>
+												<th class="text-primary">Type of Service</th>
+												<th class="text-primary">Service ID</th>
+												<th class="text-primary">Description</th>
+											</tr>
+										</thead>
+										<tbody> 
+											
+											<?php 
+											foreach($data['grooming'] as $s){
+												echo '
+												<tr>
+													<td> Grooming </td>
+													<td>'.$s['id'].'</td>
+													<td>'.$s['desc'].'</td>
+													
+												</tr> ';}
+											?>
+											
+											<?php 
+											foreach($data['treatment'] as $s){
+												echo '
+												<tr>
+													<td> Treatment </td>
+													<td>'.$s['id'].'</td>
+													<td>'.$s['desc'].'</td>
+													
+												</tr> ';}
+											?>
+										</tbody>
+
+<!-- Eto yung dating services na naka-box
 			<?php 
 			foreach($data['grooming'] as $s){
 				echo '
@@ -206,10 +225,7 @@
 				
 				 ';}
 			?>
-		<!--<tr>
-			<td><b>Treatment Services</b></td>
-			<td></td><td></td><td></td>
-		</tr> -->
+		
 				<?php 
 			foreach($data['treatment'] as $s){
 				echo '
@@ -225,10 +241,10 @@
 				 ';}
 			?>
 		
-		</div>
-<!--
-	</tbody>
-</table>-->
+
+END -->
+                           </table>
+						</div>
                             
                     </div>
                 </div>
