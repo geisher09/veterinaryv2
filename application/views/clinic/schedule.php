@@ -265,6 +265,7 @@
                     </div>
                 </div>
             </nav>
+
             <div class="panel-header panel-header-sm">
             </div>
             <div class="content">
@@ -275,7 +276,29 @@
                                 <h2 class="card-title">Schedule</h2>
                             </div>
                             <div class="card-body">
-    <div id='calendar'></div>
+                                <!-- DOCTOR DROPDOWN -->
+                                <div>
+                                    <br />
+                                    <h4 class="card-title">Doctor: </h2>
+                                    <select id="doctor-sel">
+                                    <?php
+                                    if(isset($doctorData))
+                                        foreach($doctorData as $d){
+                                            echo '<option value="'.$d->vetid.'">'.$d->vetname.'</option>';
+                                        }
+                                    ?>
+                                    </select>
+                                    <br />
+                                </div>
+                                <!-- CALENDAR DIV -->
+                                <div id='calendar'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- edit modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -327,13 +350,6 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
 <!-- add event modal -->
 
@@ -376,134 +392,143 @@
 <script>
 
         $(document).ready(function() {
+            function initializeCalendar(){
+                var vetid = $('#doctor-sel').val();
+                initThemeChooser({
 
-            initThemeChooser({
-
-                init: function(themeSystem) {
-                    $('#calendar').fullCalendar({
-                        themeSystem: 'bootstrap4',
-                        header: {
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'month,agendaWeek,agendaDay,listWeek'
-                        },
-                        views: {
-                            listDay: { buttonText: 'list day' },
-                            listWeek: { buttonText: 'list week' }
-                        },
-                        weekNumbers: true,
-                        navLinks: true, // can click day/week names to navigate views
-                        editable: true,
-                        droppable: true,
-                        eventLimit: true, // allow "more" link when too many events
-                        eventSources: [
-                        {
-                            events: function(start, end, timezone, callback) {
+                    init: function(themeSystem) {
+                        console.log(vetid);
+                        $('#calendar').fullCalendar({
+                            themeSystem: 'bootstrap4',
+                            header: {
+                                left: 'prev,next today',
+                                center: 'title',
+                                right: 'month,agendaWeek,agendaDay,listWeek'
+                            },
+                            views: {
+                                listDay: { buttonText: 'list day' },
+                                listWeek: { buttonText: 'list week' }
+                            },
+                            weekNumbers: true,
+                            navLinks: true, // can click day/week names to navigate views
+                            editable: true,
+                            droppable: true,
+                            eventLimit: true, // allow "more" link when too many events
+                            eventSources: [
+                            {
+                                events: function(start, end, timezone, callback) {
+                                    $.ajax({
+                                        url: '<?php echo base_url() ?>vetclinic/get_events/' + vetid,
+                                        dataType: 'json',
+                                        data: {                
+                                            start: start.unix(),
+                                            end: end.unix()
+                                        },
+                                        success: function(msg) {
+                                            var events = msg.events;
+                                            callback(events);
+                                        }
+                                    });
+                            }
+                            },
+                            ],//end of eventSources
+                            eventClick: function(event, jsEvent, view) {
+                                $('#name').val(event.title);
+                                $('#description').val(event.description);
+                                $('#start_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+                                if(event.end) {
+                                    $('#end_date').val(moment(event.end).format('YYYY/MM/DD HH:mm'));
+                                } else {
+                                    $('#end_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+                                }
+                                $('#event_id').val(event.id);
+                                $('#editModal').modal();
+                            },
+                            dayClick: function(date, jsEvent, view) {
+                                if(date.isSameOrAfter(moment())){
+                                    var start = date.format();
+                                    var view = view.name;
+                                    /*alert(start);*/
+                                    $('#start').val(start);
+                                    $('#end').val(start);
+                                    $('#addModal').modal();
+                                }
+                            },
+                            eventResize: function(event, delta, revertFunc) {
+                                console.log(event);
+                                var title = event.title;
+                                var end = event.end.format();
+                                var start = event.start.format();
                                 $.ajax({
-                                    url: '<?php echo base_url() ?>vetclinic/get_events',
+                                    url: '<?php echo base_url() ?>vetclinic/resetdate',
+                                    // data: 'type=resetdate&title='+title+'&start='+start+'&end='+end+'&eventid='+event.id,
+                                    type: 'POST',
                                     dataType: 'json',
-                                    data: {                
-                                        start: start.unix(),
-                                        end: end.unix()
+                                    data:{
+                                        title:title,
+                                        start:start,
+                                        end:end,
+                                        eventid:event.id
                                     },
-                                    success: function(msg) {
-                                        var events = msg.events;
-                                        callback(events);
+                                    success: function(response){
+                                        if(response.status != 'success')                            
+                                        revertFunc();
+                                    },
+                                    error: function(e){                     
+                                        revertFunc();
+                                        alert('Error processing your request: '+e.responseText);
                                     }
                                 });
-                           }
-                        },
-                        ],//end of eventSources
-                        eventClick: function(event, jsEvent, view) {
-                              $('#name').val(event.title);
-                              $('#description').val(event.description);
-                              $('#start_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
-                              if(event.end) {
-                                $('#end_date').val(moment(event.end).format('YYYY/MM/DD HH:mm'));
-                              } else {
-                                $('#end_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
-                              }
-                              $('#event_id').val(event.id);
-                              $('#editModal').modal();
-                        },
-                        dayClick: function(date, jsEvent, view) {
-							if(date.isSameOrAfter(moment())){
-								var start = date.format();
-								var view = view.name;
-								/*alert(start);*/
-								$('#start').val(start);
-								$('#end').val(start);
-								$('#addModal').modal();
-							}
-					    },
-                        eventResize: function(event, delta, revertFunc) {
-                            console.log(event);
-                            var title = event.title;
-                            var end = event.end.format();
-                            var start = event.start.format();
-                            $.ajax({
-                                url: '<?php echo base_url() ?>vetclinic/resetdate',
-                                // data: 'type=resetdate&title='+title+'&start='+start+'&end='+end+'&eventid='+event.id,
-                                type: 'POST',
-                                dataType: 'json',
-                                data:{
-                                    title:title,
-                                    start:start,
-                                    end:end,
-                                    eventid:event.id
-                                },
-                                success: function(response){
-                                    if(response.status != 'success')                            
-                                    revertFunc();
-                                },
-                                error: function(e){                     
-                                    revertFunc();
-                                    alert('Error processing your request: '+e.responseText);
-                                }
-                            });
-                        },
-                        eventDrop: function(event, delta, revertFunc) {
-                            var title = event.title;
-                            var start = event.start.format();
-                            var end = (event.end == null) ? start : event.end.format();
-                            $.ajax({
-                                url: '<?php echo base_url() ?>vetclinic/drop',
-                                type:'POST',
-                                dataType:'json',
-                                data:{
-                                    title:title,
-                                    start:start,
-                                    end:end,
-                                    eventid:event.id
-                                },
-                                success: function(response){
-                                    if(response.status != 'success')                            
-                                    revertFunc();
-                                },
-                                error: function(e){                     
-                                    revertFunc();
-                                    alert('Error processing your request: '+e.responseText);
-                                }
+                            },
+                            eventDrop: function(event, delta, revertFunc) {
+                                var title = event.title;
+                                var start = event.start.format();
+                                var end = (event.end == null) ? start : event.end.format();
+                                $.ajax({
+                                    url: '<?php echo base_url() ?>vetclinic/drop',
+                                    type:'POST',
+                                    dataType:'json',
+                                    data:{
+                                        title:title,
+                                        start:start,
+                                        end:end,
+                                        eventid:event.id
+                                    },
+                                    success: function(response){
+                                        if(response.status != 'success')                            
+                                        revertFunc();
+                                    },
+                                    error: function(e){                     
+                                        revertFunc();
+                                        alert('Error processing your request: '+e.responseText);
+                                    }
+                                                
                                             
-                                        
-                            });//end of ajax in eventDrop
+                                });//end of ajax in eventDrop
 
 
-                        },//end of event drop function
+                            },//end of event drop function
 
-                        //event resize
+                            //event resize
 
-                        
+                            
 
-                    });//end of calendar
-                },//end of init function
+                        });//end of calendar
+                    },//end of init function
 
-                change: function(themeSystem) {
-                    $('#calendar').fullCalendar('option', 'themeSystem', themeSystem);
-                }
+                    change: function(themeSystem) {
+                        $('#calendar').fullCalendar('option', 'themeSystem', themeSystem);
+                    }
 
+                });
+            }
+
+            $('#doctor-sel').on('change', function(){
+                $('#calendar').fullCalendar('destroy');
+                initializeCalendar();
             });
-
+            
+            initializeCalendar();
         });
 
     </script>
