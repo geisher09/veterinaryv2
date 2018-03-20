@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2018 at 08:24 AM
+-- Generation Time: Mar 20, 2018 at 10:36 AM
 -- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -227,6 +227,7 @@ INSERT INTO `pet` (`petid`, `clientid`, `pname`, `breed`, `species`, `sex`, `bir
 
 CREATE TABLE `schedule` (
   `ID` int(11) NOT NULL,
+  `vetid` varchar(20) NOT NULL,
   `title` varchar(255) NOT NULL,
   `startdate` varchar(48) NOT NULL,
   `enddate` varchar(48) NOT NULL,
@@ -238,9 +239,9 @@ CREATE TABLE `schedule` (
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`ID`, `title`, `startdate`, `enddate`, `description`, `allDay`) VALUES
-(1, 'trial', '2018-03-21', '2018-03-21', 'trial', 'false'),
-(2, 'trial2', '2018-03-21', '2018-03-21', 'trial2', 'false');
+INSERT INTO `schedule` (`ID`, `vetid`, `title`, `startdate`, `enddate`, `description`, `allDay`) VALUES
+(1, '301-001', 'trial', '2018-03-21', '2018-03-21', 'trial', 'false'),
+(2, '301-002', 'trial2', '2018-03-21', '2018-03-21', 'trial2', 'false');
 
 -- --------------------------------------------------------
 
