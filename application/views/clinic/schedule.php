@@ -378,6 +378,7 @@
                     <input type="hidden" name="eventid" id="event_id" value="0" />
                     <input type="hidden" name="start" id="start"  />
                     <input type="hidden" name="end" id="end"  />
+                    <input type="hidden" name="vetid" id="vetid" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -394,10 +395,10 @@
         $(document).ready(function() {
             function initializeCalendar(){
                 var vetid = $('#doctor-sel').val();
+                $('#vetid').val(vetid);
                 initThemeChooser({
 
                     init: function(themeSystem) {
-                        console.log(vetid);
                         $('#calendar').fullCalendar({
                             themeSystem: 'bootstrap4',
                             header: {

@@ -726,14 +726,16 @@ class vetclinic extends CI_Controller {
 	    $name = $this->input->post("name", TRUE);
 	    $desc = $this->input->post("description", TRUE);
 	    $start_date = $this->input->post("start", TRUE);
-	    $end_date = $this->input->post("end", TRUE);
+		$end_date = $this->input->post("end", TRUE);
+		$vetid = $this->input->post("vetid", TRUE);
 
 	    $this->vet_model->add_event(array(
 	       "title" => $name,
 	       "description" => $desc,
 	       "startdate" => $start_date,
 	       "enddate" => $end_date,
-	       "allDay"=>'false'
+		   "allDay"=>'false',
+		   "vetid" => $vetid
 	       )
 	    );
 
