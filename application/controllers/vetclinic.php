@@ -462,12 +462,11 @@ class vetclinic extends CI_Controller {
             
             if ($this->form_validation->run()){
              	$this->load->model('vet_model');
-             	if (($this->vet_model->saveNewItem())&&($this->vet_model->saveItemInstance())){
-             		$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
-				 }
-				 else{
-             		//$this->session->set_flashdata('response', 'Failed :(');
-				 }
+             	$this->vet_model->saveNewItem();
+             	$this->vet_model->saveItemInstance();
+             	$this->vet_model->saveItemHistory();
+             	$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
+				
 				return redirect('vetclinic/inventory');
 
             }
@@ -516,12 +515,9 @@ class vetclinic extends CI_Controller {
             
             if ($this->form_validation->run()){
              	$this->load->model('vet_model');
-             	if (($this->vet_model->saveNewPurchase($newid))){
-             		$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
-				 }
-				 else{
-             		//$this->session->set_flashdata('response', 'Failed :(');
-				 }
+             	$this->vet_model->saveNewPurchase($newid);
+             	$this->vet_model->saveNewPurchaseHistory($newid);
+
 				return redirect('/vetclinic/addstock/'.$newid.'');
 
             }
@@ -543,6 +539,57 @@ class vetclinic extends CI_Controller {
 				$this->load->view('include/footer');
             }
 
+	}
+
+	public function history(){
+				$data['stock'] = $this->itemstock->read();
+				$data['title']='Transactions History';
+				$data['itemhistory']=$this->itemhistory->read();
+				$data['notif']=$this->vet_model->notification();
+				$record_data['notif']=$this->vet_model->notification();
+				$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+				$record_data['eventCounter'] = count($record_data['events']);
+				$record_data['items'] = $this->vet_model->getAllZeroitems();
+			
+				$this->load->view('include/header2',$data);
+				$this->load->view('clinic/historyview2',['data'=>$data,'record_dat'=>$record_data]);
+
+				$this->load->view('include/footer');
+	}
+
+	public function historynew(){
+
+	  		$this->form_validation->set_rules('qty_used', 'Quantity', 'required');
+			// $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
+			// $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+            
+            if ($this->form_validation->run()){
+             	$this->load->model('vet_model');
+             	//$this->vet_model->subtractitem();
+             	$this->vet_model->saveItemSaleHistory();
+
+             	$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
+				
+				return redirect('vetclinic/history');
+
+            }
+
+            else{
+		
+				$data['stock'] = $this->itemstock->read();
+				$data['title']='Transactions History';
+				$data['itemhistory']=$this->itemhistory->read();
+				$data['notif']=$this->vet_model->notification();
+				$record_data['notif']=$this->vet_model->notification();
+				$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+				$record_data['eventCounter'] = count($record_data['events']);
+				$record_data['items'] = $this->vet_model->getAllZeroitems();
+			
+				$this->load->view('include/header2',$data);
+				$this->load->view('clinic/historyview2',['data'=>$data,'record_dat'=>$record_data]);
+
+				$this->load->view('include/footer');
+			}
 	}
 
 	public function ajax_edit($id)
@@ -882,70 +929,7 @@ class vetclinic extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 	//chrstnv history
-	public function history(){
-		$record_data['bills'] = $this->vet_model->getbill();
-
-		if(isset($_POST['itemuse'])){
-			$option = $this->input->post("itemid", TRUE);
-			$qty = $this->input->post("qty_used", TRUE);
-			$visitid = $this->input->post("additemId", TRUE);
-			$validate = array (
-				array('field'=>'qty_used','label'=>'left','rules'=>'trim|required|min_length[1]')
-			);
-			$this->form_validation->set_rules($validate);
-			
-			$selector = 'item_cost';
-			$condition = array('itemid'=>$option);
-			$price = $this->itemstock->read($condition,$selector)[0]['item_cost'];
-			$selector = 'item_desc';
-			$condition = array('itemid'=>$option);
-			$desc = $this->itemstock->read($condition,$selector)[0]['item_desc'];
-			$selector = 'qty_left';
-			$left = $this->itemstock->read($condition,$selector)[0]['qty_left'];
-			
-			if($qty>$left || $qty<=0){
-				echo "<script type='text/javascript'>
-				alert('Invalid input');
-
-
-				;</script>";
-				
-			}
-			else{
-			$price = $price*$qty;
-			$left = $left-$qty;
-
-			$data = array('qty_left'=>$left);
-			$this->itemstock->update($data,$condition);
-			$this->vet_model->addItemUsed2($option,$visitid);
-
-			$data = array(
-					'itemid'=>$option,
-					'qty'=>$qty,
-					'action'=>'Sold Item',
-					'description'=>'Sold Item: Item '.$option .' - '  .$desc . ' sold ' .$qty .' pc/s with total cost of '  .number_format($price, 2, '.', ',').'. Only ' .$left . ' pc/s left ' ,
-					'total_cost'=>$price
-					);
-			$this->itemhistory->create($data);
-			}
-		}
-		$data['stock'] = $this->itemstock->read();
-
-
-
-		$data['title']='Transactions History';
-			$data['itemhistory']=$this->itemhistory->read();
-			$data['notif']=$this->vet_model->notification();
-		$record_data['notif']=$this->vet_model->notification();
-		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
-		$record_data['eventCounter'] = count($record_data['events']);
-		$record_data['items'] = $this->vet_model->getAllZeroitems();
 	
-		$this->load->view('include/header2',$data);
-		$this->load->view('clinic/historyview2',['data'=>$data,'record_dat'=>$record_data]);
-
-		$this->load->view('include/footer');
-	}
 	function space($str)
 		{
 		     if (! preg_match('/^[a-zA-Z\s]+$/',$str)) {	

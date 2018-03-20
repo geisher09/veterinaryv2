@@ -364,12 +364,15 @@
 			}
 
 			public function getitemdetails($id){
-				$this->db->select('a.itemid,a.item_desc,a.item_unit,a.item_type,b.id,b.itemtype,c.id,c.dist_unit,d.item_id,d.item_qty,sum(d.item_qty) as "totalq"');
+				date_default_timezone_set('Asia/Manila');
+				$dr=date('Y-m-d');
+				$this->db->select('a.itemid,a.item_desc,a.item_unit,a.item_type,b.id,b.itemtype,c.id,c.dist_unit,d.item_id,d.item_qty,d.item_exp,sum(d.item_qty) as "totalq"');
 				$this->db->from('itemstock a');
 				$this->db->join('item_type b','a.item_type = b.id');
 				$this->db->join('distribution_unit c','a.item_unit = c.id');
 				$this->db->join('item_instance d','a.itemid = d.item_id','left outer');
 				$this->db->where('a.itemid',$id);
+				$this->db->where('d.item_exp >', $dr);
 				$query = $this->db->get();
 
 				return $query->row();
@@ -448,7 +451,7 @@
 					  'itemid' => $itype.$date.'-'.$newid,
 				      'item_desc' => $this->input->post('item_desc'),
 				      'item_unit' => $this->input->post('dis') ,
-				      'item_type' => $this->input->post('type') ,
+				      'item_type' => $this->input->post('type') 
 				   );
 				//print_r($pdata);
 				return $this->db->insert('itemstock', $idata);
@@ -470,18 +473,63 @@
 				      'item_sup' => $this->input->post('sup') ,
 				      'item_exp' => $this->input->post('exp_date') ,
 				      'date_received' => $dr,
-				      'isExpired' => 0,
+				      'isExpired' => 0
 				   );
 				//print_r($pdata);
 				return $this->db->insert('item_instance', $idata);
 
 			}
 
-			public function saveNewPurchase($id){
+			public function saveItemHistory(){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
+				$id=$this->getlastitem();
+				$newid=$id;
+				$string=$this->getItemTypeString($this->input->post('type'));
+				$desc = $this->input->post('item_desc');
+				$price = ((int)$this->input->post('item_cost'));
+				$pcs = ((int)$this->input->post('qty_left'));
+				$total_cost = ($price*$pcs);
+				$itype = substr($string, 0, 3);
+				$idata = array(
+					  'itemid' => $itype.$date.'-'.$newid,
+					  'action' => 'Add Product',
+					  'description'=>'Add Product: Item [' .$itype.$date.'-'.$newid.' ]- '  .$desc .' with ' .$pcs . ' pc/s and price of ' .$price .' added ' ,
+				      'total_cost' => $total_cost,
+				      'qty' => $pcs
+				   );
+				//print_r($pdata);
+				return $this->db->insert('itemhistory', $idata);
+			}
+
+			public function saveNewPurchaseHistory($id){
 				date_default_timezone_set('Asia/Manila');
 				$date=date('dmy');
 				$dr=date('Y-m-d');
 				$newid=$id;
+				$string=$this->getItemTypeString($this->input->post('type'));
+				$desc = $this->input->post('item_desc');
+				$price = ((int)$this->input->post('item_cost'));
+				$pcs = ((int)$this->input->post('qty_left'));
+				$total_cost = ($price*$pcs);
+				$itype = substr($string, 0, 3);
+				$idata = array(
+					  'itemid' => $newid,
+					  'action' => 'Add Product',
+					  'description'=>'Add Product: Item [' .$newid.' ]- '  .$desc .' with ' .$pcs . ' pc/s and price of ' .$price .' added ' ,
+				      'total_cost' => $total_cost,
+				      'qty' => $pcs
+				   );
+				//print_r($pdata);
+				return $this->db->insert('itemhistory', $idata);
+			}
+
+
+			public function saveNewPurchase($id){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
 				$newid=$id;
 				$string=$this->getItemTypeString($this->input->post('type'));
 				$itype = substr($string, 0, 3);
@@ -492,10 +540,81 @@
 				      'item_sup' => $this->input->post('sup') ,
 				      'item_exp' => $this->input->post('exp_date') ,
 				      'date_received' => $dr,
-				      'isExpired' => 0,
+				      'isExpired' => 0
 				   );
 				//print_r($pdata);
 				return $this->db->insert('item_instance', $idata);
+			}
+
+			public function subtractitem(){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
+				$id=$this->input->post('itemid');
+				$qty=$this->input->post('qty_used');
+				$this->db->select('id,item_id,item_cost,item_qty,item_exp');
+				$this->db->from('item_instance');
+				$this->db->where('item_id',$id);
+				$this->db->where('item_exp >', $dr);
+				$this->db->where('item_qty >','0');
+				$this->db->order_by('id', 'ASC');
+				$query = $this->db->get();
+	
+				$item = $query->result_array();
+				// $i=int($i);
+				$total = 0;
+				for($i = 0; $i < count($item); $i++){
+					if($qty != 0){
+						if($qty >= $item[$i]['item_qty']){
+							$qtyLeft = $item[$i]['item_qty'];
+							$total += ($item[$i]['item_qty'] * $item[$i]['item_cost']);
+							$this->db->set('item_qty',0, false);
+						    $this->db->where('id' , $item[$i]['id']);
+						    $this->db->update('item_instance');
+						    $qty -= $item[$i]['item_qty'];
+						}
+						else{
+							$total += ($qty * $item[$i]['item_cost']);
+							$this->db->set('item_qty',($item[$i]['item_qty']-$qty), false);
+						    $this->db->where('id' , $item[$i]['id']);
+						    $this->db->update('item_instance');
+						    $qty = 0;	
+						}	
+					}
+					else{
+						break;
+					}
+				}
+				return $total;
+			}
+
+			public function saveItemSaleHistory(){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
+				$id=$this->input->post('itemid');
+				$pcs=$this->input->post('qty_used');
+
+				$this->db->select('a.itemid,a.item_desc,d.item_id,d.item_qty,d.item_exp,sum(d.item_qty) as "totalq"');
+				$this->db->from('itemstock a');
+				$this->db->join('item_instance d','a.itemid = d.item_id','left outer');
+				$this->db->where('a.itemid',$id);
+				$this->db->where('d.item_exp >', $dr);
+				$query = $this->db->get();
+				$hehe['hehe'] = $query->row();
+
+				$total_cost = $this->subtractitem();
+				foreach ($hehe as $item){
+				$idata = array(
+					  'itemid' => $id,
+					  'action' => 'Sold Item',
+					  'description'=>'Sold Item: Item [' .$id.' ]- '  .$item->item_desc.' with ' .$pcs . ' pc/s total cost of ' .$total_cost .' only ' .(($item->totalq)-$pcs).' pc/s left',
+				      'total_cost' => $total_cost,
+				      'qty' => $pcs
+				   );
+				}
+				//print_r($pdata);
+				return $this->db->insert('itemhistory', $idata);
 			}
 
 			public function addItemUsed2($option,$visitid){

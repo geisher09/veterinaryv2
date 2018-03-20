@@ -193,7 +193,6 @@
                                         <tr>
                                             <th class="text-primary">Item no.</th>
                                             <th class="text-primary">Description</th>
-                                            <th class="text-primary" >Stocks Left</th>
                                             <th class="text-right" style="text-align:center">Action</th>
                                         </tr>
                                     </thead>
@@ -215,7 +214,7 @@
                                                                             </div>
                                                                             <div class="class="col-sm-6">
                                                                             <a href="addstock/'.$s['itemid'].'" class="btn btn-info btn-md" />
-                                                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button>
+                                                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Modify Item</button>
                                                                             </a>
                                                                             </div>
                                                                         </div>
