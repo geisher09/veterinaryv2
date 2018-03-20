@@ -23,17 +23,6 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <?php
-                  
-                        echo '<li>
-                            <a href="'.base_url('vetclinic/billing').'">
-                                <i class="now-ui-icons business_badge"></i>
-                                  <p>Billing<span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
-                           
-                            </a>
-                        </li>';
-                    
-                    ?>
                     <li>
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
                             <i class="now-ui-icons business_badge"></i>
@@ -172,15 +161,6 @@
                                 ?>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>Hello                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                                    <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
-                                        Logout
-                                     </a>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -203,17 +183,16 @@
                                             <th >
                                                 <div id="addbutn">
                                                     <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalNorm">
-                                                        <span class="glyphicon glyphicon-plus">
-                                                        Add an Item
+                                                        <span class="fas fa-plus"></span>
+                                                        New Item
                                                     </button>
 
                                                 </div> 
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th class="text-primary" style="text-align:center;">Item ID</th>
+                                            <th class="text-primary">Item no.</th>
                                             <th class="text-primary">Description</th>
-                                            <th class="text-primary">Price</th>
                                             <th class="text-primary" >Stocks Left</th>
                                             <th class="text-right" style="text-align:center">Action</th>
                                         </tr>
@@ -223,36 +202,24 @@
                                             <?php
                                                 $i=1;
                                                             foreach($data['stock'] as $s){
+                                                                // <tr  style="height:20px;padding:-10px;" class="'.($s['qty_left']==0?'redrow':'').'">
                                                           
-                                                                echo '<tr  style="height:20px;padding:-10px;" class="'.($s['qty_left']==0?'redrow':'').'">  
-                                                                        <td style="text-align:center;">'.$i.'</td>
+                                                                echo '  
+                                                                        <td style="text-align:center;">'.$s['itemid'].'</td>
                                                                         <td style="text-align:center;"  >'.$s['item_desc'].'</td>
-                                                                        <td style="text-align:center;">'.$s['item_cost'].'</td>
-                                                                        <td style="text-align:center; ">'.$s['qty_left'].'</td>
                                                                     <td style="width:200px;">
                                                                     <form method="POST" action="">
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
-                                                                                <input type="number" class="form-control minqty" id="add_stock" name="add_stock" min="1"/>
                                                                                 <input type="hidden" class="form-control" id="itemid" name="itemid" value="'.$s['itemid'].'"/>
                                                                             </div>
                                                                             <div class="class="col-sm-6">
-                                                                                <button name="addstock" type="submit" class="btn btn-info" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button>
+                                                                            <a href="addstock/'.$s['itemid'].'" class="btn btn-info btn-md" />
+                                                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button>
+                                                                            </a>
                                                                             </div>
                                                                         </div>
                                                                     </form>
-                                                                </td>
-                                                                    
-                                                                    <td style="width:100px;">
-																	<form>
-                                                                  <div class="row">
-																	
-                                                                     <div class="class="col-sm-6">
-                                                                         <button type="button" data-toggle="modal" id="'.$s['itemid'].'" data-target="#editStock" onclick="populate(this.id)" class="btn btn-success" style="font-weight:300;font-size:15px;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</button>
-                                                                      </div>
-																	  
-                                                                  </div>
-																  </form>
                                                                 </td>
                                                            
                                                             </tr>
@@ -272,9 +239,7 @@
     </div>
 </body>
 <?php
-    include "addstockmodal.php";
-
-    
+    include "addnewitem.php";    
 ?>
 <script type="text/javascript">
     function stock(addstock){
@@ -284,7 +249,7 @@
             alert(addstock);
         
         });
-    }
+    }   
 </script>
 </html>
      

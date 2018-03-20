@@ -8,7 +8,7 @@
 
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
                 <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:33%;">
-                    ADD AN ITEM </h4>
+                    ADD NEW ITEM hehe </h4>
 				<button type="button" class="close" 
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
@@ -18,34 +18,52 @@
             
             <!-- Modal Body -->
             <div class="modal-body" style="padding:50px;">
-            <?php echo form_open("vetclinic/inventory/",['id'=>'addInventory']) ?>
-            <form action="" method="POST">
+        <?php echo form_open('vetclinic/savenewitem', ['class'=>'form-horizontal']); ?>
 				  <div class="form-group" >
-                    <div id="descerror">
+                    <div>
 					<label for="item_desc">Description:</label>
 					<input type="text" class="form-control" id="item_desc" name="item_desc" />
-                    <p id="descerror1" class="valerror"></p>
 				    </div>
-                    <div id="costerror">
+                    <div>
 					<label for="item_cost">Price:</label>
 					<input type="number" step=0.01 class="form-control globalDisable" id="item_cost" name="item_cost" />
-                      <p id="costerror1" class="valerror"></p>
 				    </div>
-				    <div id="qtyerror">
+				    <div>
 					<label for="qty_left">Quantity:</label>
 					<input type="number" class="form-control globalDisable" id="qty_left" class="globalDisable" name="qty_left" />
-                    <p id="qtyerror1" class="valerror"></p>
-                     </div>
+            </div>
+            <div>
+              <label for="qty_left">Distribution unit:</label>
+              <select style="font-size:15px; font-weight:bold;" name="dis" class="form-control" id="Unit">
+
+              </select>
+            </div>
+            <div>
+              <label for="qty_left">Item type:</label>
+              <select style="font-size:15px; font-weight:bold;" name="type" class="form-control" id="Types">
+
+              </select>
+            </div>
+            <div>
+              <label for="qty_left">Supplier:</label>
+              <select style="font-size:15px; font-weight:bold;" name="sup" class="form-control" id="Supplier">
+
+              </select>
+            </div>
+            <div>
+              <label for="qty_left">Expiration Date:</label>
+              <input type="date" class="form-control" id="exp_date" name="exp_date"/>
+            </div>
+
 		  
                </div>
             
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button name="additem" id="sbmtItem" value="" type="submit" class="btn btn-primary">Add Product</button>
-      
-                <?php echo form_close() ?>
+                <button id="sbmtItem" type="submit" class="btn btn-primary">Add</button>
             </div>
+            <?php echo form_close() ?>
         </div>
     </div>
 </div>
@@ -197,3 +215,35 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+$(document).ready(function(){
+            $.ajax({
+                    url: 'ajax_list',
+                        success: function(data) {
+                            var obj = JSON.parse(data);
+                            var serv = "";
+                            var serv2 = "";
+                            var serv3 = "";
+
+                            for(var i=0; i<parseInt(obj.suppliers.length); i++){
+                                    serv += '<option value='+obj.suppliers[i].id+'>'+obj.suppliers[i].supplier_name+'</option>';
+                                }
+                                $("#Supplier").html(serv);
+
+                            for(var i=0; i<parseInt(obj.units.length); i++){
+                                    serv2 += '<option value='+obj.units[i].id+'>'+obj.units[i].dist_unit+'</option>';
+                                }
+                                $("#Unit").html(serv2);
+                          
+                            for(var i=0; i<parseInt(obj.types.length); i++){
+                                    serv3 += '<option value='+obj.types[i].id+'>'+obj.types[i].itemtype+'</option>';
+                                }
+                                $("#Types").html(serv3);
+
+
+
+                          }
+                    });
+        });
+</script>

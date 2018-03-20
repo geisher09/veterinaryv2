@@ -204,6 +204,9 @@
 		visibility: visible;
 		outline: none;
 	}
+	#addbutn {
+		margin-right: 800px;
+	}
 	#mytable{
 		border-collapse: collapse;
 	}

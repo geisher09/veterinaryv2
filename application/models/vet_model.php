@@ -31,11 +31,37 @@
 				return $query->result();
 
 			}
+			public function getUnits(){
+				$query = $this->db->get('distribution_unit');
+				return $query->result();
+
+			}
+			public function getItemtype(){
+				$query = $this->db->get('item_type');
+				return $query->result();
+
+			}
+
+			public function getItemTypeString($itemtype){
+				$this->db->select('*');
+				$this->db->from('item_type');
+				$this->db->where('id',$itemtype);
+				$query = $this->db->get();
+				$res = $query->result();
+				$row = $res[0]; 
+				return $row->itemtype;
+			}
+
+			public function getSupplier(){
+				$query = $this->db->get('supplier');
+				return $query->result();
+
+			}
+
 			//chrstnv
 
 			public function getStocks(){
 			 $this->db->from('itemstock');
-				$this->db->where('qty_left !=',5);
 				$query = $this->db->get();
 				return $query->result();
 			}
@@ -66,7 +92,6 @@
 
 			public function getAllitems(){
 				 $this->db->from('itemstock');
-				$this->db->where('qty_left !=',0);
 				$query = $this->db->get();
 				return $query->result_array();
 
@@ -75,7 +100,6 @@
 
 			public function getAllZeroitems(){
 				 $this->db->from('itemstock');
-				$this->db->where('qty_left =',0);
 				$query = $this->db->get();
 				return $query->result_array();
 
@@ -86,7 +110,6 @@
 				$today =date("Y-m-d");
 
 				 $this->db->from('itemstock');
-				$this->db->where('qty_left =',0);
 				$query = $this->db->get();
 				$invent= $query->num_rows();
 
@@ -340,6 +363,28 @@
 
 			}
 
+			public function getitemdetails($id){
+				$this->db->select('a.itemid,a.item_desc,a.item_unit,a.item_type,b.id,b.itemtype,c.id,c.dist_unit,d.item_id,d.item_qty,sum(d.item_qty) as "totalq"');
+				$this->db->from('itemstock a');
+				$this->db->join('item_type b','a.item_type = b.id');
+				$this->db->join('distribution_unit c','a.item_unit = c.id');
+				$this->db->join('item_instance d','a.itemid = d.item_id','left outer');
+				$this->db->where('a.itemid',$id);
+				$query = $this->db->get();
+
+				return $query->row();
+			}
+
+			public function getitempurchase($id){
+				$this->db->select('a.item_id,a.item_cost,a.item_qty,a.item_sup,a.date_received,a.item_exp,b.id,b.supplier_name');
+				$this->db->from('item_instance a');
+				$this->db->join('supplier b','a.item_sup = b.id');
+				$this->db->where('a.item_id',$id);
+				$query = $this->db->get();
+
+				return $query->result_array();
+			}
+
 			public function saveClients($data,$finalid){
 				$this->getClients();
 				$pdata = array(
@@ -392,6 +437,67 @@
 
 			}
 
+			public function saveNewItem(){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$id=$this->getlastitem();
+				$newid=$id+1;
+				$string=$this->getItemTypeString($this->input->post('type'));
+				$itype = substr($string, 0, 3);
+				$idata = array(
+					  'itemid' => $itype.$date.'-'.$newid,
+				      'item_desc' => $this->input->post('item_desc'),
+				      'item_unit' => $this->input->post('dis') ,
+				      'item_type' => $this->input->post('type') ,
+				   );
+				//print_r($pdata);
+				return $this->db->insert('itemstock', $idata);
+
+			}
+
+			public function saveItemInstance(){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
+				$id=$this->getlastitem();
+				$newid=$id;
+				$string=$this->getItemTypeString($this->input->post('type'));
+				$itype = substr($string, 0, 3);
+				$idata = array(
+					  'item_id' => $itype.$date.'-'.$newid,
+				      'item_cost' => $this->input->post('item_cost'),
+				      'item_qty' => $this->input->post('qty_left') ,
+				      'item_sup' => $this->input->post('sup') ,
+				      'item_exp' => $this->input->post('exp_date') ,
+				      'date_received' => $dr,
+				      'isExpired' => 0,
+				   );
+				//print_r($pdata);
+				return $this->db->insert('item_instance', $idata);
+
+			}
+
+			public function saveNewPurchase($id){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
+				$newid=$id;
+				$newid=$id;
+				$string=$this->getItemTypeString($this->input->post('type'));
+				$itype = substr($string, 0, 3);
+				$idata = array(
+					  'item_id' => $newid,
+				      'item_cost' => $this->input->post('item_cost'),
+				      'item_qty' => $this->input->post('qty_left') ,
+				      'item_sup' => $this->input->post('sup') ,
+				      'item_exp' => $this->input->post('exp_date') ,
+				      'date_received' => $dr,
+				      'isExpired' => 0,
+				   );
+				//print_r($pdata);
+				return $this->db->insert('item_instance', $idata);
+			}
+
 			public function addItemUsed2($option,$visitid){
 				$idata = array(
 					  //'visitid' => $visitid,
@@ -400,7 +506,6 @@
 				//print_r($pdata);
 			   $this->db->insert('items_used', $idata);
 	        	 $this->db->from('itemstock');
-				$this->db->where('qty_left =',0);
 				$query = $this->db->get();
 				return $query->num_rows();
 			}
@@ -425,6 +530,11 @@
 
 				return $query->num_rows();
 			}
+
+			public function getlastitem(){
+				$query = $this->db->get('itemstock');
+				return $query->num_rows();
+			}
 			//chrstnv: item transaction to history
 
 
@@ -447,7 +557,6 @@
 			$vdata = array(
 				  'visitid' => $yr.'-'.$pet.'-'.$petv,
 				  'petid' => $this->input->post('pet'),
-			      'userID' => $this->input->post('userID'),
 			      'serviceid' => $this->input->post('Select1') ,
 			      'visitdate' => $date,
 			      'findings' => $this->input->post('findings') ,
@@ -461,21 +570,21 @@
 			return $this->db->insert('visit', $vdata);
 
 		}
-		public function itemUsage($data){
-			  $this->db->select('qty_left');
-			$this->db->where('itemid',$data['id']);
-			$query= $this->db->get('itemstock');
-			$stock= $query->row()->qty_left;
-			$min= $stock-$data['item'];
-			//update
-		$this->db->set('qty_left',$min);
-		$this->db->where('itemid',$data['id']);
-		$this->db->update('itemstock');
+		// public function itemUsage($data){
+		// 	  $this->db->select('qty_left');
+		// 	$this->db->where('itemid',$data['id']);
+		// 	$query= $this->db->get('itemstock');
+		// 	$stock= $query->row()->qty_left;
+		// 	$min= $stock-$data['item'];
+		// 	//update
+		// $this->db->set('qty_left',$min);
+		// $this->db->where('itemid',$data['id']);
+		// $this->db->update('itemstock');
 
 
-			return $min;
+		// 	return $min;
 
-		}
+		// }
 
 
 		public function get_by_id($id)
@@ -499,11 +608,10 @@
 
 		public function getvisit_by_id($id)
 		{
-			$this->db->select('a.petid,b.pname,d.name,d.userID,a.visitid,a.userID,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
+			$this->db->select('a.petid,b.pname,a.visitid,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
 			$this->db->from('visit a');
 			$this->db->join('pet b','a.petid = b.petid');
 			$this->db->join('services c','a.serviceid = c.id');
-			$this->db->join('user d','a.userID = d.userID');
 			// $this->db->group_by('b.clientid');     
 			$this->db->where('a.visitid',$id);
 			$query = $this->db->get();
@@ -534,11 +642,11 @@
 			return $query->num_rows();
 		}
 
-		public function updateVisit($newRecord, $id){
-			$this->db->where('visitid', $id);
-			$this->db->update('visit',$newRecord);
-			return true;
-		}
+		// public function updateVisit($newRecord, $id){
+		// 	$this->db->where('visitid', $id);
+		// 	$this->db->update('visit',$newRecord);
+		// 	return true;
+		// }
 
 
 

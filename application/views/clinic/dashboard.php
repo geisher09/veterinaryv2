@@ -1,4 +1,4 @@
-f<body class="">
+<body>
     <div class="wrapper ">
         <div class="sidebar" data-color="blue">
             <!--
@@ -20,18 +20,6 @@ f<body class="">
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <?php
-                   
-                        echo '<li>
-                            <a href="'.base_url('vetclinic/billing').'">
-                                <i class="now-ui-icons business_badge"></i>
-                                <p>billing
-                            <span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
-
-                            </a>
-                        </li>';
-                    
-                    ?>
                     <li>
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
                             <i class="now-ui-icons business_badge"></i>
@@ -151,12 +139,6 @@ f<body class="">
                                 ?>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>Hello
-                                </a>
-                             
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -167,85 +149,75 @@ f<body class="">
             </div>
             <div class="content">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-2 col-md-6">
                         <div class="card card-chart">
                             <div class="card-header">
-                                <h5 class="card-category">Sales Overview</h5>
-                                <h4 class="card-title">Total Sales</h4>
+                                <h5 class="card-category" style="color:black; text-align:center; font-weight:bold">Today's Sales from Items(Php)</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body1">
                                 <?php
                                 if($sales_dat['items']!=0){
-								$percent=$sales_dat['items2']-$sales_dat['items'];
+								$percent=$sales_dat['items']-$sales_dat['items2'];
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
                                 echo '
-                                    <br /><br />
-                                    <div style="font-size: 20px">Todays Sales: Php '.$sales_dat['items'].'</div>
-									<br />
-									<div style="font-size: 20px">Percentage Change from yesterdays sales:</div>
+                                    <div style="font-size: 30px; text-align: center;">'.number_format($sales_dat['items'],2,'.',',').'</div>
                                 ';
                                 ?>
 								<span style="font-size: 25px; color: <?php 
-								$percent=$sales_dat['items2']-$sales_dat['items'];
+								$percent=$sales_dat['items']-$sales_dat['items2'];
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
 								echo
-								($final < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo number_format($final,2,'.',',');}?>%</span>
+								($final < 0 ? '#FF0000' : '#00FF00'); ?>">&nbsp;&nbsp;&nbsp;<?php echo number_format($final,2,'.',',');}?>%</span>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="now-ui-icons loader_refresh spin"></i> Just Updated
-                                </div>
+                                </br>
+                                    <?=isset($final)?'<i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated':'<h7>No sales yet</h7>'?>                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-2 col-md-6">
                         <div class="card card-chart">
                             <div class="card-header">
-                                <h5 class="card-category">Visits Overview</h5>
-                                <h4 class="card-title">Income From Visits</h4>
+                                <h5 class="card-category" style="color:black; text-align:center; font-weight:bold">Todays' Income From Visits(Php)</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body1">
                                 <?php
                                 if($sales_dat['visits']!=0){
-								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
+								$percent2=$sales_dat['visits']-$sales_dat['visits2'];
 								$newper2=$percent2/$sales_dat['visits'];
 								$final2=$newper2*100;
                                 echo '
-                                    <br /><br />
-                                    <div style="font-size: 20px">Todays Income: Php '.$sales_dat['visits'].'</div>
-									<br />
-									<div style="font-size: 20px">Percentage Change from yesterdays income:</div>
+                                    <div style="font-size: 30px; text-align: center;">'.number_format($sales_dat['visits'],2,'.',',').'</div>
                                 ';}
                                 ?>
 								<span style="font-size: 25px; color: <?php 
                                 if($sales_dat['visits']!=0){
-								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
+								$percent2=$sales_dat['visits']-$sales_dat['visits2'];
 								$newper2=$percent2/$sales_dat['visits'];
 								$final2=$newper2*100;
 								echo
-								($final2 < 0 ? '#FF0000' : '#00FF00'); ?>"><?php echo number_format($final2,2,'.',','); }?>%</span>
+								($final2 < 0 ? '#FF0000' : '#00FF00'); ?>">&nbsp;&nbsp;&nbsp;<?php echo number_format($final2,2,'.',','); }?>%</span>
 
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
                                 </br>
-                                    <?=isset($final2)?'<i class="now-ui-icons loader_refresh spin"></i> Just Updated':'<h7>No visits yet</h7>'?>                                </div>
+                                    <?=isset($final2)?'<i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated':'<h7>No visits yet</h7>'?></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-2 col-md-6">
                         <div class="card card-chart">
                             <div class="card-header">
-                                <h5 class="card-category">Patients' Statistics</h5>
-                                <h4 class="card-title">Served Patients</h4>
+                                <h5 class="card-category" style="color:black; text-align:center; font-weight:bold">Total of Patients Served</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body1">
                                 <?php
                                 echo '
-                                    <br /><br />
-                                    <div style="font-size: 30px">Total of Patients: '.$sales_dat['patients'].'</div>
+                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.$sales_dat['patients'].'&nbsp;<i class="fas fa-user-md"></i></div>
                                 ';
                                 ?>
                             </div>
@@ -256,12 +228,92 @@ f<body class="">
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-category" style="color:black; text-align:center; font-weight:bold">Item's Available in Stock</h5>
+                            </div>
+                            <div class="card-body1">
+                                <?php
+                                echo '
+                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.count($sales_dat['no_ofItems']).'&nbsp;<i class="fas fa-medkit"></i></div>
+                                ';
+                                ?>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-category" style="color:black; text-align:center; font-weight:bold">Out of Stock Items</h5>
+                            </div>
+                            <div class="card-body1">
+                                <?php
+                                echo '
+                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.$record_dat['notif'].'&nbsp;<i class="fas fa-exclamation-triangle"></i></div>
+                                ';
+                                ?>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-category" style="color:black; text-align:center; font-weight:bold">TODAY</h5>
+                            </div>
+                            <div class="card-body1">
+                                    <div id="time"></div>
+                                    <div id="date"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
+    window.onload = setInterval(clock,1000);
+
+    function clock()
+    {
+      var d = new Date();
+      
+      var date = d.getDate();
+      
+      var month = d.getMonth();
+      var montharr =["Jan","Feb","Mar","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+      month=montharr[month];
+      
+      var year = d.getFullYear();
+      
+      var day = d.getDay();
+      var dayarr =["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"];
+      day=dayarr[day];
+      
+      var hour =d.getHours();
+      var min = d.getMinutes();
+      var sec = d.getSeconds();
+    
+      document.getElementById("date").innerHTML=day+" "+date+" "+month+" "+year;
+      document.getElementById("time").innerHTML=hour+":"+min+":"+sec;
+    }
+
+
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
        initDashboardPageCharts();
