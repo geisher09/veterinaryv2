@@ -985,58 +985,64 @@ $lastclient = $this->vet_model->getLastClient();
 				}
 
 	public function getSalesReport(){
-		$this->load->library('Pdf');
-		$pdf = new TCPDF();
-		$pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->addPage();
-		
-		$itemsReport = array();
-		$servReport = array();
-
 		$range = $this->input->get('range');
-		if($range === 'daily'){
-			$itemsArr = $this->vet_model->getSales2(date('Y-m-d'));
-			$servArr = $this->vet_model->getSales(date('Y-m-d'));
-		}
-		elseif($range === 'monthly'){
-			$year=date('Y');
-			$month=date('m');
-			$itemsArr = $this->vet_model->getSales2(null,$month, $year);
-			$servArr = $this->vet_model->getSales(null,$month, $year);
-		}
+		if($range === 'daily'|| $range === 'monthly'){
 
-		foreach($itemsArr as $i){
-			if(array_key_exists($i['itemid'], $itemsReport)){
-				$itemsReport[$i['itemid']]['qty'] += $i['qty'];
-				$itemsReport[$i['itemid']]['total'] += $i['total_cost'];
+			$this->load->library('Pdf');
+			$pdf = new TCPDF();
+			$pdf->setPrintHeader(false);
+			$pdf->setPrintFooter(false);
+			$pdf->addPage();
+			
+			$itemsReport = array();
+			$servReport = array();
+
+			if($range === 'daily'){
+				$itemsArr = $this->vet_model->getSales2(date('Y-m-d'));
+				$servArr = $this->vet_model->getSales(date('Y-m-d'));
 			}
-			else {
-				$itemsReport[$i['itemid']]['desc'] = $i['item_desc'];
-				$itemsReport[$i['itemid']]['qty'] = $i['qty'];
-				$itemsReport[$i['itemid']]['total'] = $i['total_cost'];
+			elseif($range === 'monthly'){
+				$year=date('Y');
+				$month=date('m');
+				$itemsArr = $this->vet_model->getSales2(null,$month, $year);
+				$servArr = $this->vet_model->getSales(null,$month, $year);
 			}
+
+			foreach($itemsArr as $i){
+				if(array_key_exists($i['itemid'], $itemsReport)){
+					$itemsReport[$i['itemid']]['qty'] += $i['qty'];
+					$itemsReport[$i['itemid']]['total'] += $i['total_cost'];
+				}
+				else {
+					$itemsReport[$i['itemid']]['desc'] = $i['item_desc'];
+					$itemsReport[$i['itemid']]['qty'] = $i['qty'];
+					$itemsReport[$i['itemid']]['total'] = $i['total_cost'];
+				}
+			}
+			$data['itemsReport'] = $itemsReport;
+
+			foreach($servArr as $s){
+				if(array_key_exists($s['serviceid'], $servReport)){
+					$servReport[$s['serviceid']]['qty'] += 1;
+					$servReport[$s['serviceid']]['total'] += $s['visit_cost'];
+				}
+				else {
+					$servReport[$s['serviceid']]['desc'] = $s['desc'];
+					$servReport[$s['serviceid']]['qty'] = 1;
+					$servReport[$s['serviceid']]['total'] = $s['visit_cost'];
+				}
+			}
+			$data['servReport'] = $servReport;
+
+			$tbl = $this->load->view('clinic/salesreport',$data,TRUE);
+
+			$pdf->writeHTML($tbl);
+			ob_end_clean();	
+			$pdf->Output('test.pdf', 'I');
 		}
-		$data['itemsReport'] = $itemsReport;
-
-		foreach($servArr as $s){
-			if(array_key_exists($s['serviceid'], $servReport)){
-				$servReport[$s['serviceid']]['qty'] += 1;
-				$servReport[$s['serviceid']]['total'] += $s['visit_cost'];
-			}
-			else {
-				$servReport[$s['serviceid']]['desc'] = $s['desc'];
-				$servReport[$s['serviceid']]['qty'] = 1;
-				$servReport[$s['serviceid']]['total'] = $s['visit_cost'];
-			}
+		else {
+			redirect(base_url('vetclinic/salesreport'));
 		}
-		$data['servReport'] = $servReport;
-
-		$tbl = $this->load->view('clinic/salesreport',$data,TRUE);
-
-		$pdf->writeHTML($tbl);
-		ob_end_clean();	
-		$pdf->Output('test.pdf', 'I');
 	}
 
 	public function billing(){
