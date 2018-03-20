@@ -169,14 +169,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Transactions</h4>
+                                <h2 class="card-title">Transactions</h2>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-list-search" >
                                         <thead>
                                         <tr>
-                                            <th >
+                                            <th colspan="4">
                                                 <div id="addbutn">
                                                     <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalHistory">
                                                         Sell an Item
@@ -215,17 +215,14 @@
         </div>
     </div>
     <!-- Update History Modal -->
-            <div class="modal fade" id="myModalHistory" tabindex="-1" role="dialog" 
-                 aria-labelledby="LabelHistory" aria-hidden="true">
+            <div class="modal fade" id="myModalHistory" tabindex="-1" role="dialog" aria-labelledby="LabelHistory" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                            <h4 class="modal-title text-center" id="LabelHistory" style="font-size:25px; font-weight:bold; margin-left:21%;">
-                               UPDATE ITEM USAGE
-                            </h4>
-							<button type="button" class="close" 
-                               data-dismiss="modal">
+                            <h3 class="modal-title" id="LabelHistory" style="font-size:25px; font-weight:bold;margin:0px auto;">
+                                UPDATE ITEM USAGE</h3>
+                            <button type="button" class="close" data-dismiss="modal">
                                    <span aria-hidden="true">&times;</span>
                                    <span class="sr-only">Close</span>
                             </button>
@@ -236,16 +233,21 @@
                  <?php echo form_open(site_url("vetclinic/history/")) ?>
                 <form action="" method="POST"><div class="form-group">
                     <span  id="ins" class="valerror"></span>
-                                        <label>Item</label>
-                                        <select class="form-control" id="itemid" name="itemid">
-                                            <?php
-                                            foreach($stock as $s){
-                                                echo '<option value="'.$s['itemid'].'">'.$s['itemid'].'-'.$s['item_desc'].'</option>';
-                                            }
-                                            ?>
-                                        </select> <br />
-                    <label for="qty_used">Quantity</label>
-                      <input type="number" class="form-control globalDisable" id="qty_used" name="qty_used" placeholder="Quantity"/>
+                    <div class="row" style="margin:30px 0px;">
+                        <label class="col-md-3" style="text-align:left;">Item:</label>
+                        <div class="col-md-9"></div>
+                        <select class="form-control" id="itemid" name="itemid">
+                        <?php
+                            foreach($stock as $s){
+                            echo '<option value="'.$s['itemid'].'">'.$s['itemid'].'-'.$s['item_desc'].'</option>';
+                            }
+                        ?>
+                        </select><br />
+                    </div>
+                    <div class="row" style="margin:30px 0px;">
+                        <label for="qty_used" class="col-md-4" style="text-align:left;">Quantity:</label>
+                        <div class="col-md-8"><input type="number" class="form-control globalDisable" id="qty_used" name="qty_used" placeholder="Quantity"/></div>
+                    </div>
 
                
             </div>
