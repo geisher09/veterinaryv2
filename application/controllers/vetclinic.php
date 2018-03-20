@@ -1035,6 +1035,7 @@ $lastclient = $this->vet_model->getLastClient();
 		$tbl = $this->load->view('clinic/salesreport',$data,TRUE);
 
 		$pdf->writeHTML($tbl);
+		ob_end_clean();	
 		$pdf->Output('test.pdf', 'I');
 	}
 
