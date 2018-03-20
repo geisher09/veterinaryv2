@@ -454,13 +454,6 @@ class vetclinic extends CI_Controller {
 
 	public function savenewitem(){
 
-			$this->form_validation->set_rules('item_desc', 'Desc', 'required');
-	  		$this->form_validation->set_rules('item_cost', 'Cost', 'required');
-		 	$this->form_validation->set_rules('qty_left', 'Quantity', 'required');
-			// $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
-			// $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-            
-            if ($this->form_validation->run()){
              	$this->load->model('vet_model');
              	$this->vet_model->saveNewItem();
              	$this->vet_model->saveItemInstance();
@@ -469,24 +462,7 @@ class vetclinic extends CI_Controller {
 				
 				return redirect('vetclinic/inventory');
 
-            }
-
-            else{
-            	$this->session->set_flashdata('responsed', 'Failed to save! (Please input necessary details)');
-				$header_data['title'] = "Inventory";
-				$this->load->view('include/header2',$header_data);
-				$data['stock'] = $this->itemstock->read();
-				$data['itemhistory']=$this->itemhistory->read();
-				$record_data['notif']=$this->vet_model->notification();
-				$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
-				$record_data['eventCounter'] = count($record_data['events']);
-				$record_data['items'] = $this->vet_model->getAllZeroitems();
-				
-				$this->load->view('include/header2',$header_data);
-				$this->load->view('clinic/inventory',['data'=>$data,'record_dat'=>$record_data]);
-
-				$this->load->view('include/footer');
-            }
+           
 
 	}
 
@@ -778,22 +754,16 @@ class vetclinic extends CI_Controller {
 
 		//chrstnv update 
 		public function updateItem(){
-				if($this->input->post('updateid')!=null){
-						$data= array('item_desc'=>$this->input->post('update_desc'),
-							'item_cost'=>$this->input->post('update_cost'),
-							'itemid'=>$this->input->post('updateid'));
-
-
-
+			
+						$data= array('item_desc'=>$this->input->post('itemdesc'),
+							'item_type'=>$this->input->post('type'),
+							'itemid'=>$this->input->post('itemid'));
 						$this->vet_model->updates($data);
 							return redirect('vetclinic/inventory');
 
-				}
-				else{
-				$data = $this->vet_model->updateItem($this->input->post('id'));
-
-		 		echo json_encode($data);
-		 			}
+		
+				
+	/*	 	print_r($_POST);*/
 
 
 
@@ -949,14 +919,12 @@ class vetclinic extends CI_Controller {
 
 		// print_r($_POST);
 		$this->form_validation->set_rules('desc','Description','required|min_length[2]');
-		$this->form_validation->set_rules('cost', 'Cost', 'trim|required|min_length[2]');
+		$this->form_validation->set_rules('cost', 'Cost', 'trim|required');
 		$this->form_validation->set_rules('qty', 'Quantity', 'trim|required');
+		$this->form_validation->set_rules('date', 'Date', 'required');
 
 		if($this->form_validation->run()){
-
-			echo 'true';
-
-
+			echo true;
 		}
 		else{
 			if(form_error('desc')!=null){
@@ -969,6 +937,30 @@ class vetclinic extends CI_Controller {
 				$data['qty']= form_error('qty');
 				
 			}
+				if(form_error('date')!=null){
+				$data['date']= form_error('date');
+			}
+			echo json_encode($data);
+
+
+
+		}
+
+	}
+
+	public function validatedit(){
+
+		// print_r($_POST);
+		$this->form_validation->set_rules('desc','Description','required|min_length[2]');
+
+		if($this->form_validation->run()){
+			echo true;
+		}
+		else{
+			if(form_error('desc')!=null){
+				$data['desc']=form_error('desc');
+			}
+				
 			echo json_encode($data);
 
 

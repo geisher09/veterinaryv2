@@ -8,7 +8,7 @@
 
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
                 <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:33%;">
-                    ADD NEW ITEM hehe </h4>
+                    ADD NEW ITEMs </h4>
 				<button type="button" class="close" 
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
@@ -17,20 +17,26 @@
             </div>
             
             <!-- Modal Body -->
-            <div class="modal-body" style="padding:50px;">
-        <?php echo form_open('vetclinic/savenewitem', ['class'=>'form-horizontal']); ?>
+            <div class="modal-body " style="padding:50px; ">
+
+        <?php
+         echo form_open('vetclinic/savenewitem', ['class'=>'form-horizontal','id'=>'additemI']); ?>
+
 				  <div class="form-group" >
-                    <div>
+           <div id="descerror">
 					<label for="item_desc">Description:</label>
 					<input type="text" class="form-control" id="item_desc" name="item_desc" />
-				    </div>
-                    <div>
+          <span class="valerror" id="descerror1"></span>
+				  </div>
+          <div>
 					<label for="item_cost">Price:</label>
 					<input type="number" step=0.01 class="form-control globalDisable" id="item_cost" name="item_cost" />
-				    </div>
+           <span class="valerror" id="costerror1"></span>
+				  </div>
 				    <div>
 					<label for="qty_left">Quantity:</label>
 					<input type="number" class="form-control globalDisable" id="qty_left" class="globalDisable" name="qty_left" />
+           <span class="valerror" id="qtyerror1"></span>
             </div>
             <div>
               <label for="qty_left">Distribution unit:</label>
@@ -53,6 +59,7 @@
             <div>
               <label for="qty_left">Expiration Date:</label>
               <input type="date" class="form-control" id="exp_date" name="exp_date"/>
+                 <span class="valerror" id="dateerror1"></span>
             </div>
 
 		  
@@ -61,7 +68,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button id="sbmtItem" type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" id="submitmyitem"  class="btn btn-primary">Add</button>
             </div>
             <?php echo form_close() ?>
         </div>
@@ -150,7 +157,7 @@
                     <p id="descerror1" class="valerror"></p>
             </div>
                     <div id="costerror">
-          <label for="item_cost">Price:</label>
+          <label for="">Price:</label>
           <input type="number" step=0.01 class="form-control globalDisable" id="update_cost" name="update_cost" />
                       <p id="costerror1" class="valerror"></p>
             </div>
