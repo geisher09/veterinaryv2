@@ -230,8 +230,8 @@
                 
             <!-- Modal Body -->
             <div class="modal-body" style="padding:50px;">
-                 <?php echo form_open(site_url("vetclinic/history/")) ?>
-                <form action="" method="POST"><div class="form-group">
+                 <?php echo form_open(site_url("vetclinic/historynew/")) ?>
+                <div class="form-group">
                     <span  id="ins" class="valerror"></span>
                     <div class="row" style="margin:30px 0px;">
                         <label class="col-md-3" style="text-align:left;">Item:</label>
