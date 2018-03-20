@@ -23,16 +23,6 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <?php
-                   
-                        echo '<li>
-                            <a href="'.base_url('vetclinic/billing').'">
-                                <i class="now-ui-icons business_badge"></i>
-                                <p>Billing<span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
-                            </a>
-                        </li>';
-                
-                    ?>
                     <li class="active">
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
                             <i class="now-ui-icons business_badge"></i>
@@ -164,16 +154,6 @@
                                     }
 
                                 ?>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>Hello
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                                    <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
-                                        Logout
-                                     </a>
                                 </div>
                             </li>
                         </ul>
@@ -781,7 +761,7 @@
                                             <div class="col-md-2">
                                             <label>Pet:</label></div>
                                             <div class="col-md-10">
-                                            <select name="pet" class="form-control" id="VpetsOwned">
+                                            <select style="font-size:20px; font-weight:bold;" name="pet" class="form-control" id="VpetsOwned">
 
                                             </select></div>
                                         </div>
@@ -796,35 +776,39 @@
 										</div>
 									<hr />
 									<div class="col-md-12 form-group">
-										<label>Doctor:</label>
-										<input name="doctor" class="form-control" id="Vdoctors" value="" readonly />
-                                        <input type="hidden" name="userID" value="" />
+										<label style="text-decoration-line: underline;">Doctor:</label>
+										<select style="font-size:15px; font-weight:bold;" name="vet" class="form-control" id="Vdoctors">
+
+                                        </select></div>
 									</div>
 									<br />
                                    
 									<div class=" col-md-12 form-group">
-										<label for="">Diagnosis :</label><span id="findingserror" class="valerror"></span>
-										<textarea placeholder="Diagnosis" id="petfindings" class="form-control" name="findings" rows="4"></textarea>
+										<label style="text-decoration-line: underline;" for="">Diagnosis :</label><span id="findingserror" class="valerror"></span>
+										<textarea style="font-size:17px;" placeholder="Diagnosis" id="petfindings" class="form-control" name="findings" rows="4"></textarea>
 
 									</div>
 				             
 									<div class="col-md-12 form-group">
-										<label for="">Recommendations :</label>
-										<textarea placeholder="Recommendations" class="form-control" name="recom" rows="4"></textarea>
+										<label style="text-decoration-line: underline;" for="">Recommendations :</label>
+										<textarea style="font-size:17px;" placeholder="Recommendations" class="form-control" name="recom" rows="4"></textarea>
 									</div>
 									
 								</div>
 							</div>
 							
 							<div class="col-md-12">
-									<label>Service Type:</label>
+									<label style="text-decoration-line: underline;">Service Type:</label>
 									<div class="col-md-12">
-										<label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;">
+										<label class="radio-inline" style="font-weight:bold;font-size:20px;cursor:pointer;">
 											<input value="Grooming" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Grooming&nbsp;&nbsp;</span>
 										</label>
-										<label class="radio-inline" style="font-weight:400;font-size:16px;cursor:pointer;" >
-											<input value="Treatment" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Treatment</span>
+										<label class="radio-inline" style="font-weight:bold;font-size:20px;cursor:pointer;" >
+											<input value="Treatment" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Treatment&nbsp;&nbsp;</span>
 										</label>
+                                        <label class="radio-inline" style="font-weight:bold;font-size:20px;cursor:pointer;" >
+                                            <input value="Examine" type="radio" class="srvcs" name="optradio"><span class="srvcss"> Examine</span>
+                                        </label>
                                         <br />
 									    <input type="hidden" id="btn_get" name="get_btn_value"></input>
 									    <br />
@@ -834,9 +818,9 @@
 									</select>
 									<br/>
                           <div class="row form-group">
-                                <div class="col-md-3"><label>Service Fee:</label></div>
+                                <div class="col-md-3"><label style="text-decoration-line: underline;">Service Fee:</label></div>
                                 <div class="col-md-9">
-                                <input type="number" placeholder="" id="" name="" class="form-control"/></div>
+                                <input style="font-size:17px;" type="number" placeholder="" id="" name="" class="form-control"/></div>
                             </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
@@ -856,7 +840,7 @@
 													1
 												</td>
 												<td>
-													<select class='form-control Vitems'><option></option></select>
+													<select style="font-size:17px;" class='form-control Vitems'><option></option></select>
 												</td>
 												<td>
 													<input type="number" name='qty0' id="myitem0" placeholder='Qty' class="form-control addtm" min="0"/>
@@ -983,7 +967,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                sos(this.id);
              $("#add_row").click(function(){
             
-              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='qtyprice0' placeholder='Price' class='form-control ITprice' min='0' readonly /></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
+              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select style='font-size:17px' class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='qtyprice0' placeholder='Price' class='form-control ITprice' min='0' readonly /></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
 
               $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 
@@ -1052,12 +1036,14 @@ $('.modal').on('hidden.bs.modal', function (e) {
                                 }
                                 $("#Select1").html(serv);
                             }
-                            else{
+                            else if(type=='Grooming'){
                                 for(var i=0; i<parseInt(obj.grooms.length); i++){
                                     serv += '<option value='+obj.grooms[i].id+'>'+obj.grooms[i].desc+'</option>';
                                 }
                                 $("#Select1").html(serv);
                             }
+                            else
+                                $("#Select1").html('<option value=0>Check-up only</option>');
 
                         }
                     });
@@ -1164,7 +1150,6 @@ $('.modal').on('hidden.bs.modal', function (e) {
                     data:{id: id},
                         success: function(data) {
                             var obj = JSON.parse(data);
-                             console.log(id);
                              var ai = "";
                             for(var i=0; i<parseInt(obj.allitems.length); i++){
                                     ai += '<option value='+obj.allitems[i].itemid+'>'+obj.allitems[i].item_desc+'</option>';

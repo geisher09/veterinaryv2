@@ -12,7 +12,6 @@ class vetclinic extends CI_Controller {
 			date_default_timezone_set('Asia/Manila');
 			$this->load->model('vet_model','vet_model');
 			$this->load->model('itemstock','itemstock');
-			$this->load->model('itemusage','itemusage');
 			$this->load->model('history','history');
 			$this->load->model('services','services');
 			$this->load->model('itemhistory','itemhistory');
@@ -40,6 +39,7 @@ class vetclinic extends CI_Controller {
 		$sales_data['visits']=$this->vet_model->getTotalSalesSum2();
 		$sales_data['visits2']=$this->vet_model->getTotalSalesSumYesterday2();
 		$sales_data['patients']=$this->vet_model->getTotalPatients();
+		$sales_data['no_ofItems']=$this->vet_model->getAllitems();
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$record_data['eventCounter'] = count($record_data['events']);
@@ -158,7 +158,9 @@ class vetclinic extends CI_Controller {
 		$allitems= $this->vet_model->getAllitems($this->input->post('id'));
 		$treatments = $this->vet_model->getServices($this->input->post('id'));
 		$grooms = $this->vet_model->getGrooms($this->input->post('id'));
-
+		$units = $this->vet_model->getUnits();
+		$types = $this->vet_model->getItemtype();
+		$suppliers = $this->vet_model->getSupplier();
 		$output = array(
 						"client" => $client,
 						"pet" => $pet,
@@ -169,7 +171,10 @@ class vetclinic extends CI_Controller {
 						"vets" => $vets,
 						"allitems" => $allitems,
 						"treatments" => $treatments,
-						"grooms" => $grooms
+						"grooms" => $grooms,
+						"units" => $units,
+						"types" => $types,
+						"suppliers" => $suppliers
 
 				);
 		echo json_encode($output);
@@ -284,7 +289,7 @@ class vetclinic extends CI_Controller {
 	
 	//chrstnv
 	public function save(){
-$lastclient = $this->vet_model->getLastClient();
+		$lastclient = $this->vet_model->getLastClient();
 		$finalid = $lastclient+1;
 		$data = $this->input->post(['cname','address','contactno','email']);
     
@@ -447,6 +452,99 @@ $lastclient = $this->vet_model->getLastClient();
 
 	}
 
+	public function savenewitem(){
+
+			$this->form_validation->set_rules('item_desc', 'Desc', 'required');
+	  		$this->form_validation->set_rules('item_cost', 'Cost', 'required');
+		 	$this->form_validation->set_rules('qty_left', 'Quantity', 'required');
+			// $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
+			// $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+            
+            if ($this->form_validation->run()){
+             	$this->load->model('vet_model');
+             	if (($this->vet_model->saveNewItem())&&($this->vet_model->saveItemInstance())){
+             		$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
+				 }
+				 else{
+             		//$this->session->set_flashdata('response', 'Failed :(');
+				 }
+				return redirect('vetclinic/inventory');
+
+            }
+
+            else{
+            	$this->session->set_flashdata('responsed', 'Failed to save! (Please input necessary details)');
+				$header_data['title'] = "Inventory";
+				$this->load->view('include/header2',$header_data);
+				$data['stock'] = $this->itemstock->read();
+				$data['itemhistory']=$this->itemhistory->read();
+				$record_data['notif']=$this->vet_model->notification();
+				$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+				$record_data['eventCounter'] = count($record_data['events']);
+				$record_data['items'] = $this->vet_model->getAllZeroitems();
+				
+				$this->load->view('include/header2',$header_data);
+				$this->load->view('clinic/inventory',['data'=>$data,'record_dat'=>$record_data]);
+
+				$this->load->view('include/footer');
+            }
+
+	}
+
+	public function addstock($id){
+		$header_data['title']="Add new stocks";
+		$record_data['notif']=$this->vet_model->notification();
+		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+		$record_data['eventCounter'] = count($record_data['events']);
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['bills'] = $this->vet_model->getbill();
+		$item_data['details'] = $this->vet_model->getitemdetails($id);
+		$purchase_data['data'] = $this->vet_model->getitempurchase($id);
+		$this->load->view('include/header2',$header_data);
+		$this->load->model('vet_model','schedule');
+		$this->load->view('clinic/addstock',['record_dat'=>$record_data,'item_dat'=>$item_data,'purchase_dat'=>$purchase_data]);
+		$this->load->view('include/footer');
+	}
+
+	public function savenewpurchase($id){
+			$newid=$id;
+			$this->form_validation->set_rules('exp_date', 'Date', 'required');
+	  		$this->form_validation->set_rules('item_cost', 'Cost', 'required');
+		 	$this->form_validation->set_rules('qty_left', 'Quantity', 'required');
+			// $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
+			// $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+            
+            if ($this->form_validation->run()){
+             	$this->load->model('vet_model');
+             	if (($this->vet_model->saveNewPurchase($newid))){
+             		$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
+				 }
+				 else{
+             		//$this->session->set_flashdata('response', 'Failed :(');
+				 }
+				return redirect('/vetclinic/addstock/'.$newid.'');
+
+            }
+
+            else{
+            	$this->session->set_flashdata('responsed', 'Failed to save! (Please input necessary details)');
+				$header_data['title'] = "Inventory";
+				$this->load->view('include/header2',$header_data);
+				$data['stock'] = $this->itemstock->read();
+				$data['itemhistory']=$this->itemhistory->read();
+				$record_data['notif']=$this->vet_model->notification();
+				$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
+				$record_data['eventCounter'] = count($record_data['events']);
+				$record_data['items'] = $this->vet_model->getAllZeroitems();
+				
+				$this->load->view('include/header2',$header_data);
+				$this->load->view('clinic/inventory',['data'=>$data,'record_dat'=>$record_data]);
+
+				$this->load->view('include/footer');
+            }
+
+	}
+
 	public function ajax_edit($id)
 	{
 			$data = $this->vetclinic->get_by_id($id);
@@ -590,7 +688,7 @@ $lastclient = $this->vet_model->getLastClient();
 	       )
 	    );
 
-	    redirect(site_url("vetclinic/sched"));
+	    redirect(site_url("vetclinic/schedule"));
 	}
 	public function resetdate(){
 		$title = $this->input->post("title");
@@ -661,7 +759,6 @@ $lastclient = $this->vet_model->getLastClient();
 			
 			$desc = $this->input->post("item_desc");
 			$price = $this->input->post("item_cost");
-			$qty = $this->input->post("qty_left");
 			
 			$data2 = array(
 					'itemid'=>null,
@@ -1052,14 +1149,14 @@ $lastclient = $this->vet_model->getLastClient();
 		$this->load->view('include/footer');
 	}
 
-	public function updatehistory(){
-		$visitid = $this->input->post('visitid');
-		$visit_cost = $this->input->post('visit_cost');
-		$total = $this->input->post('totalCost');
-		$newRecord = array('visit_cost'=>$visit_cost, 'Total'=>$total+$visit_cost);
-		if($this->vet_model->updateVisit($newRecord, $visitid))
-			redirect(base_url('vetclinic/billing'));
-	}
+	// public function updatehistory(){
+	// 	$visitid = $this->input->post('visitid');
+	// 	$visit_cost = $this->input->post('visit_cost');
+	// 	$total = $this->input->post('totalCost');
+	// 	$newRecord = array('visit_cost'=>$visit_cost, 'Total'=>$total+$visit_cost);
+	// 	if($this->vet_model->updateVisit($newRecord, $visitid))
+	// 		redirect(base_url('vetclinic/billing'));
+	// }
 }
 
 ?>

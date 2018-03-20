@@ -23,17 +23,6 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <?php
-                         echo '<li>
-                            <a href="'.base_url('vetclinic/billing').'">
-                                <i class="now-ui-icons business_badge"></i>
-                                <p>billing
-                            <span class="badge1" data-badge="'.$record_dat['bills'].'" style="background-color: red;"></span></p>
-
-                            </a>
-                        </li>';
-                    
-                    ?>
                     <li>
                         <a href="<?php echo base_url('vetclinic/records'); ?>">
                             <i class="now-ui-icons business_badge"></i>
@@ -152,16 +141,6 @@
                                     }
 
                                 ?>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>Hello
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                                    <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
-                                        Logout
-                                     </a>
                                 </div>
                             </li>
                         </ul>

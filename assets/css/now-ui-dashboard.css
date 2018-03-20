@@ -2869,6 +2869,8 @@ Created using IcoMoon - icomoon.io
           box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); }
   .card .card-body {
     padding: 15px 15px 10px 15px; }
+    .card-body1 {
+    padding: 5px 15px 0px 15px; }
     .card .card-body.table-full-width {
       padding-left: 0;
       padding-right: 0; }
@@ -2876,7 +2878,7 @@ Created using IcoMoon - icomoon.io
     padding: 15px 15px 0;
     border: 0; }
     .card .card-header:not([data-background-color]) {
-      background-color: transparent; }
+      background-color: #aeccfc; }
     .card .card-header .card-title {
       margin-top: 10px; }
   .card .map {
@@ -2984,7 +2986,7 @@ Created using IcoMoon - icomoon.io
   margin-right: -15px; }
 
 .card-chart .card-footer {
-  margin-top: 15px; }
+  margin-top: -10px; }
   .card-chart .card-footer .stats {
     color: #9A9A9A; }
 
