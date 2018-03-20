@@ -180,7 +180,7 @@
                                     <table class="table table-list-search" >
                                         <thead>
                                         <tr >
-                                            <th >
+                                            <th colspan="4" >
                                                 <div id="addbutn">
                                                     <button type="button" class="btn btn-md"  data-toggle="modal" data-target="#myModalNorm">
                                                         <span class="fas fa-plus"></span>
@@ -193,7 +193,10 @@
                                         <tr>
                                             <th class="text-primary">Item no.</th>
                                             <th class="text-primary">Description</th>
-                                            <th class="text-right" style="text-align:center">Action</th>
+
+                                            <th class="text-primary" >Stocks Left</th>
+                                            <th class="text-primary" style="text-align:center">Action</th>
+
                                         </tr>
                                     </thead>
                                         <tbody>
@@ -206,7 +209,8 @@
                                                                 echo '  
                                                                         <td style="text-align:center;">'.$s['itemid'].'</td>
                                                                         <td style="text-align:center;"  >'.$s['item_desc'].'</td>
-                                                                    <td style="width:200px;">
+                                                                        <td style="text-align:center;"  >  </td>
+                                                                    <td style="">
                                                                     <form method="POST" action="">
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
@@ -236,10 +240,11 @@
             </div>
         </div>
     </div>
-</body>
 <?php
     include "addnewitem.php";    
 ?>
+</body>
+
 <script type="text/javascript">
     function stock(addstock){
         $(document).ready(function() {

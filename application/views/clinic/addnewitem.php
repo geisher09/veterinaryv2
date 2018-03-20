@@ -1,58 +1,59 @@
 <!-- Modal -->
 
-<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
 
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-                <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:33%;">
-                    ADD NEW ITEM hehe </h4>
-				<button type="button" class="close" 
-                   data-dismiss="modal">
+                <h3 class="modal-title" id="myModalLabel" style="font-size:25px; font-weight:bold;margin:0px auto;">
+                    ADD NEW ITEM</h3>
+				<button type="button" class="close" data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
                 </button>
             </div>
             
             <!-- Modal Body -->
-            <div class="modal-body" style="padding:50px;">
+            <div class="modal-body" style="padding:25px 100px;">
         <?php echo form_open('vetclinic/savenewitem', ['class'=>'form-horizontal']); ?>
-				  <div class="form-group" >
-                    <div>
-					<label for="item_desc">Description:</label>
-					<input type="text" class="form-control" id="item_desc" name="item_desc" />
-				    </div>
-                    <div>
-					<label for="item_cost">Price:</label>
-					<input type="number" step=0.01 class="form-control globalDisable" id="item_cost" name="item_cost" />
-				    </div>
-				    <div>
-					<label for="qty_left">Quantity:</label>
-					<input type="number" class="form-control globalDisable" id="qty_left" class="globalDisable" name="qty_left" />
-            </div>
-            <div>
-              <label for="qty_left">Distribution unit:</label>
+            <div class="form-group" >
+               <div class="row" style="margin:30px auto;">
+                    <label for="item_desc" class="col-md-3" style="text-align:left;">Description:</label>
+                   <div class="col-md-9"><input type="text" class="form-control" id="item_desc" name="item_desc" /></div>
+				</div>
+                <div class="row" style="margin:30px auto;">
+                    <label for="item_cost" class="col-md-3" style="text-align:left;">Price:</label>
+                   <div class="col-md-9"><input type="number" step=0.01 class="form-control globalDisable" id="item_cost" name="item_cost" /></div>
+				</div>
+				<div class="row" style="margin:30px auto;">
+                    <label for="qty_left" class="col-md-3" style="text-align:left;">Quantity:</label>
+                   <div class="col-md-9"><input type="number" class="form-control globalDisable" id="qty_left" class="globalDisable" name="qty_left" /></div>
+                </div>
+            <div class="row" style="margin:30px auto;">
+              <label for="qty_left" class="col-md-4" style="text-align:left;">Distribution unit:</label>
+                <div class="col-md-8">
               <select style="font-size:15px; font-weight:bold;" name="dis" class="form-control" id="Unit">
 
-              </select>
+              </select></div>
             </div>
-            <div>
-              <label for="qty_left">Item type:</label>
+            <div class="row" style="margin:30px auto;">
+              <label for="qty_left" class="col-md-3" style="text-align:left;">Item type:</label>
+                <div class="col-md-9">
               <select style="font-size:15px; font-weight:bold;" name="type" class="form-control" id="Types">
 
-              </select>
+              </select></div>
             </div>
-            <div>
-              <label for="qty_left">Supplier:</label>
+            <div class="row" style="margin:30px auto;">
+              <label for="qty_left" class="col-md-3" style="text-align:left;">Supplier:</label>
+                <div class="col-md-9"></div>
               <select style="font-size:15px; font-weight:bold;" name="sup" class="form-control" id="Supplier">
 
               </select>
             </div>
-            <div>
-              <label for="qty_left">Expiration Date:</label>
-              <input type="date" class="form-control" id="exp_date" name="exp_date"/>
+            <div class="row" style="margin:30px auto;">
+              <label for="qty_left" class="col-md-4" style="text-align:left;">Expiration Date:</label>
+                <div class="col-md-8"><input type="date" class="form-control" id="exp_date" name="exp_date"/></div>
             </div>
 
 		  
@@ -64,11 +65,10 @@
                 <button id="sbmtItem" type="submit" class="btn btn-primary">Add</button>
             </div>
             <?php echo form_close() ?>
+            </div>
         </div>
     </div>
 </div>
-
-		</div>
 		</div>
 		
 		<div class="modal fade" id="AddStock" tabindex="-1" role="dialog" 
