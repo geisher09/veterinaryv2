@@ -175,8 +175,8 @@ f<body class="">
                             </div>
                             <div class="card-body">
                                 <?php
-                                if($sales_dat['items']!=0){
-								$percent=$sales_dat['items2']-$sales_dat['items'];
+								$percent=$sales_dat['items']-$sales_dat['items2'];
+
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
                                 echo '
@@ -187,7 +187,7 @@ f<body class="">
                                 ';
                                 ?>
 								<span style="font-size: 25px; color: <?php 
-								$percent=$sales_dat['items2']-$sales_dat['items'];
+								$percent=$sales_dat['items']-$sales_dat['items2'];
 								$newper=$percent/$sales_dat['items'];
 								$final=$newper*100;
 								echo
@@ -209,7 +209,7 @@ f<body class="">
                             <div class="card-body">
                                 <?php
                                 if($sales_dat['visits']!=0){
-								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
+								$percent2=$sales_dat['visits']-$sales_dat['visits2'];
 								$newper2=$percent2/$sales_dat['visits'];
 								$final2=$newper2*100;
                                 echo '
@@ -220,8 +220,8 @@ f<body class="">
                                 ';}
                                 ?>
 								<span style="font-size: 25px; color: <?php 
-                                if($sales_dat['visits']!=0){
-								$percent2=$sales_dat['visits2']-$sales_dat['visits'];
+                                if($sales_dat['visits2']!=0){
+								$percent2=$sales_dat['visits']-$sales_dat['visits2'];
 								$newper2=$percent2/$sales_dat['visits'];
 								$final2=$newper2*100;
 								echo
