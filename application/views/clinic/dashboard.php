@@ -257,7 +257,7 @@
                             <div class="card-body1">
                                 <?php
                                 echo '
-                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.$record_dat['notif'].'&nbsp;<i class="fas fa-exclamation-triangle"></i></div>
+                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.$record_dat['zero'].'&nbsp;<i class="fas fa-exclamation-triangle"></i></div>
                                 ';
                                 ?>
                             </div>
