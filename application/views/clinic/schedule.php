@@ -274,13 +274,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">Schedule</h2>
+								<h4 class="card-title" style="left:70%;">Doctor:</h4>
                             </div>
                             <div class="card-body">
                                 <!-- DOCTOR DROPDOWN -->
-                                <div>
-                                    <br />
-                                    <h4 class="card-title">Doctor: </h2>
-                                    <select id="doctor-sel">
+                                <div style="margin-left:80%;">
+                                    
+                                    <select id="doctor-sel" 
+									style="border-color:#AED6F1; border-radius:3px; color:white; background-color:#AED6F1; height:28px; width:170px;">
                                     <?php
                                     if(isset($doctorData))
                                         foreach($doctorData as $d){
