@@ -465,9 +465,11 @@ $lastclient = $this->vet_model->getLastClient();
 		$record_data['items'] = $this->vet_model->getAllZeroitems();
 		$record_data['bills'] = $this->vet_model->getbill();
 
+		$doctorData = $this->vet_model->getVets();
+
 		$this->load->view('include/header2',$header_data);
 		$this->load->model('vet_model','schedule');
-		$this->load->view('clinic/schedule',['record_dat'=>$record_data]);
+		$this->load->view('clinic/schedule',['record_dat'=>$record_data, 'doctorData'=>$doctorData]);
 		$this->load->view('include/footer');
 
 	}
@@ -490,7 +492,7 @@ $lastclient = $this->vet_model->getLastClient();
 
 	}
 
-	public function get_events()
+	public function get_events($vetid)
 	 {
 	     $start = $this->input->get("start");
 	     $end = $this->input->get("end");
@@ -503,7 +505,7 @@ $lastclient = $this->vet_model->getLastClient();
 	     $enddt->setTimestamp($end); // Set the date based on timestamp
 	     $end_format = $enddt->format('Y-m-d H:i:s');
 
-	     $events = $this->vet_model->get_events($start_format, $end_format);
+	     $events = $this->vet_model->get_events($start_format, $end_format, $vetid);
 
 	     $data_events = array();
 

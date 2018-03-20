@@ -547,10 +547,11 @@ private $table = "schedule";
 
 
 
-		public function get_events($start, $end)
+		public function get_events($start, $end, $vetid)
 		{
 		    return $this->db->where("startdate >=", $start)
-		    				->where("enddate <=", $end)
+							->where("enddate <=", $end)
+							->where("vetid", $vetid)
 		    				->get("schedule");
 		}
 
