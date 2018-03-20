@@ -373,16 +373,21 @@
 				$this->db->join('item_instance d','a.itemid = d.item_id','left outer');
 				$this->db->where('a.itemid',$id);
 				$this->db->where('d.item_exp >', $dr);
+				$this->db->where('d.item_qty >', 0);
 				$query = $this->db->get();
 
 				return $query->row();
 			}
 
 			public function getitempurchase($id){
+				date_default_timezone_set('Asia/Manila');
+				$dr=date('Y-m-d');
 				$this->db->select('a.item_id,a.item_cost,a.item_qty,a.item_sup,a.date_received,a.item_exp,b.id,b.supplier_name');
 				$this->db->from('item_instance a');
 				$this->db->join('supplier b','a.item_sup = b.id');
 				$this->db->where('a.item_id',$id);
+				$this->db->where('a.item_exp >', $dr);
+				$this->db->where('a.item_qty >', 0);
 				$query = $this->db->get();
 
 				return $query->result_array();
