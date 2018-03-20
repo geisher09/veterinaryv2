@@ -43,7 +43,8 @@ class vetclinic extends CI_Controller {
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$record_data['eventCounter'] = count($record_data['events']);
-		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['zero'] = $this->vet_model->countgetAllZeroitems();	
 		$this->load->view('include/header2',$header_data);
 		$this->load->view('clinic/dashboard', ['record_dat'=>$record_data,'sales_dat'=>$sales_data]);			
 		//$this->load->view('include/footer');
