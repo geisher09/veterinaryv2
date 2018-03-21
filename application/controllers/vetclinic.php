@@ -766,11 +766,11 @@ class vetclinic extends CI_Controller {
 	//chrstnv delete
 		public function delete(){
 
-				//print_r($_GET);
+				// print_r($_GET);
 
 				$this->vet_model->deleteItem($this->input->get('itemid'));
 
-				return redirect('vetclinic/inventory');
+				 return redirect('vetclinic/inventory');
 
 		}
 

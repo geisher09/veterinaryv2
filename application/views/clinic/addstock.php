@@ -231,6 +231,7 @@
                                             <th class="text-primary">Current Quantity</th>
                                             <th class="text-primary">Supplier</th>
                                             <th class="text-primary">Expiration Date</th>
+                                            <th class="text-primary">Action</th>
                                         </tr>
                                     </thead>
                                         <tbody>     
@@ -241,6 +242,9 @@
                                                 <td style="text-align:center;"><?php echo $purchase['item_qty']; ?></td>
                                                 <td style="text-align:center;"><?php echo $purchase['supplier_name']; ?></td>
                                                 <td style="text-align:center;"><?php echo $purchase['item_exp']; ?></td>
+                                                <?php if($purchase['item_exp']<=date('Y-m-d'))
+                                                    echo '<td><a href="'.base_url('vetclinic/delete/?itemid='.$purchase['nid']).'" type="button" class="btn btn-danger btn-sm">Stock out</a></td>';
+                                                ?>
                                             </tr>
                                             <?php }?>                                 
                                         </tbody>
