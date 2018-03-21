@@ -179,7 +179,7 @@
 
 			public function getItems($id){
 				
-				$this->db->select('a.visitid,b.item_desc,a.items_used,b.itemid');
+				$this->db->select('a.visitid,b.item_desc,a.items_used,b.itemid,a.qty');
 				$this->db->from('items_used a');
 				$this->db->join('itemstock b','a.items_used = b.itemid');
 				// $this->db->group_by('b.clientid');     
@@ -550,6 +550,23 @@
 				//print_r($pdata);
 				return $this->db->insert('item_instance', $idata);
 			}
+			public function menus($data){
+				date_default_timezone_set('Asia/Manila');
+				$date=date('dmy');
+				$dr=date('Y-m-d');
+				$id=$data['item_id'];
+				$qty=$data['item_qty'];
+				//$qty=$this->input->post('qty_used');
+				$this->db->select('id,item_id,item_cost,item_qty,item_exp');
+				$this->db->from('item_instance');
+				$this->db->where('item_id',$id);
+				$this->db->where('item_exp >', $dr);
+				$this->db->where('item_qty >','0');
+				$this->db->order_by('id', 'ASC');
+						$query = $this->db->get();
+						return $query->result_array();
+
+			}
 
 			public function subtractitem(){
 				date_default_timezone_set('Asia/Manila');
@@ -634,16 +651,13 @@
 				return $query->num_rows();
 			}
 
-			public function addItemUsed($option,$visitid){
-				// $idata = array(
-				// 	  'visitid' => $option,
-				//       'items_used' => $visitid);
-				// // print_r($idata)
-			 //   $this->db->insert('items_used', $idata);
-	   //      	 $this->db->from('itemstock');
-				// $this->db->where('qty_left =',0);
-				// $query = $this->db->get();
-				// return $query->num_rows();
+			public function addItemUsed($data){
+				
+				 
+		
+			    $this->db->insert('items_used', $data);
+			   
+	 
 			}
 
 			public function getLastpetvisit(){

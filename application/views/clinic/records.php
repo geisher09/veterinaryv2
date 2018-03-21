@@ -711,9 +711,6 @@
                                                 <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Description
                                                 </th>
-                                                <th class="text-center bg-info" style="font-size:18px;">
-                                                    Qty
-                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody id="itemsused">
@@ -831,8 +828,7 @@
 												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">#</th>
 												<th class="text-center" style="background-color:#d9d9d9;width:300px;font-size:18px;">Item Used</th>
 												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Quantity</th>
-												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Unit price</th>
-												<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Amount</th>
+											<th class="text-center" style="background-color:#d9d9d9;font-size:18px;">Amount</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -849,9 +845,7 @@
 													<input type="number" name='qty0' id="myitem0" placeholder='Qty' class="form-control addtm" min="0"/>
 													<input id="prdid0" class='prd' type='hidden'></input>
 												</td>
-												<td>
-													<input type="number" name='qty0' id="qtyprice0" placeholder='Price' class="form-control ITprice" min="0" readonly />
-												</td>
+											
 												<td>
 													<input type="number" name='qty0' id="amount0" placeholder='Price' class="form-control Tamount" min="0" readonly/> 
 												</td>
@@ -885,13 +879,13 @@
 										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-add" aria-hidden="true"></span></a>
 										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-delete" aria-hidden="true"></span></a>
 									</div>
-
+<!-- 
 							<div class=" row form-group"><br/>
-                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
+                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)w</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
-									<input type="text" name="totalfee" id="costfee" placeholder="0.00" value="" class="form-control" readonly />
+									<input type="text" name="totalCost" id="costfee" placeholder="" value="ss" class="form-control" readonly />
                                         </div>
-								</div>
+								</div> -->
 						
 							</div>
       
@@ -970,7 +964,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                sos(this.id);
              $("#add_row").click(function(){
             
-              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select style='font-size:17px' class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='qtyprice0' placeholder='Price' class='form-control ITprice' min='0' readonly /></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
+              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select style='font-size:17px' class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
 
               $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 
