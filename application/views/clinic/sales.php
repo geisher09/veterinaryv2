@@ -312,6 +312,8 @@
   		} );
 
 function realTimeSalesChart(){
+	$('#mycanvas').remove();
+	$('#chart-container').append('<canvas id="mycanvas"></canvas>');
 	$.ajax({
 			        type: 'POST',
 			        url: 'filter_date',
@@ -413,6 +415,8 @@ function monthlySalesChart(){
 	var ld = new Date(date.getFullYear(), date.getMonth() + 1, 1);
 	var lastday = ld.toISOString().split('T')[0];
 
+	$('#mycanvas').remove();
+	$('#chart-container').append('<canvas id="mycanvas"></canvas>');
 	$.ajax({
 			        type: 'POST',
 			        url: 'filter_date',
@@ -506,6 +510,8 @@ function monthlySalesChart(){
 
 	function yearlySalesChart(){
 		console.log('test');
+		$('#mycanvas').remove();
+		$('#chart-container').append('<canvas id="mycanvas"></canvas>');
 		$.ajax({
 			url: 'ajax_yearly',
 			success: function(data) {

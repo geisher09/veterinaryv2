@@ -847,6 +847,38 @@ private $table = "schedule";
 	
 		}
 
+		public function addSupplier($data){
+			$this->db->insert('supplier', $data);
+		}
+
+		public function addItemType($data){
+			$this->db->insert('item_type', $data);
+		}
+
+		public function addDistUnit($data){
+			$this->db->insert('distribution_unit', $data);
+		}
+
+		public function addDoctor($data){
+			$this->db->insert('veterinarian', $data);
+		}
+
+		public function getLastVet(){
+			$this->db->select('vetid');
+			$this->db->from('veterinarian');
+			$this->db->order_by('vetid', 'DESC');
+
+			$query=$this->db->get();
+
+			$id=$query->row_array();
+			$id = $id['vetid'];
+
+			return $id;
+		}
+
+		public function addBreed($data){
+			$this->db->insert('breeds', $data);
+		}
 
 	}
 

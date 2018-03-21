@@ -304,7 +304,7 @@
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
-				  <form class="form-horizontal" action="" method="post">
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addSupplier'); ?>" method="post">
 					
 					<br />
 					<div class="form-group">
@@ -342,7 +342,7 @@
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
-				  <form class="form-horizontal" action="" method="post">
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addItemType'); ?>" method="post">
 					
 					<br />
 					<div class="form-group">
@@ -380,7 +380,7 @@
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
-				  <form class="form-horizontal" action="" method="post">
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addDistUnit'); ?>" method="post">
 					
 					<br />
 					<div class="form-group">
@@ -419,7 +419,7 @@
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
-				  <form class="form-horizontal" action="" method="post">
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addDoctor'); ?>" method="post">
 					
 					<br />
 					<div class="form-group">
@@ -457,8 +457,18 @@
 			</div>
 			<div class="modal-body" style="padding:50px;padding-top:0px;">
 					<br/>
-				  <form class="form-horizontal" action="" method="post">
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addBreed'); ?>" method="post">
 					
+                  <div class="form-group">
+					  <label  for="serv_type">Species:</label>
+					  <div >          
+							<select class="form-control" id="serv_type" name="species">
+								<option value="dog">Dog</option>
+								<option value="cat">Cat</option>							
+							</select>
+					  </div>
+					</div>
+
 					<br />
 					<div class="form-group">
 					  <label  for="breed">New Breed:</label>
