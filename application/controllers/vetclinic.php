@@ -323,7 +323,7 @@ class vetclinic extends CI_Controller {
     //          		// $this->session->set_flashdata('response', 'Failed to save!');
 				//  }
 				// 
-				echo 'true';
+				echo true;
 
             }
             else{

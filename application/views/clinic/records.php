@@ -711,6 +711,9 @@
                                                 <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Description
                                                 </th>
+                                                <th class="text-center bg-info" style="font-size:18px;">
+                                                    Qty
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody id="itemsused">
@@ -882,13 +885,13 @@
 										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-add" aria-hidden="true"></span></a>
 										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-delete" aria-hidden="true"></span></a>
 									</div>
-<!-- 
+
 							<div class=" row form-group"><br/>
-                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)w</h4></div>
+                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
-									<input type="text" name="totalCost" id="costfee" placeholder="" value="ss" class="form-control" readonly />
+									<input type="text" name="totalfee" id="costfee" placeholder="0.00" value="" class="form-control" readonly />
                                         </div>
-								</div> -->
+								</div>
 						
 							</div>
       

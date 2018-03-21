@@ -150,7 +150,7 @@ $(document).ready(function(){
 						    url: base_url+"/veterinaryv2/vetclinic/ItemPrice",
 						     data: {id:x},
 						    success: function(msg){
-																var price = JSON.parse(msg);
+							var price = JSON.parse(msg);
 									
 									// console.log(price[0].qty_left);
 									// alert(price.item_cost)
@@ -161,10 +161,10 @@ $(document).ready(function(){
 									}
 									else{
 										var sum = 0;
-											var add =0;
+										var add =0;
 			
 									add=price[0].item_cost*prc;
-												$(y).closest('tr').find('.Tamount').val((add).toFixed(2));
+										$(y).closest('tr').find('.Tamount').val((add).toFixed(2));
 										$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
 									$(y).closest('tr').find('.prd').val(add);
 									 $(".prd").each(function(){
@@ -174,6 +174,12 @@ $(document).ready(function(){
 
 									 $("#costfee").val(sum.toLocaleString("en"));
 									 $("#hiddenSum").val(sum);
+											if($("#sfe").val()!=null){
+													var a=0;
+													a=$("#sfe").val();
+													total=sum+parseFloat(a);
+													$("#costfee").val((total).toFixed(2));
+											}
 									}
 								  }
 					});
@@ -253,6 +259,13 @@ $(document).ready(function(){
 									
 									 $("#costfee").val(sum.toLocaleString("en"));
 									 $("#hiddenSum").val(sum);
+									 if($("#sfe").val()!=null){
+													var a=0;
+													a=$("#sfe").val();
+													total=sum+parseFloat(a);
+													$("#costfee").val((total).toFixed(2));
+											}
+										alert($("#sfe").val());
 									}
 								  }
 
@@ -299,8 +312,8 @@ $(document).ready(function(){
 										 y= $(this).val();
 									$.ajax({
 												type: "POST",
-						  						  url: base_url+"/veterinaryv2/vetclinic/itemUsed",
-						   						  data: {id:x,item:y,pet:a},
+						  						  url: base_url+"/veterinaryv2/vetclinic/historynew",
+						   						  data: {itemid:x,qty_used:y,pet:a},
 						   						 success: function(msg){
 						   						 
 														   $('#clientModal').modal('hide');
@@ -485,7 +498,7 @@ $(document).ready(function(){
 							url: base_url+"/veterinaryv2/vetclinic/validateClient",
 						    data: {name:name,address:address,contact:contact,email:email,petname:petname,petbreed:petbreed,petmarkings:petmarkings,petspecies:petspecies,petbirthday:petbirthday},
 						   success: function(msg){
-						   	if(msg=='true'){
+						   	if(msg==1){
 						   		$('#addclientform').submit();
 
 
@@ -771,21 +784,21 @@ $(document).ready(function(){
 
 
 
-				$(document).ready(function(){
+	// 			$(document).ready(function(){
 
 
-					$("#addst").click(function(e){
-						e.preventDefault();
-	var base_url = window.location.origin;
+	// 				$("#addst").click(function(e){
+	// 					e.preventDefault();
+	// var base_url = window.location.origin;
 
-							var a =$("#item_cost").val();
-							var b =$("#qty_left1").val();
-							var c =$("#exp_date1").val();
-								$.ajax({
-												type: "POST",
-						  						  url: base_url+"/veterinaryv2/vetclinic/validatedit",
-						   						  data: {desc:desc},
-						   						 success: function(msge){
+	// 						var a =$("#item_cost").val();
+	// 						var b =$("#qty_left1").val();
+	// 						var c =$("#exp_date1").val();
+	// 							$.ajax({
+	// 											type: "POST",
+	// 					  						  url: base_url+"/veterinaryv2/vetclinic/validatedit",
+	// 					   						  data: {desc:desc},
+	// 					   						 success: function(msge){
 
 
 
@@ -794,15 +807,15 @@ $(document).ready(function(){
 
 
 						   						 	
-						   						 }
+	// 					   						 }
 
-					});
-
-
+	// 				});
 
 
 
 
-				});
 
-		
+
+	// 			});
+
+	// 	
