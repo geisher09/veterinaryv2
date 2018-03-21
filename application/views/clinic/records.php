@@ -105,12 +105,11 @@
                                     <i class="now-ui-icons ui-2_settings-90"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
-                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/accountsettings'); ?>">
-                                        Account Settings
-                                     </a>
-                                    <a class="dropdown-item" href="<?php echo base_url('vetclinic/adduser'); ?>">
-                                        Add New User
-                                     </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#adddoctor">Add Doctor </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#addbreed">Add Breed </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#addsupplier">Add Supplier </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#additemtype">Add Item Type </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#addidu">Add Item Distribution Unit </a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -169,7 +168,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">List of Clients</h2>
-                            </div>
+                                <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
+                                    <span class="glyphicon glyphicon-plus">
+                                        <span class="" style="font-size:18px;">Add new client </span>
+                                    </span>
+                                </button>
+                            </div><br/><br/><br/>
                             <div class="card-body">
                                 <?php if( $error = $this->session->flashdata('responsed')): ?>
                                         <div class="alert alert-dismissible alert-danger">
@@ -186,11 +190,6 @@
                                     <table class="table table-list-search" >
                                         <thead>
                                         <tr class="">
-                                                    <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
-                                                        <span class="glyphicon glyphicon-plus">
-                                                        <span class="" style="font-size:18px;">Add new client </span>
-                                                        </span>
-                                                    </button>
                                         </tr>
                                         <tr>
                                             <th class="text-primary">Client ID</th>
@@ -295,7 +294,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
-                  <label class=" col-sm-2 col-md-2" for="contact">Contact #:</label>
+                  <label class=" col-sm-2 col-md-2" for="contact">Phone #:</label>
                   <div class="col-sm-8 col-md-8" id="CCerror">          
                     <input type="text" class="form-control" id="clientnum"   name="contactno">
                     <p id="CCtext" class="valerror"></p>
@@ -401,7 +400,7 @@
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="sex">Sex:</label>
-                  <div class="col-sm-8 col-md-8">
+                  <div class="col-sm-8 col-md-8" style="text-align:left;">
                     <label style="font-weight:400;font-size:16px;cursor:pointer;">
                       <input type="radio" name="sex" value="m"> Male
                     </label><br/>
@@ -487,7 +486,7 @@
                         <div class="col-md-6">
                                 <p class="lead text-center" style="font-size: 25px;font-family:'Montserrat'; font-weight:500;color:#2471A3;">List of Owned Pet(s)</p>
                                 <div style="height: 300px; overflow: auto">
-                                    <table id="petList" class="table table-hover" style="margin-top: 20px;">
+                                    <table id="petList" class="table table-hover">
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">Pet ID</th>
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">Pet Name</th>
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">View</th>
@@ -548,6 +547,9 @@
                         </div>
                     </div>
 
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
                     
                     <?php echo form_close();?>
                 </div>
@@ -561,7 +563,7 @@
 							<div class="form-group row" id="Perror">
 <!--								<span style="white-space: nowrap">-->
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Pet Name:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Pet Name:</label>
                                 <div class="col-sm-8 col-md-8">
 								    <input type="text" class="form-control" id="Mypetname" name="pname" />
                                 </div>
@@ -576,7 +578,7 @@
                         <br/>
 							<div class="form-group row" id="Terror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Species:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Species:</label>
                                 <div class="col-sm-8 col-md-8">
 								<select class="sb" name="species" id="addpetype">
 									<option value="Dog">Dog</option>
@@ -590,7 +592,7 @@
 							<br/>
 							<div class="form-group row" id="Berror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Breed:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Breed:</label>
                                 <div class="col-sm-8 col-md-8">
                                 <input type="text" class="form-control" id="addpetbreed" name="breed"/>
 								<!--<select class="sb" name="breed" id="addpetbreed">
@@ -605,7 +607,7 @@
 							<br/>
 							<div class="form-group row" id="Derror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Birthday:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Birthday:</label>
                                 <div class="col-sm-8 col-md-8">
 								<input type="date" class="form-control" id="addpetbday" name="birthday"/>
                                 </div>
@@ -615,7 +617,7 @@
 							<br/>
 							<div class="form-group row" id="Merror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Markings:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Markings:</label>
                                 <div class="col-sm-8 col-md-8">
 								<input type="text" class="form-control" id="addpetmarkings" name="markings"/>
                                 </div>
@@ -625,8 +627,8 @@
                         <br/>
 							<div class="form-group row">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="sex">Sex:</label>
-								  <div class="col-sm-8 col-md-8">
+								<label class=" col-sm-2 col-md-2" for="sex" style="text-align:left;">Sex:</label>
+								  <div class="col-sm-8 col-md-8" style="text-align:left;">
                                     <label style="font-weight:400;font-size:16px;cursor:pointer;">
                                       <input type="radio" name="sex" value="m"> Male
                                     </label><br/>
@@ -639,7 +641,7 @@
                         <br/>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-							<button type="submit" id="sbmtPet" class="btn btn-primary">Save</button>
+							<button type="submit" id="sbmtPet" class="btn btn-info">Save</button>
 						</div>
 						<?php echo form_close();?>
 				</div>
@@ -744,6 +746,9 @@
                         </form>
                     </div>
                         </div>
+                    <div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
                 </div>  
             
 				<div class="container-fluid window" id="addHistory">
@@ -889,12 +894,13 @@
 						
 							</div>
       
-						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							<button type="submit" id="sbmtbtn" class="btn btn-info">Save</button>
 						</div>
 				<?php echo form_close(); ?>
+      
+						</div>
 
 
 			
@@ -914,6 +920,186 @@
     </div>
 </div>
 
+<!--  Add Supplier Modal -->
+	  <div class="modal fade" id="addsupplier" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:30%;">ADD SUPPLIER</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addSupplier'); ?>" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="supplier_name">Supplier Name:</label>
+						<div >
+							<input type="text" class="form-control" id="supplier_name"  name="supplier_name">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Supplier Modal -->
+	
+	
+	<!--  Add Item Type Modal -->
+	  <div class="modal fade" id="additemtype" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:30%;">ADD ITEM TYPE</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addItemType'); ?>" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="itemtype">Item Type:</label>
+						<div >
+							<input type="text" class="form-control" id="itemtype"  name="itemtype">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Item Type Modal -->
+	  
+	
+	<!--  Add Item Distribution Unit Modal -->
+	  <div class="modal fade" id="addidu" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:8%;">ADD ITEM DISTRIBUTION UNIT</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addDistUnit'); ?>" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="dist_unit">New Distribution Unit:</label>
+						<div >
+							<input type="text" class="form-control" id="dist_unit"  name="dist_unit">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Item Distribution Unit Modal -->
+	  
+	
+	<!--  Add Doctor Modal -->
+	  <div class="modal fade" id="adddoctor" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:30%;">ADD A DOCTOR</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addDoctor'); ?>" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="vetname">Doctor's Name:</label>
+						<div >
+							<input type="text" class="form-control" id="vetname"  name="vetname">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Doctor Modal -->
+	
+	
+	<!--  Add Breed Modal -->
+	  <div class="modal fade" id="addbreed" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:33%;">ADD BREED</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="<?php echo base_url('vetclinic/addBreed'); ?>" method="post">
+					
+                  <div class="form-group">
+					  <label  for="serv_type">Species:</label>
+					  <div >          
+							<select class="form-control" id="serv_type" name="species">
+								<option value="dog">Dog</option>
+								<option value="cat">Cat</option>							
+							</select>
+					  </div>
+					</div>
+
+					<br />
+					<div class="form-group">
+					  <label  for="breed">New Breed:</label>
+						<div >
+							<input type="text" class="form-control" id="breed"  name="breed">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Breed Modal -->
+	  
+	  
 <!--Script for select2-->
 <script>
 	$(document).ready(function() {

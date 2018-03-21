@@ -43,7 +43,8 @@ class vetclinic extends CI_Controller {
 		$record_data['notif']=$this->vet_model->notification();
 		$record_data['events'] = $this->vet_model->getEventsByDate(date("Y-m-d"));
 		$record_data['eventCounter'] = count($record_data['events']);
-		$record_data['items'] = $this->vet_model->getAllZeroitems();	
+		$record_data['items'] = $this->vet_model->getAllZeroitems();
+		$record_data['zero'] = $this->vet_model->countgetAllZeroitems();	
 		$this->load->view('include/header2',$header_data);
 		$this->load->view('clinic/dashboard', ['record_dat'=>$record_data,'sales_dat'=>$sales_data]);			
 		//$this->load->view('include/footer');
@@ -1165,6 +1166,54 @@ class vetclinic extends CI_Controller {
 	// 	if($this->vet_model->updateVisit($newRecord, $visitid))
 	// 		redirect(base_url('vetclinic/billing'));
 	// }
+
+	public function addSupplier(){
+		$data = array(
+			'supplier_name'=>$this->input->post('supplier_name')
+		);
+		$this->vet_model->addSupplier($data);
+		redirect(base_url());
+	}
+
+	public function addItemType(){
+		$data = array(
+			'itemtype'=>$this->input->post('itemtype')
+		);
+		$this->vet_model->addItemType($data);
+		redirect(base_url());
+	}
+
+	public function addDistUnit(){
+		$data = array(
+			'dist_unit'=>$this->input->post('dist_unit')
+		);
+		$this->vet_model->addDistUnit($data);
+		redirect(base_url());
+	}
+
+	public function addDoctor(){
+		$lastID=$this->vet_model->getLastVet();
+		$lastID	= str_split($lastID,4);
+		$id = $lastID[1]+1;
+		$id=str_pad($id,3,'0',STR_PAD_LEFT);
+		$id='301-'.$id;
+		
+		$data = array(
+			'vetid'=>$id,
+			'vetname'=>$this->input->post('vetname')
+		);
+		$this->vet_model->addDoctor($data);
+		redirect(base_url());
+	}
+
+	public function addBreed(){
+		$data=array(
+			'species'=>$this->input->post('species'),
+			'breed'=>$this->input->post('breed')
+		);
+		$this->vet_model->addBreed($data);
+		redirect(base_url());
+	}
 }
 
 ?>
