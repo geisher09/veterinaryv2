@@ -147,7 +147,8 @@ $(document).ready(function(){
 			       var item;
 			       var qty;
 					var total=0;
-
+					var total1=0;
+					var sum=0;	
 					$.ajax({
 			   				type: "POST",
 						    url: base_url+"/veterinaryv2/vetclinic/ItemPrice",
@@ -164,15 +165,11 @@ $(document).ready(function(){
 								// 	}
 								// 	else{
 								// 		var sum = 0;
-								// 		var add =0;
-			
-								// 	add=price[0].item_cost*prc;
 								// 		
-								// 		$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
-								// 	$(y).closest('tr').find('.prd').val(add);
-								// 	 $(".prd").each(function(){
-								//         sum += +$(this).val();
-								//    });
+			
+								// 	
+								// 		
+								
 								// 		$total = 0;
 				for(i = 0; i < price.length; i++){
 					if(z != 0){
@@ -187,7 +184,9 @@ $(document).ready(function(){
 						else{
 							total += (parseInt(z) * price[i]['item_cost']);
 							console.log(total);
-						 		$(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+							
+								 $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+								 
 						    z = 0;	
 						    
 						}	
@@ -195,17 +194,28 @@ $(document).ready(function(){
 					else{
 						break;
 					}
+					
+					
+							var add=0;
+							add=price[0].item_cost*prc;		
+							$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
+									$(y).closest('tr').find('.prd').val(add);
+									 $(".prd").each(function(){
+								        sum += +$(this).val();
+								   });
+								   $("#hiddenSum").val(sum);
 				
 
 
-									 // $("#costfee").val(sum.toLocaleString("en"));
-									 // $("#hiddenSum").val(sum);
-										// 	if($("#sfe").val()!=null){
-										// 			var a=0;
-										// 			a=$("#sfe").val();
-										// 			total=sum+parseFloat(a);
-										// 			$("#costfee").val((total).toFixed(2));
-										// 	}
+								 
+									 
+											if($("#sfew").val()!=null){
+													var qwx=0;
+													qwx=$("#sfew").val();
+													total1=sum+parseFloat(qwx);
+													// $("#costfee").val((qwx).toFixed(2));
+													$("#costfee").val(qwx.toLocaleString("en"));
+											}
 									}
 								  }
 					});
@@ -252,48 +262,62 @@ $(document).ready(function(){
 			   				type: "POST",
 						    url: base_url+"/veterinaryv2/vetclinic/ItemPrice",
 						     data: {id:x},
-						    success: function(msg){
-							console.log(msg);
-									var price = JSON.parse(msg);
-									console.log(msg);
-									// alert(price.item_cost)
+							 success: function(msg){
+								var price =JSON.parse(msg);
+										console.log(msg);
+										// console.log(price[0].qty_left);
+										// alert(price.item_cost)
+									// 	if(parseInt(price[0].qty_left)<prc){
+									// 		alert("Item out of stock, "+price[0].qty_left+" left");
+									// //alert(price[0].qty_left);	
+									// 	y.val('');
+									// 	}
+									// 	else{
+									// 		var sum = 0;
+									// 		var add =0;
+				
+									// 	add=price[0].item_cost*prc;
+									// 		
+									// 		$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
+									// 	$(y).closest('tr').find('.prd').val(add);
+									// 	 $(".prd").each(function(){
+									//         sum += +$(this).val();
+									//    });
+									// 		$total = 0;
+					for(i = 0; i < price.length; i++){
+						if(z != 0){
+							if(z >= price[i]['item_qty']){
+								qtyLeft = price[i]['item_qty'];
+								total += (price[i]['item_qty'] * price[i]['item_cost']);
 							
-									if(parseInt(price[0].qty_left)<prc){
-										alert("Item out of stock, "+price[0].qty_left+" left");
-									//alert(price[0].qty_left);	
-										z.val('');
-									add=price[0].item_cost*prc;
+								z -= price[i]['item_qty'];
+						
+									  $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+							}
+							else{
+								total += (parseInt(z) * price[i]['item_cost']);
+								console.log(total);
+									 $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+								z = 0;	
 								
-
-									$(y).closest('tr').find('.prd').val(add);
-									 $(".prd").each(function(){
-								        sum += +$(this).val();
-								   });
-									  $("#TotalSum").text("₱ "+sum.toLocaleString("en"));
-									 $("#hiddenSum").val(sum);
-									}
-									else{
-
-									add=price[0].item_cost*prc;
-										$(y).closest('tr').find('.Tamount').val((add).toFixed(2));
-										$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
-									$(y).closest('tr').find('.prd').val(add);
-									 $(".prd").each(function(){
-								        sum += +$(this).val();
-								   });
-
-									
-									 $("#costfee").val(sum.toLocaleString("en"));
-									 $("#hiddenSum").val(sum);
-									 if($("#sfe").val()!=null){
-													var a=0;
-													a=$("#sfe").val();
-													total=sum+parseFloat(a);
-													$("#costfee").val((total).toFixed(2));
-											}
-									
-									}
-								  }
+							}	
+						}
+						else{
+							break;
+						}
+					
+	
+	
+										 // $("#costfee").val(sum.toLocaleString("en"));
+										 // $("#hiddenSum").val(sum);
+											// 	if($("#sfe").val()!=null){
+											// 			var a=0;
+											// 			a=$("#sfe").val();
+											// 			total=sum+parseFloat(a);
+											// 			$("#costfee").val((total).toFixed(2));
+											// 	}
+										}
+									  }
 
 
 
