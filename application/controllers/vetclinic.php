@@ -540,38 +540,43 @@ class vetclinic extends CI_Controller {
 	}
 
 	public function historynew(){
-			print_r($_POST);
+			// print_r($_POST);
 		
-	  		 $this->form_validation->set_rules('qty_used', 'Quantity', 'required');
-			// $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
-			// $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+	  $this->form_validation->set_rules('qty_used', 'Quantity', 'required');
+			// // $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
+			// // $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
           
-            if ($this->form_validation->run()){
+        if ($this->form_validation->run()){
+            		 
              	$this->load->model('vet_model');
              	//$this->vet_model->subtractitem();
              	$this->vet_model->saveItemSaleHistory();
+             		$pet=$this->input->post('pet');
+            if(isset($pet)){
+             	
              date_default_timezone_set('Asia/Manila');
 			$date=date('Y-m-d H:i:s');
-			$pet=$this->input->post('pet');
+			
 			$yr=date('y');
 			$petv=$this->vet_model->getLastpetvisit();
 			$petv=$petv+1;
 			$visitid = $yr.'-'.$pet.'-'.$petv;
-         $data=array('items_used'=>$this->input->post('itemid'),
+       			  $data=array('items_used'=>$this->input->post('itemid'),
 				'qty'=>$this->input->post('qty_used'),
 				'visitid'=>$visitid);
 			$this->vet_model->addItemUsed($data);
-             	
-        
-             	
-             	$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
-				
-				return redirect('vetclinic/historynew');
+		}
+			//return redirect('vetclinic/historynew');
+		
+		   	echo true;
+            // 	$this->session->set_flashdata('response', 'Saved Succesfully!');
+		
+			
 
+    
+        }
 
-            }
-
-            else{
+         else{
 		
 				$data['stock'] = $this->itemstock->read();
 				$data['title']='Transactions History';
@@ -587,7 +592,7 @@ class vetclinic extends CI_Controller {
 
 				$this->load->view('include/footer');
 
-			}
+		 }
 	}
 
 	public function ajax_edit($id)
@@ -973,15 +978,27 @@ class vetclinic extends CI_Controller {
 	public function validatedit(){
 
 		// print_r($_POST);
-		$this->form_validation->set_rules('desc','Description','required|min_length[2]');
+		$this->form_validation->set_rules('cost','Cost','required');
+		$this->form_validation->set_rules('qty','qty','required');
+
+		$this->form_validation->set_rules('dte','Date','required|min_length[2]');
 
 		if($this->form_validation->run()){
 			echo true;
 		}
 		else{
-			if(form_error('desc')!=null){
-				$data['desc']=form_error('desc');
+			if(form_error('cost')!=null){
+				$data['cost']=form_error('cost');
 			}
+			if(form_error('qty')!=null){
+				$data['qty']=form_error('qty');
+			}
+			if(form_error('dte')!=null){
+				$data['dte']=form_error('dte');
+			}
+				
+				
+
 				
 			echo json_encode($data);
 

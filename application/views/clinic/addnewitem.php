@@ -57,7 +57,7 @@
             </div>
             <div class="row" style="margin:30px auto;">
               <label for="qty_left" class="col-md-4" style="text-align:left;">Expiration Date:</label>
-                <div class="col-md-8"><input type="date" class="form-control" id="exp_date" name="exp_date"/></div>
+                <div class="col-md-8"><input type="date" class="form-control currdate" id="exp_date" name="exp_date"/></div>
                  <span class="valerror" id="dateerror1"></span>
             </div>
 

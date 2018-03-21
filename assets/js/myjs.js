@@ -1,5 +1,14 @@
 $(document).ready(function(){
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByClassName("currdate")[0].setAttribute('min', today);
+
+
+
 	//edit infoo 
+
+
+
+
 
 	$("#custcontactno1").hide();
 	$("#custemail1").hide();
@@ -148,7 +157,7 @@ $(document).ready(function(){
 			       var qty;
 					var total=0;
 					var total1=0;
-					var sum=0;	
+					
 					$.ajax({
 			   				type: "POST",
 						    url: base_url+"/veterinaryv2/vetclinic/ItemPrice",
@@ -156,21 +165,7 @@ $(document).ready(function(){
 						    success: function(msg){
 							var price =JSON.parse(msg);
 									console.log(msg);
-									// console.log(price[0].qty_left);
-									// alert(price.item_cost)
-								// 	if(parseInt(price[0].qty_left)<prc){
-								// 		alert("Item out of stock, "+price[0].qty_left+" left");
-								// //alert(price[0].qty_left);	
-								// 	y.val('');
-								// 	}
-								// 	else{
-								// 		var sum = 0;
-								// 		
-			
-								// 	
-								// 		
-								
-								// 		$total = 0;
+							
 				for(i = 0; i < price.length; i++){
 					if(z != 0){
 						if(z >= price[i]['item_qty']){
@@ -178,14 +173,17 @@ $(document).ready(function(){
 							total += (price[i]['item_qty'] * price[i]['item_cost']);
 						
 						    z -= price[i]['item_qty'];
-					
+							//	add=price[0].item_cost*prc;	
 						    	  $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+						    	  	//$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
+									$(y).closest('tr').find('.prd').val(total);
 						}
 						else{
 							total += (parseInt(z) * price[i]['item_cost']);
 							console.log(total);
 							
 								 $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+								 $(y).closest('tr').find('.prd').val(total);
 								 
 						    z = 0;	
 						    
@@ -195,27 +193,29 @@ $(document).ready(function(){
 						break;
 					}
 					
-					
+						   var sum=0;	
 							var add=0;
-							add=price[0].item_cost*prc;		
-							$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
-									$(y).closest('tr').find('.prd').val(add);
+							
+						
 									 $(".prd").each(function(){
 								        sum += +$(this).val();
 								   });
 								   $("#hiddenSum").val(sum);
-				
+									
 
 
 								 
-									 
-											if($("#sfew").val()!=null){
+									 	if(($("#sfew").val()).length!=0){
+											
 													var qwx=0;
 													qwx=$("#sfew").val();
 													total1=sum+parseFloat(qwx);
 													// $("#costfee").val((qwx).toFixed(2));
-													$("#costfee").val(qwx.toLocaleString("en"));
+													$("#costfee").val(total1.toLocaleString("en"));
+													$("#costfee1").val(total1);
 											}
+									
+											
 									}
 								  }
 					});
@@ -248,15 +248,20 @@ $(document).ready(function(){
 
 					//query for changing item
 					$(document).on('change','.Vitems',function(){
-					var base_url = window.location.origin;
+							var base_url = window.location.origin;
 					var id = "";
 					var x=$(this).closest('tr').find(':selected').val();
-					var prc=$(this).closest('tr').find('input').val();
-					var z=$(this).closest('tr').find('input');
+					var z=$(this).closest('tr').find('.addtm').val();
+					var prc=$(this).closest('tr').find('.addtm').val();
+				  	// $(".prd").val('hi');	
   					var y= $(this);		
-					var sum = 0.0;
-					
-					if(prc!=0){
+			       var i;
+			       var item;
+			       var qty;
+					var total=0;
+					var total1=0;
+			
+					if(z!=0){
 					
 					$.ajax({
 			   				type: "POST",
@@ -264,62 +269,60 @@ $(document).ready(function(){
 						     data: {id:x},
 							 success: function(msg){
 								var price =JSON.parse(msg);
-										console.log(msg);
-										// console.log(price[0].qty_left);
-										// alert(price.item_cost)
-									// 	if(parseInt(price[0].qty_left)<prc){
-									// 		alert("Item out of stock, "+price[0].qty_left+" left");
-									// //alert(price[0].qty_left);	
-									// 	y.val('');
-									// 	}
-									// 	else{
-									// 		var sum = 0;
-									// 		var add =0;
-				
-									// 	add=price[0].item_cost*prc;
-									// 		
-									// 		$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
-									// 	$(y).closest('tr').find('.prd').val(add);
-									// 	 $(".prd").each(function(){
-									//         sum += +$(this).val();
-									//    });
-									// 		$total = 0;
-					for(i = 0; i < price.length; i++){
-						if(z != 0){
-							if(z >= price[i]['item_qty']){
-								qtyLeft = price[i]['item_qty'];
-								total += (price[i]['item_qty'] * price[i]['item_cost']);
+					var price =JSON.parse(msg);
+									console.log(msg);
 							
-								z -= price[i]['item_qty'];
+				for(i = 0; i < price.length; i++){
+					if(z != 0){
+						if(z >= price[i]['item_qty']){
+							qtyLeft = price[i]['item_qty'];
+							total += (price[i]['item_qty'] * price[i]['item_cost']);
 						
-									  $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
-							}
-							else{
-								total += (parseInt(z) * price[i]['item_cost']);
-								console.log(total);
-									 $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
-								z = 0;	
-								
-							}	
+						    z -= price[i]['item_qty'];
+					
+						    	  $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+						    	    $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+						    	  	//$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
+									$(y).closest('tr').find('.prd').val(total);
 						}
 						else{
-							break;
-						}
+							total += (parseInt(z) * price[i]['item_cost']);
+							console.log(total);
+							
+								 $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+								 	 $(y).closest('tr').find('.prd').val(total);
+						    z = 0;	
+						    
+						}	
+					}
+					else{
+						break;
+					}
 					
-	
-	
-										 // $("#costfee").val(sum.toLocaleString("en"));
-										 // $("#hiddenSum").val(sum);
-											// 	if($("#sfe").val()!=null){
-											// 			var a=0;
-											// 			a=$("#sfe").val();
-											// 			total=sum+parseFloat(a);
-											// 			$("#costfee").val((total).toFixed(2));
-											// 	}
-										}
-									  }
-
-
+						   var sum=0;	
+							var add=0;
+							add=price[0].item_cost*prc;		
+						
+									 $(".prd").each(function(){
+								        sum += +$(this).val();
+								   });
+								   $("#hiddenSum").val(sum);
+									
+	console.log(($("#sfew").val()).length);
+								 
+									 
+											if(($("#sfew").val()).length!=0){
+											
+													var qwx=0;
+													qwx=$("#sfew").val();
+													total1=sum+parseFloat(qwx);
+													// $("#costfee").val((qwx).toFixed(2));
+													$("#costfee").val(total1.toLocaleString("en"));
+													$("#costfee1").val(total1);
+											}
+											
+									}
+								  } 	
 
 
 
@@ -349,6 +352,12 @@ $(document).ready(function(){
 								{
 										$("#findingserror").html('You should add some Findings');
 										alert('Please add some findings');
+										  
+								}
+									else if($("#sfew").val()=='')
+								{
+										$("#sfew").html('Your have no service fee yet');
+										alert('Add service fee');
 										  
 								}
 								else {
@@ -834,38 +843,97 @@ $(document).ready(function(){
 
 
 
-	// 			$(document).ready(function(){
+				$(document).ready(function(){
 
 
-	// 				$("#addst").click(function(e){
-	// 					e.preventDefault();
-	// var base_url = window.location.origin;
+					$("#addst").click(function(e){
+						e.preventDefault();
+						var base_url = window.location.origin;
 
-	// 						var a =$("#item_cost").val();
-	// 						var b =$("#qty_left1").val();
-	// 						var c =$("#exp_date1").val();
-	// 							$.ajax({
-	// 											type: "POST",
-	// 					  						  url: base_url+"/veterinaryv2/vetclinic/validatedit",
-	// 					   						  data: {desc:desc},
-	// 					   						 success: function(msge){
+							var a =$("#item_cost").val();
+							var b =$("#qty_left1").val();
+							var c =$("#exp_date1").val();
+								$.ajax({
+												type: "POST",
+						  						  url: base_url+"/veterinaryv2/vetclinic/validatedit",
+						   						  data: {cost:a,qty:b,dte:c},
+						   						 success: function(msge){
+						   						 		console.log(msge);
+
+						   						 			var obj=JSON.parse(msge);
+
+						   						 			if(msge==1){
+
+						   						 				$("#frms").submit();
+						   						 			}
+						   				else{
+
+						   						if(obj.cost!=null){
+													$("#item_cost1").html(obj.cost);	
+													//$("#descerror").addClass("has-error has-feedback");
+													// $("#cnume").append("<span id='cnume1' class='glyphicon glyphicon-remove form-control-feedback'></span>");
+
+												}
+												else{
+													$("#item_cost1").remove(obj.desc);	
+												
+
+												}
+												if(obj.qty!=null){
+										         	$("#qty_left2").html(obj.qty);	
+												  }
+												  else{
+													$("#qty_left2").remove(obj.qty);	
+												}
+												if(obj.dte!=null){
+										         	$("#exp_date2").html(obj.dte);	
+												  }
+												  else{
+													$("#exp_date2").remove(obj.dte);	
+												}
+											}
+						   						 	
+						   						 }
+					});
+				});
+					});
 
 
+					$(document).ready(function(){
 
 
+					$("#iou").click(function(e){
+						e.preventDefault();
+						var base_url = window.location.origin;
+
+							var b =$("#qty_used4").val();
+						var itemid =$("#itemid").val();
+								$.ajax({
+												type: "POST",
+						  						  url: base_url+"/veterinaryv2/vetclinic/historynew",
+						   						  data: {qty_used:b,itemid:itemid},
+						   						 success: function(msge){
+						   						 console.log(msge);
+						   						 if(msge==1){
 
 
+						   						 	$("#hst").submit();
+						   						 	 location.href = 'http://localhost/veterinaryv2/vetclinic/historynew';
+						   						 }
+						   						 else{
+
+
+						   						 	alert('Please input Quantity');
+
+						   						 }
 
 						   						 	
-	// 					   						 }
-
-	// 				});
-
-
-
+						   						 }
+					});
+				});
+		});
 
 
 
-	// 			});
 
 	// 	

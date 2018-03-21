@@ -277,15 +277,17 @@
             
             <!-- Modal Body -->
             <div class="modal-body" style="padding:50px;">
-            <?php echo form_open('vetclinic/savenewpurchase/'.$thisId.'', ['class'=>'form-horizontal']); ?>
+            <?php echo form_open('vetclinic/savenewpurchase/'.$thisId.'', ['class'=>'form-horizontal','id'=>'frms']); ?>
                   <div class="form-group" >
                     <div>
                     <label for="item_cost">Price:</label>
                     <input type="number" step=0.01 class="form-control globalDisable" id="item_cost" name="item_cost" />
+                    <span class="valerror" id="item_cost1"></span>
                     </div>
                     <div>
                     <label for="qty_left">Quantity:</label>
                     <input type="number" class="form-control globalDisable" id="qty_left1" class="globalDisable" name="qty_left" min="1"/>
+                    <span class="valerror" id="qty_left2"></span>
             </div>
             <div>
               <label for="qty_left">Supplier:</label>
@@ -293,9 +295,10 @@
 
               </select>
             </div> <br/>
-            <div>
+            <div >
               <label for="qty_left">Expiration Date:</label>
-              <input type="date" class="form-control" id="exp_date1" name="exp_date"/>
+              <input type="date" class="form-control currdate" id="exp_date1" mindate=""  name="exp_date"/>
+              <span class="valerror" id="exp_date2"></span>
             </div>
 
           

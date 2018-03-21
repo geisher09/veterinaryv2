@@ -221,7 +221,7 @@
                         <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
                             <h3 class="modal-title" id="LabelHistory" style="font-size:25px; font-weight:bold;margin:0px auto;">
                                 UPDATE ITEM USAGE</h3>
-                            <button type="button" class="close" data-dismiss="modal">
+                            <button type="button"  class="close" data-dismiss="modal">
                                    <span aria-hidden="true">&times;</span>
                                    <span class="sr-only">Close</span>
                             </button>
@@ -229,7 +229,7 @@
                 
             <!-- Modal Body -->
             <div class="modal-body" style="padding:50px;">
-                 <?php echo form_open(site_url("vetclinic/historynew/")) ?>
+                 <?php echo form_open("vetclinic/historynew/",['id'=>'hst']); ?>
                 <div class="form-group">
                     <span  id="ins" class="valerror"></span>
                     <div class="row" style="margin:30px 0px;">
@@ -245,7 +245,7 @@
                     </div>
                     <div class="row" style="margin:30px 0px;">
                         <label for="qty_used" class="col-md-4" style="text-align:left;">Quantity:</label>
-                        <div class="col-md-8"><input type="number" class="form-control globalDisable" id="qty_used" name="qty_used" placeholder="Quantity"/></div>
+                        <div class="col-md-8"><input type="number" class="form-control globalDisable" id="qty_used4" name="qty_used" placeholder="Quantity"/></div>
                     </div>
 
                
@@ -257,7 +257,7 @@
                         data-dismiss="modal">
                             Cancel
                 </button>
-                <button type="submit" id="sbmtMyItem" class="btn btn-primary" name="itemuse" onclick="">
+                <button type="submit" id="iou" class="btn btn-primary" name="itemuse" onclick="">
                     Update
                 </button>
                 <?php echo form_close() ?>

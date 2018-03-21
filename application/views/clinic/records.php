@@ -388,7 +388,7 @@
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="birthday">Birthday:</label>
                   <div class="col-sm-8 col-md-8" id="CDerror">
-                        <input type="date" class="form-control" id="petbirthday" name="birthday"/>
+                        <input type="date" class="form-control currdate" id="petbirthday" name="birthday"/>
                         <p id="CDtext" class="valerror"></p>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
@@ -609,7 +609,7 @@
                                 <div class=" col-sm-1 col-md-1"></div>
 								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Birthday:</label>
                                 <div class="col-sm-8 col-md-8">
-								<input type="date" class="form-control" id="addpetbday" name="birthday"/>
+                                 <input type="date" class="form-control currdate" id="addpetbday" name="birthday"/>
                                 </div>
                                 <div class=" col-sm-1 col-md-1"></div>
 								<p id="Bdayerror" class="valerror"></p>
@@ -708,10 +708,13 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center bg-info" style="font-size:18px;">
-                                                Item Used ID
+                                               #
                                                 </th>
                                                 <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Description
+                                                </th>
+                                                <th class="text-center bg-info" style="font-size:18px;">
+                                               Qty
                                                 </th>
                                             </tr>
                                         </thead>
@@ -825,7 +828,9 @@
                           <div class="row form-group">
                                 <div class="col-md-3"><label style="text-decoration-line: underline;">Service Fee:</label></div>
                                 <div class="col-md-9">
-                                <input style="font-size:17px;" type="number" placeholder="" id="sfew" name="vCost" class="form-control"/></div>
+                                <input style="font-size:17px;" type="number" placeholder="" id="sfew" name="vCost" class="form-control"/>
+                                <span class="valerror" id="sfew1"> 
+                            </div>
                             </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
@@ -886,9 +891,10 @@
 									</div>
  
 							<div class=" row form-group"><br/>
-                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)w</h4></div>
+                                    <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
-									<input type="text" name="totalCost" id="costfee" placeholder="" value="ss" class="form-control" readonly />
+									<input type="text" name="totalCost" id="costfee" placeholder="" value="" class="form-control" readonly />
+                                    <input type="hidden" name="costfee1" id="costfee1" placeholder="" value="" class="form-control" readonly />
                                         </div>
 								</div>
 						
@@ -1163,8 +1169,10 @@ $('.modal').on('hidden.bs.modal', function (e) {
              $("#delete_row").click(function(){
                                             var last=$('input[class*="prd"]').length;
                                             var min =0;
-                                            min = $("#hiddenSum").val()-$("#prdid"+(i-1)).val();
-                                            
+                                            var hid =0;
+                                            hid= parseInt($("#hiddenSum").val())+parseInt($("#sfew").val());
+                                            min = hid-$("#prdid"+(i-1)).val();
+                                      
                                            
                                                  $("#costfee").val(min.toLocaleString("en"));
                                         
@@ -1277,7 +1285,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var item = "";
                             if(parseInt(obj.items.length) > 0){
                                 for(var i=0; i<parseInt(obj.items.length); i++){
-                                    item += '<tr><td>'+obj.items[i].items_used+'</td><td>'+obj.items[i].item_desc+'</td></tr>';
+                                    item += '<tr><td>'+(i+1)+'</td><td>'+obj.items[i].item_desc+'</td><td>'+obj.items[i].qty+'</td></tr>';
                                 }
                                 item+='<tr><td colspan="3">Item Cost ₱ '+obj.visit.itemCost+'</td></tr>'
                                 $("#itemsused").html(item);
