@@ -825,7 +825,7 @@
                           <div class="row form-group">
                                 <div class="col-md-3"><label style="text-decoration-line: underline;">Service Fee:</label></div>
                                 <div class="col-md-9">
-                                <input style="font-size:17px;" type="number" placeholder="" id="sfe" name="" class="form-control"/></div>
+                                <input style="font-size:17px;" type="number" placeholder="" id="sfew" name="vCost" class="form-control"/></div>
                             </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
@@ -884,13 +884,13 @@
 										<a id="add_row" class="btn btn-primary pull-center" onclick="sos(this.id)" data-toggle="tooltip" title="Add another row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-add" aria-hidden="true"></span></a>
 										<a id="delete_row" class="pull-right btn btn-danger" data-toggle="tooltip" title="Delete a row" style="font-size:15px;color:white;"><span class="now-ui-icons ui-1_simple-delete" aria-hidden="true"></span></a>
 									</div>
-<!-- 
+ 
 							<div class=" row form-group"><br/>
                                     <div class="col-md-4"><h4 class="">Total Cost: (Php)w</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
 									<input type="text" name="totalCost" id="costfee" placeholder="" value="ss" class="form-control" readonly />
                                         </div>
-								</div> -->
+								</div>
 						
 							</div>
       
