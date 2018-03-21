@@ -239,10 +239,10 @@
 		<div id="chart-date" class="row salesDate" >
             <div class="col-md-2 col-sm-2"></div>
             <div class="col-md-3 col-sm-3">
-				<label>Start date:</label><input type="text" class="form-control" id="startdate" name="startdate" />
+				<label style="font-size:17px;">Start date:</label><input type="text" class="form-control" id="startdate" name="startdate" />
             </div>
             <div class="col-md-3 col-sm-3">
-				<label>End date:</label><input type="text" class="form-control" id="enddate" name="enddate" disabled="disabled" />
+				<label style="font-size:17px;">End date:</label><input type="text" class="form-control" id="enddate" name="enddate" disabled="disabled" />
                 <div id="toShow" class="spanhidden"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Please enter start date</div>
             </div>            
             <div class="col-md-2 col-sm-2">

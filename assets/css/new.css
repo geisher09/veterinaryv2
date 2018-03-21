@@ -112,9 +112,9 @@
 /************* inventory ************/
 	#addbutn {
 		color: #2471A3; 
-		text-align: right;
-		position: relative;
-		left: 780px;
+		float: right;
+/*		position: relative;*/
+/*		right: -400;*/
 	}
 
 	#addbutn button {

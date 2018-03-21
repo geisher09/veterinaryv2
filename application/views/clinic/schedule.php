@@ -274,13 +274,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">Schedule</h2>
+								<h4 class="card-title" style="left:70%;">Doctor:</h4>
                             </div>
                             <div class="card-body">
                                 <!-- DOCTOR DROPDOWN -->
-                                <div>
-                                    <br />
-                                    <h4 class="card-title">Doctor: </h2>
-                                    <select id="doctor-sel">
+                                <div style="margin-left:80%;">
+                                    
+                                    <select id="doctor-sel" 
+									style="border-color:#AED6F1; border-radius:3px; color:white; background-color:#AED6F1; height:28px; width:170px;">
                                     <?php
                                     if(isset($doctorData))
                                         foreach($doctorData as $d){
@@ -305,46 +306,46 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
-					<h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:10%;">View/Update Calendar Event</h4>
+					<h4 class="modal-title" id="myModalLabel" style="font-size:25px;font-weight:bold; margin:auto;">View/Update Calendar Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <?php echo form_open(site_url("vetclinic/edit_event"), array("class" => "form-horizontal")) ?>
-                    <div class="form-group">
-                        <label for="p-in" class="col-md-4 label-heading">Title</label>
+                    <div class="form-group row" style="margin:30px auto;">
+                        <label for="p-in" class="col-md-4 label-heading" style="text-align:left;">Title:</label>
                         <div class="col-md-8 ui-front">
                             <input type="text" class="form-control" name="name" value="" id="name" >
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="p-in" class="col-md-4 label-heading">Description</label>
+                    <div class="form-group row" style="margin:30px auto;">
+                        <label for="p-in" class="col-md-4 label-heading" style="text-align:left;">Description:</label>
                         <div class="col-md-8 ui-front">
                             <input type="text" class="form-control" name="description" id="description">
                         </div>
                     </div>
-                    <div class="form-group ">
-                            <label for="p-in" class="col-md-4 label-heading">Start Date</label>
+                    <div class="form-group row " style="margin:30px auto;">
+                            <label for="p-in" class="col-md-4 label-heading" style="text-align:left;">Start Date:</label>
                             <div class="col-md-8">
                                 <input type="text " class="form-control" name="start_date" id="start_date" disabled>
                             </div>
                     </div>
-                    <div class="form-group">
-                            <label for="p-in" class="col-md-4 label-heading">End Date</label>
+                    <div class="form-group row" style="margin:30px auto;">
+                            <label for="p-in" class="col-md-4 label-heading" style="text-align:left;">End Date:</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="end_date" id="end_date" disabled>
                             </div>
                     </div>
-                    <div class="form-group">
-                        <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
+                    <div class="form-group row" style="margin:30px auto;">
+                        <label for="p-in" class="col-md-4 label-heading" style="text-align:left;">Delete Event</label>
                         <div class="col-md-8">
-                            <input type="checkbox" name="delete" value="1">
+                            <input type="checkbox" name="delete" value="1" style="float:left;margin:auto 0px;cursor:pointer;">
                         </div>
                     </div>
                     <input type="hidden" name="eventid" id="event_id" value="0" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Update Event">
+                    <input type="submit" class="btn btn-info" value="Update Event">
                     <?php echo form_close() ?>
                 </div>
             </div>
@@ -363,13 +364,13 @@
                 </div>
                 <div class="modal-body" >
                     <?php echo form_open(site_url("vetclinic/add_event"), array("class" => "form-horizontal")) ?>
-                    <div class="form-group">
+                    <div class="form-group row" style="margin:30px auto;">
                         <label for="p-in" class="col-md-4 label-heading">Event Title:</label>
                         <div class="col-md-8 ui-front">
                             <input type="text" class="form-control" name="name" value="" id="name">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row" style="margin:30px auto;">
                         <label for="p-in" class="col-md-4 label-heading">Description:</label>
                         <div class="col-md-8 ui-front">
                             <input type="text" class="form-control" name="description" id="description">
@@ -382,7 +383,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Update Event">
+                    <input type="submit" class="btn btn-info" value="Update Event">
                     <?php echo form_close() ?>
                 </div>
             </div>

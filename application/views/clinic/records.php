@@ -169,7 +169,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">List of Clients</h2>
-                            </div>
+                                <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
+                                    <span class="glyphicon glyphicon-plus">
+                                        <span class="" style="font-size:18px;">Add new client </span>
+                                    </span>
+                                </button>
+                            </div><br/><br/><br/>
                             <div class="card-body">
                                 <?php if( $error = $this->session->flashdata('responsed')): ?>
                                         <div class="alert alert-dismissible alert-danger">
@@ -186,11 +191,6 @@
                                     <table class="table table-list-search" >
                                         <thead>
                                         <tr class="">
-                                                    <button type="button" class="btn btn-md btn-info" id="addbutn"  data-toggle="modal" data-target="#addclientmodal">
-                                                        <span class="glyphicon glyphicon-plus">
-                                                        <span class="" style="font-size:18px;">Add new client </span>
-                                                        </span>
-                                                    </button>
                                         </tr>
                                         <tr>
                                             <th class="text-primary">Client ID</th>
@@ -295,7 +295,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
-                  <label class=" col-sm-2 col-md-2" for="contact">Contact #:</label>
+                  <label class=" col-sm-2 col-md-2" for="contact">Phone #:</label>
                   <div class="col-sm-8 col-md-8" id="CCerror">          
                     <input type="text" class="form-control" id="clientnum"   name="contactno">
                     <p id="CCtext" class="valerror"></p>
@@ -401,7 +401,7 @@
                 <div class="form-group row">
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="sex">Sex:</label>
-                  <div class="col-sm-8 col-md-8">
+                  <div class="col-sm-8 col-md-8" style="text-align:left;">
                     <label style="font-weight:400;font-size:16px;cursor:pointer;">
                       <input type="radio" name="sex" value="m"> Male
                     </label><br/>
@@ -487,7 +487,7 @@
                         <div class="col-md-6">
                                 <p class="lead text-center" style="font-size: 25px;font-family:'Montserrat'; font-weight:500;color:#2471A3;">List of Owned Pet(s)</p>
                                 <div style="height: 300px; overflow: auto">
-                                    <table id="petList" class="table table-hover" style="margin-top: 20px;">
+                                    <table id="petList" class="table table-hover">
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">Pet ID</th>
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">Pet Name</th>
                                         <th align="center" class="text-center table-bordered bg-info" style="background-color:#d9d9d9;">View</th>
@@ -548,6 +548,9 @@
                         </div>
                     </div>
 
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
                     
                     <?php echo form_close();?>
                 </div>
@@ -561,7 +564,7 @@
 							<div class="form-group row" id="Perror">
 <!--								<span style="white-space: nowrap">-->
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Pet Name:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Pet Name:</label>
                                 <div class="col-sm-8 col-md-8">
 								    <input type="text" class="form-control" id="Mypetname" name="pname" />
                                 </div>
@@ -576,7 +579,7 @@
                         <br/>
 							<div class="form-group row" id="Terror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Species:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Species:</label>
                                 <div class="col-sm-8 col-md-8">
 								<select class="sb" name="species" id="addpetype">
 									<option value="Dog">Dog</option>
@@ -590,7 +593,7 @@
 							<br/>
 							<div class="form-group row" id="Berror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Breed:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Breed:</label>
                                 <div class="col-sm-8 col-md-8">
                                 <input type="text" class="form-control" id="addpetbreed" name="breed"/>
 								<!--<select class="sb" name="breed" id="addpetbreed">
@@ -605,7 +608,7 @@
 							<br/>
 							<div class="form-group row" id="Derror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Birthday:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Birthday:</label>
                                 <div class="col-sm-8 col-md-8">
 								<input type="date" class="form-control" id="addpetbday" name="birthday"/>
                                 </div>
@@ -615,7 +618,7 @@
 							<br/>
 							<div class="form-group row" id="Merror">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="">Markings:</label>
+								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Markings:</label>
                                 <div class="col-sm-8 col-md-8">
 								<input type="text" class="form-control" id="addpetmarkings" name="markings"/>
                                 </div>
@@ -625,8 +628,8 @@
                         <br/>
 							<div class="form-group row">
                                 <div class=" col-sm-1 col-md-1"></div>
-								<label class=" col-sm-2 col-md-2" for="sex">Sex:</label>
-								  <div class="col-sm-8 col-md-8">
+								<label class=" col-sm-2 col-md-2" for="sex" style="text-align:left;">Sex:</label>
+								  <div class="col-sm-8 col-md-8" style="text-align:left;">
                                     <label style="font-weight:400;font-size:16px;cursor:pointer;">
                                       <input type="radio" name="sex" value="m"> Male
                                     </label><br/>
@@ -639,7 +642,7 @@
                         <br/>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-							<button type="submit" id="sbmtPet" class="btn btn-primary">Save</button>
+							<button type="submit" id="sbmtPet" class="btn btn-info">Save</button>
 						</div>
 						<?php echo form_close();?>
 				</div>
@@ -747,6 +750,9 @@
                         </form>
                     </div>
                         </div>
+                    <div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
                 </div>  
             
 				<div class="container-fluid window" id="addHistory">
@@ -895,12 +901,13 @@
 						
 							</div>
       
-						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							<button type="submit" id="sbmtbtn" class="btn btn-info">Save</button>
 						</div>
 				<?php echo form_close(); ?>
+      
+						</div>
 
 
 			

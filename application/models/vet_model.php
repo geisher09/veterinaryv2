@@ -99,9 +99,22 @@
 			//chrstnv
 
 			public function getAllZeroitems(){
-				 $this->db->from('itemstock');
+				$this->db->select('a.itemid,b.item_id,sum(b.item_qty) as "qty"');
+				$this->db->from('itemstock a');
+				$this->db->join('item_instance b','a.itemid = b.item_id','left outer');
+				$this->db->having('sum(b.item_qty) =','0');
 				$query = $this->db->get();
 				return $query->result_array();
+
+			}
+
+			public function countgetAllZeroitems(){
+				$this->db->select('a.itemid,b.item_id,sum(b.item_qty) as "qty"');
+				$this->db->from('itemstock a');
+				$this->db->join('item_instance b','a.itemid = b.item_id','left outer');
+				$this->db->having('sum(b.item_qty) =','0');
+				$query = $this->db->get();
+				return $query->num_rows();
 
 			}
 
@@ -109,7 +122,10 @@
 				date_default_timezone_set('Asia/Manila');
 				$today =date("Y-m-d");
 
-				 $this->db->from('itemstock');
+				$this->db->select('a.itemid,b.item_id,sum(b.item_qty) as "qty"');
+				$this->db->from('itemstock a');
+				$this->db->join('item_instance b','a.itemid = b.item_id','left outer');
+				$this->db->having('sum(b.item_qty) =','0');
 				$query = $this->db->get();
 				$invent= $query->num_rows();
 
@@ -521,8 +537,8 @@
 				$itype = substr($string, 0, 3);
 				$idata = array(
 					  'itemid' => $newid,
-					  'action' => 'Add Product',
-					  'description'=>'Add Product: Item [' .$newid.' ]- '  .$desc .' with ' .$pcs . ' pc/s and price of ' .$price .' added ' ,
+					  'action' => 'Add Stock',
+					  'description'=>'Add Stock: Item [' .$newid.' ]- '  .$desc .' with ' .$pcs . ' pc/s and price of ' .$price .' added ' ,
 				      'total_cost' => $total_cost,
 				      'qty' => $pcs
 				   );

@@ -257,7 +257,7 @@
                             <div class="card-body1">
                                 <?php
                                 echo '
-                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.$record_dat['notif'].'&nbsp;<i class="fas fa-exclamation-triangle"></i></div>
+                                    <div style="font-size: 55px; font-weight: bold; text-align: center;">'.$record_dat['zero'].'&nbsp;<i class="fas fa-exclamation-triangle"></i></div>
                                 ';
                                 ?>
                             </div>
@@ -287,6 +287,197 @@
             </div>
         </div>
     </div>
+	
+	<div id="addserv" >
+		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addsupplier">
+		<span class="glyphicon glyphicon-plus"></span> Add Supplier</button>
+	</div>	
+		<!--  Add Supplier Modal -->
+	  <div class="modal fade" id="addsupplier" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:30%;">ADD SUPPLIER</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="supplier_name">Supplier Name:</label>
+						<div >
+							<input type="text" class="form-control" id="supplier_name"  name="supplier_name">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Supplier Modal -->
+	
+	<div id="addserv" >
+		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#additemtype">
+		<span class="glyphicon glyphicon-plus"></span> Add Item Type</button>
+	</div>
+	
+	<!--  Add Item Type Modal -->
+	  <div class="modal fade" id="additemtype" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:30%;">ADD ITEM TYPE</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="itemtype">Item Type:</label>
+						<div >
+							<input type="text" class="form-control" id="itemtype"  name="itemtype">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Item Type Modal -->
+	  
+	<div id="addserv" >
+		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addidu">
+		<span class="glyphicon glyphicon-plus"></span> Add Item Distribution Unit</button>
+	</div>
+	
+	<!--  Add Item Distribution Unit Modal -->
+	  <div class="modal fade" id="addidu" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:8%;">ADD ITEM DISTRIBUTION UNIT</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="dist_unit">New Distribution Unit:</label>
+						<div >
+							<input type="text" class="form-control" id="dist_unit"  name="dist_unit">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Item Distribution Unit Modal -->
+	  
+	
+	<div id="addserv" >
+		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#adddoctor">
+		<span class="glyphicon glyphicon-plus"></span> Add Doctor</button>
+	</div>
+	
+	<!--  Add Doctor Modal -->
+	  <div class="modal fade" id="adddoctor" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:30%;">ADD A DOCTOR</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="vetname">Doctor's Name:</label>
+						<div >
+							<input type="text" class="form-control" id="vetname"  name="vetname">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Doctor Modal -->
+	
+	<div id="addserv" >
+		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addbreed">
+		<span class="glyphicon glyphicon-plus"></span> Add Breed</button>
+	</div>
+	
+	<!--  Add Breed Modal -->
+	  <div class="modal fade" id="addbreed" role="dialog">
+		<div class="modal-dialog modal-md">
+		
+		  <!-- Modal content -->
+		  <div class="modal-content" id="registermodal">
+			<div class="modal-header" style="background-color:rgba(128, 191, 255,0.9);">
+			  <h3 class="modal-title" style="font-size:25px; font-weight:bold;  margin-left:33%;">ADD BREED</h3>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="padding:50px;padding-top:0px;">
+					<br/>
+				  <form class="form-horizontal" action="" method="post">
+					
+					<br />
+					<div class="form-group">
+					  <label  for="breed">New Breed:</label>
+						<div >
+							<input type="text" class="form-control" id="breed"  name="breed">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="add">Save</button>
+				  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  <!-- End of Add Breed Modal -->
+	  
 </body>
 <script>
     window.onload = setInterval(clock,1000);
