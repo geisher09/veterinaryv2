@@ -90,11 +90,22 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="navbar-nav">
-                                                       
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="now-ui-icons ui-2_settings-90"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+									 <a class="dropdown-item" data-toggle="modal" data-target="#adddoctor">Add Doctor </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#addbreed">Add Breed </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#addsupplier">Add Supplier </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#additemtype">Add Item Type </a>
+									 <a class="dropdown-item" data-toggle="modal" data-target="#addidu">Add Item Distribution Unit </a>
+                                </div>
+                            </li>                           
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=($record_dat['notif']!=0?'<span class="badge1" data-badge="'.$record_dat['notif'].'" style="background-color: red;"></span>':'')?>
-                                    <i class="now-ui-icons location_world"></i>
+                                    <i class="now-ui-icons ui-1_bell-53"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
@@ -288,10 +299,7 @@
         </div>
     </div>
 	
-	<div id="addserv" >
-		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addsupplier">
-		<span class="glyphicon glyphicon-plus"></span> Add Supplier</button>
-	</div>	
+		
 		<!--  Add Supplier Modal -->
 	  <div class="modal fade" id="addsupplier" role="dialog">
 		<div class="modal-dialog modal-md">
@@ -325,10 +333,6 @@
 	  </div>
 	  <!-- End of Add Supplier Modal -->
 	
-	<div id="addserv" >
-		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#additemtype">
-		<span class="glyphicon glyphicon-plus"></span> Add Item Type</button>
-	</div>
 	
 	<!--  Add Item Type Modal -->
 	  <div class="modal fade" id="additemtype" role="dialog">
@@ -363,10 +367,6 @@
 	  </div>
 	  <!-- End of Item Type Modal -->
 	  
-	<div id="addserv" >
-		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addidu">
-		<span class="glyphicon glyphicon-plus"></span> Add Item Distribution Unit</button>
-	</div>
 	
 	<!--  Add Item Distribution Unit Modal -->
 	  <div class="modal fade" id="addidu" role="dialog">
@@ -402,11 +402,6 @@
 	  <!-- End of Add Item Distribution Unit Modal -->
 	  
 	
-	<div id="addserv" >
-		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#adddoctor">
-		<span class="glyphicon glyphicon-plus"></span> Add Doctor</button>
-	</div>
-	
 	<!--  Add Doctor Modal -->
 	  <div class="modal fade" id="adddoctor" role="dialog">
 		<div class="modal-dialog modal-md">
@@ -440,10 +435,6 @@
 	  </div>
 	  <!-- End of Add Doctor Modal -->
 	
-	<div id="addserv" >
-		<button type="button" class="btn btn-md" data-toggle="modal" data-target="#addbreed">
-		<span class="glyphicon glyphicon-plus"></span> Add Breed</button>
-	</div>
 	
 	<!--  Add Breed Modal -->
 	  <div class="modal fade" id="addbreed" role="dialog">
