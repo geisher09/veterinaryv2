@@ -138,9 +138,9 @@
 
 			}
 			public function deleteItem($data){
-			$this->db->where('itemid', $data);
-			$this->db->delete('itemstock');
-
+			$this->db->where('id', $data);
+			$this->db->delete('item_instance');
+				
 
 
 			}
@@ -398,11 +398,10 @@
 			public function getitempurchase($id){
 				date_default_timezone_set('Asia/Manila');
 				$dr=date('Y-m-d');
-				$this->db->select('a.item_id,a.item_cost,a.item_qty,a.item_sup,a.date_received,a.item_exp,b.id,b.supplier_name');
+				$this->db->select('a.id as "nid", a.item_id,a.item_cost,a.item_qty,a.item_sup,a.date_received,a.item_exp,b.id,b.supplier_name');
 				$this->db->from('item_instance a');
 				$this->db->join('supplier b','a.item_sup = b.id');
 				$this->db->where('a.item_id',$id);
-				$this->db->where('a.item_exp >', $dr);
 				$this->db->where('a.item_qty >', 0);
 				$query = $this->db->get();
 
