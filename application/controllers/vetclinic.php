@@ -436,7 +436,9 @@ class vetclinic extends CI_Controller {
             if ($this->form_validation->run()){
              	$this->load->model('vet_model');
              	if (($this->vet_model->saveHistory())&&($this->vet_model->getLastpetvisit())){
-             		$this->session->set_flashdata('response', 'Saved Succesfully!');
+					 $this->session->set_flashdata('response', 'Saved Succesfully!');
+					 $this->session->set_userdata('invoice', 'yes');
+					 $this->getInvoiceData();
 				 }
 				 else{
              		//$this->session->set_flashdata('response', 'Failed :(');
@@ -1213,6 +1215,37 @@ class vetclinic extends CI_Controller {
 		);
 		$this->vet_model->addBreed($data);
 		redirect(base_url());
+	}
+
+	public function getInvoiceData(){
+		$visitDetails = $this->vet_model->getLastVisitDetails();
+		// print_r($visitDetails);
+		
+		$clientid = explode('-', $visitDetails['visitid']);
+		$clientid = $clientid[1];
+		$client = $this->vet_model->get_by_id($clientid);
+		$clientname = $client->cname;
+		// echo $clientname;
+
+		$test2 = $this->vet_model->getLastItemsUsed();
+		// print_r($test2);
+
+		$itemsUsed = array();
+		foreach($test2 as $t){
+			$i=array();
+			$i['price'] = $this->vet_model->getFirstinPrice($t['items_used']);
+			$i['item_desc'] = $t['item_desc'];
+			$i['qty'] = $t['qty'];
+			$i['total'] = $i['price']*$i['qty'];
+
+			$itemsUsed[] = $i;
+		}
+		// print_r($itemsUsed);
+
+		$this->session->set_userdata('visitDetails', $visitDetails);
+		$this->session->set_userdata('clientName', $clientname);
+		$this->session->set_userdata('itemsUsed', $itemsUsed);
+
 	}
 }
 

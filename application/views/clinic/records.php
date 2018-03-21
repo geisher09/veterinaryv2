@@ -1098,6 +1098,115 @@
 		</div>
 	  </div>
 	  <!-- End of Add Breed Modal -->
+
+      <!--Invoice Modal-->
+      <?php
+        if(isset($_SESSION['visitDetails'])){
+            $visitDetails = $_SESSION['visitDetails'];
+            $this->session->unset_userdata('visitDetails');
+        }
+        if(isset($_SESSION['itemsUsed'])){
+            $itemsUsed = $_SESSION['itemsUsed'];
+            $this->session->unset_userdata('itemsUsed');
+        }
+      ?>
+      <div class="modal" tabindex="-1" role="dialog" id="testModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Invoice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="invoiceBody">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-left">Bill to:</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center">Date: <strong><?=$visitDetails['visitdate']?></strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-left"><strong><?php if(isset($_SESSION['clientName'])){ echo $_SESSION['clientName']; $this->session->unset_userdata('clientName'); }?></strong></p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-left">Service Done</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center">Service Fee</p>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 0;"/>
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-left"><strong><?=$visitDetails['desc']?></strong></p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center"><strong>₱<?=$visitDetails['visit_cost']?></strong></p>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 0;"/>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="text-left">Item</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center">Price</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center">Quantity</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center">Total</p>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 0;"/>
+                    <?php
+                        foreach($itemsUsed as $i){
+                            echo '<div class="row">
+                                <div class="col-3">
+                                    <p class="text-left"><strong>'.$i['item_desc'].'</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <p class="text-center"><strong>₱'.$i['price'].'</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <p class="text-center"><strong>'.$i['qty'].'</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <p class="text-center"><strong>₱'.$i['total'].'</strong></p>
+                                </div>
+                            </div>';
+                        }
+                    ?>
+                    <hr style="margin-top: 0;"/>
+                    <br />
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-right"><strong>Amount Due:</strong></p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center"><strong>₱<?=$visitDetails['Total']?></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="printButton">Print</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
 	  
 	  
 <!--Script for select2-->
@@ -1438,6 +1547,26 @@ $('.modal').on('hidden.bs.modal', function (e) {
             });
         }
 
+</script>
+<?php
+    if(isset($_SESSION['invoice'])){
+        $this->session->unset_userdata('invoice');
+        echo "<script>
+                    $('#testModal').modal('show');
+              </script>";
+    }
+?>
+<!-- <script>
+    $(document).ready(function(){
+        $('#testModal').modal('show');
+    });
+</script> -->
+<script>
+    $(document).ready(function(){
+        $("#printButton").on("click", function(){
+            $("#invoiceBody").printThis();
+        });
+    });
 </script>
 </body>
 
