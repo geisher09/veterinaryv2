@@ -139,47 +139,73 @@ $(document).ready(function(){
 					var base_url = window.location.origin;
 					var id = "";
 					var x=$(this).closest('tr').find(':selected').val();
+					var z=$(this).closest('tr').find('.addtm').val();
 					var prc=$(this).val();
 				  	// $(".prd").val('hi');	
   					var y= $(this);		
-			       
-					
+			       var i;
+			       var item;
+			       var qty;
+					var total=0;
 
 					$.ajax({
 			   				type: "POST",
 						    url: base_url+"/veterinaryv2/vetclinic/ItemPrice",
-						     data: {id:x},
+						     data: {id:x,qty:z},
 						    success: function(msg){
-							var price = JSON.parse(msg);
-									
+							var price =JSON.parse(msg);
+									console.log(msg);
 									// console.log(price[0].qty_left);
 									// alert(price.item_cost)
-									if(parseInt(price[0].qty_left)<prc){
-										alert("Item out of stock, "+price[0].qty_left+" left");
-								//alert(price[0].qty_left);	
-									y.val('');
-									}
-									else{
-										var sum = 0;
-										var add =0;
+								// 	if(parseInt(price[0].qty_left)<prc){
+								// 		alert("Item out of stock, "+price[0].qty_left+" left");
+								// //alert(price[0].qty_left);	
+								// 	y.val('');
+								// 	}
+								// 	else{
+								// 		var sum = 0;
+								// 		var add =0;
 			
-									add=price[0].item_cost*prc;
-										$(y).closest('tr').find('.Tamount').val((add).toFixed(2));
-										$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
-									$(y).closest('tr').find('.prd').val(add);
-									 $(".prd").each(function(){
-								        sum += +$(this).val();
-								   });
+								// 	add=price[0].item_cost*prc;
+								// 		
+								// 		$(y).closest('tr').find('.ITprice').val(parseInt(price[0].item_cost).toFixed(2));
+								// 	$(y).closest('tr').find('.prd').val(add);
+								// 	 $(".prd").each(function(){
+								//         sum += +$(this).val();
+								//    });
+								// 		$total = 0;
+				for(i = 0; i < price.length; i++){
+					if(z != 0){
+						if(z >= price[i]['item_qty']){
+							qtyLeft = price[i]['item_qty'];
+							total += (price[i]['item_qty'] * price[i]['item_cost']);
+						
+						    z -= price[i]['item_qty'];
+					
+						    	  $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+						}
+						else{
+							total += (parseInt(z) * price[i]['item_cost']);
+							console.log(total);
+						 		$(y).closest('tr').find('.Tamount').val((total).toFixed(2));
+						    z = 0;	
+						    
+						}	
+					}
+					else{
+						break;
+					}
+				
 
 
-									 $("#costfee").val(sum.toLocaleString("en"));
-									 $("#hiddenSum").val(sum);
-											if($("#sfe").val()!=null){
-													var a=0;
-													a=$("#sfe").val();
-													total=sum+parseFloat(a);
-													$("#costfee").val((total).toFixed(2));
-											}
+									 // $("#costfee").val(sum.toLocaleString("en"));
+									 // $("#hiddenSum").val(sum);
+										// 	if($("#sfe").val()!=null){
+										// 			var a=0;
+										// 			a=$("#sfe").val();
+										// 			total=sum+parseFloat(a);
+										// 			$("#costfee").val((total).toFixed(2));
+										// 	}
 									}
 								  }
 					});
@@ -265,7 +291,7 @@ $(document).ready(function(){
 													total=sum+parseFloat(a);
 													$("#costfee").val((total).toFixed(2));
 											}
-										alert($("#sfe").val());
+									
 									}
 								  }
 
@@ -285,7 +311,7 @@ $(document).ready(function(){
 				//revent submit if form not complete
 
 
-				$("document").ready(function(e){
+				$(document).ready(function(e){
 							$("#sbmtbtn").click(function(e){
 								e.preventDefault();
 								if($("#btn_get").val()=='')
@@ -315,8 +341,8 @@ $(document).ready(function(){
 						  						  url: base_url+"/veterinaryv2/vetclinic/historynew",
 						   						  data: {itemid:x,qty_used:y,pet:a},
 						   						 success: function(msg){
-						   						 
-														   $('#clientModal').modal('hide');
+						   						 		console.log(msg);
+														
 														 	
 								 				 }
 												});

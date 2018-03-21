@@ -138,9 +138,15 @@ class vetclinic extends CI_Controller {
 	}
 
 	public function ItemPrice(){
-
-		$items = $this->vet_model->myItem($this->input->post('id'));
-		echo json_encode($items);
+		$dat=array('item_id'=>$this->input->post('id'),
+			'item_qty'=>$this->input->post('qty'));
+		$item = $this->vet_model->menus($dat);
+	
+				
+				// $i=int($i);
+		
+		// // $items = $this->vet_model->myItem($this->input->post('id'));
+		 echo json_encode($item);
 
 
 
@@ -387,32 +393,31 @@ class vetclinic extends CI_Controller {
 
 	//bawas item 
 	public function itemUsed(){
-			$data=array('id'=>$this->input->post('id'),
-				        'item'=>$this->input->post('item'));
+		
 			
-			// print_r($data);
-			date_default_timezone_set('Asia/Manila');
-			$date=date('Y-m-d H:i:s');
-			$pet=$this->input->post('pet');
-			$yr=date('y');
-			$petv=$this->vet_model->getLastpetvisit();
-			$petv=$petv+1;
-			 $id = $yr.'-'.$pet.'-'.$petv;
+			 print_r($data);
+			// date_default_timezone_set('Asia/Manila');
+			// $date=date('Y-m-d H:i:s');
+			// $pet=$this->input->post('pet');
+			// $yr=date('y');
+			// $petv=$this->vet_model->getLastpetvisit();
+			// $petv=$petv+1;
+			//  $id = $yr.'-'.$pet.'-'.$petv;
 
-			$notif = $this->vet_model->addItemUsed($id,$data['id']);
-			$item=$this->vet_model->itemUsage($data);
-			//to transaction
+			// $this->vet_model->addItemUsed($data['id'],$data['item']);
+			// $item=$this->vet_model->itemUsage($data);
+			// //to transaction
 
-				$details=$this->vet_model->myItem($data['id']);
-				$prd = $data['item']*$details[0]['item_cost'];
+			// 	$details=$this->vet_model->myItem($data['id']);
+			// 	$prd = $data['item']*$details[0]['item_cost'];
 				
-				$input = array('itemid'=>$data['id'],
-								'action'=>'Sold Item',
-								'description'=>'Sold Item: Item '.$details[0]['itemid'].'-'.$details[0]['item_desc'].' sold '.$data['item'].' pc/s with total cost of '.$prd. ' only '.$details[0]['qty_left']. ' pc/s left',
-								'qty'=>$data['item'],
-								'total_cost'=>$prd);
-				$this->itemhistory->create($input);
-		print_r($notif);
+			// 	$input = array('itemid'=>$data['id'],
+			// 					'action'=>'Sold Item',
+			// 					'description'=>'Sold Item: Item '.$details[0]['itemid'].'-'.$details[0]['item_desc'].' sold '.$data['item'].' pc/s with total cost of '.$prd. ' only '.$details[0]['qty_left']. ' pc/s left',
+			// 					'qty'=>$data['item'],
+			// 					'total_cost'=>$prd);
+			// 	$this->itemhistory->create($input);
+		// print_r($notif);
 	}
 
 	public function savehistory(){
@@ -535,19 +540,34 @@ class vetclinic extends CI_Controller {
 	}
 
 	public function historynew(){
-
-	  		$this->form_validation->set_rules('qty_used', 'Quantity', 'required');
+			print_r($_POST);
+		
+	  		 $this->form_validation->set_rules('qty_used', 'Quantity', 'required');
 			// $this->form_validation->set_rules('exp_date', 'Expiration Date', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]'); 
 			// $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-            
+          
             if ($this->form_validation->run()){
              	$this->load->model('vet_model');
              	//$this->vet_model->subtractitem();
              	$this->vet_model->saveItemSaleHistory();
-
+             date_default_timezone_set('Asia/Manila');
+			$date=date('Y-m-d H:i:s');
+			$pet=$this->input->post('pet');
+			$yr=date('y');
+			$petv=$this->vet_model->getLastpetvisit();
+			$petv=$petv+1;
+			$visitid = $yr.'-'.$pet.'-'.$petv;
+         $data=array('items_used'=>$this->input->post('itemid'),
+				'qty'=>$this->input->post('qty_used'),
+				'visitid'=>$visitid);
+			$this->vet_model->addItemUsed($data);
+             	
+        
+             	
              	$this->session->set_flashdata('response', 'Saved Succesfully hehe!');
 				
-				return redirect('vetclinic/history');
+				return redirect('vetclinic/historynew');
+
 
             }
 
@@ -566,6 +586,7 @@ class vetclinic extends CI_Controller {
 				$this->load->view('clinic/historyview2',['data'=>$data,'record_dat'=>$record_data]);
 
 				$this->load->view('include/footer');
+
 			}
 	}
 
