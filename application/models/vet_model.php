@@ -893,6 +893,63 @@ private $table = "schedule";
 			$this->db->insert('breeds', $data);
 		}
 
+		public function getLastVisitId(){
+			$this->db->select('visitid');
+			$this->db->order_by('visitdate','DESC');
+			$this->db->from('visit');
+
+			$query = $this->db->get();
+
+			$id = $query->row_array();
+			$id = $id['visitid'];
+			return $id;
+		}
+
+
+		public function getLastVisitDetails(){
+			$id = $this->getLastVisitId();
+			$this->db->select('visit.visitid, visit.visitdate, visit.serviceid, services.desc, visit.visit_cost, visit.Total');
+			$this->db->from('visit');
+			$this->db->join('services', 'visit.serviceid = services.id');
+			$this->db->where('visitid', $id);
+			$query = $this->db->get();
+
+			return $query->row_array();
+		}
+
+		public function getLastItemsUsed(){
+			$id = $this->getLastVisitId();
+			$this->db->select('items_used.items_used, items_used.qty, itemstock.item_desc');
+			$this->db->from('items_used');
+			$this->db->where('visitid', $id);
+			$this->db->join('itemstock', 'items_used.items_used = itemstock.itemid');
+			
+			$query = $this->db->get();
+
+			return $query->result_array();
+		}
+
+		public function getFirstInPrice($id){
+			$this->db->select_min('id');
+			$this->db->from('item_instance');
+			$this->db->where('item_id', $id);
+			date_default_timezone_set('Asia/Manila');
+			$this->db->where('item_exp >', date('Y-m-d'));
+			$this->db->where('item_qty >','0');
+
+			$query = $this->db->get();
+			$minID = $query->row_array();
+			$minID = $minID['id'];
+			
+			$this->db->select('item_cost');
+			$this->db->from('item_instance');
+			$this->db->where('id', $minID);
+			$query = $this->db->get();
+			$cost = $query->row_array();
+			$cost = $cost['item_cost'];
+			return $cost;
+		}
+
 	}
 
 ?>

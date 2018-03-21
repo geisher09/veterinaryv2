@@ -40,4 +40,6 @@
     <script type="text/javascript" src="<?php echo base_url("assets/demo/demo.js");?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/js/myjs.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/js/search.js"); ?>" ></script>
+    <!-- printThis js -->
+    <script type="text/javascript" src="<?php echo base_url("assets/printThis/printThis.js"); ?>" ></script>
 </head>
