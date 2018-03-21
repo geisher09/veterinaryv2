@@ -155,7 +155,7 @@
 			public function updates($data){
 
 					$this->db->set('item_desc',$data['item_desc']);
-					$this->db->set('item_cost',$data['item_cost']);
+					$this->db->set('item_type',$data['item_type']);
 					$this->db->where('itemid',$data['itemid']);
 					$this->db->update('itemstock');
 						
@@ -186,8 +186,8 @@
 			}
 			//chrstnv
 			public function myItem($id){
-					$this->db->from('itemstock');
-					$this->db->where('itemid',$id);
+					$this->db->from('item_instance');
+					$this->db->where('item_id',$id);
 					$query = $this->db->get();
 
 					return $query->result_array();

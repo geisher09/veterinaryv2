@@ -164,7 +164,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="container-fluid window" id="clientDet">
-                                    <?php echo form_open('vetclinic/updateitem', ['class'=>'form-horizontal']); ?>
+                                    <?php echo form_open('vetclinic/updateitem', ['class'=>'form-horizontal','id'=>'upItem']); ?>
                                     <br /><br />
                                     <?php foreach ($item_dat as $item){?>
                                     <p class="lead text-center" style="font-size:32px;font-family:'Montserrat';font-weight:500; color:#2471A3;">Item Details</p>
@@ -174,13 +174,15 @@
                                                 <label for="">Item id</label>
                                             <p style="font-weight:bold" id="itemid" value=""><?php echo $item->itemid;?></p>
                                             <?php $thisId=$item->itemid;?>
+                                            <input type="hidden" name="itemid" value='<?php echo $item->itemid;?>'>
                                         <h1></h1>    
                                             </div>
 
                                             <div class=" col-md-4 form-group text-center">
                                                 <label for="">Item Description</label>
-                                                <!-- <input type="text" class="form-control form-inline" id="itemdesc" name="itemdesc" value="" disabled="true"/> -->
-                                                        <p style="font-weight:bold" id="itemdesc"  value=""><?php echo $item->item_desc;?></p>
+                                                 <input type="text" class="form-control form-inline" id="itemdesc1" name="itemdesc" value="<?php echo $item->item_desc;?>" /> 
+                                                        <p style="font-weight:bold" id="itemdesc2"  value=""><?php echo $item->item_desc;?></p>
+                                                          <span class="valerror" id="item1e"></span>
                                             </div>
 
                                             <div class=" col-md-4 form-group text-center">
@@ -195,13 +197,20 @@
                                                 <!-- <input type="text" class="form-control form-inline" id="itemunit" name="itemunit" value="" disabled="true"/> -->
                                                         <p style="font-weight:bold" id="itemunit"  value=""><?php echo $item->dist_unit;?></p>
                                             </div>
-                                            <div class=" col-md-4 form-group text-center">
+                                            <div class=" col-md-4 form-group text-center" id="itemtype2">
                                                 <label for="">Item Type</label>
-                                                <!-- <input type="text" class="form-control form-inline" id="itemtype" name="itemtype" value="" disabled="true"/> -->
-                                                        <p style="font-weight:bold" id="itemtype"  value=""><?php echo $item->itemtype;?></p>
+                           <!--                      <input type="text" class="form-control form-inline" id="itemtype1" name="itemtype" value="" /> -->
+                                                          <p style="font-weight:bold" id=""  value=""><?php echo $item->itemtype;?></p>
+                                            </div>
+                                             <div id="itemtype1">
+                                              <label for="qty_left">Item type:</label>
+
+                                              <select style="font-size:15px; font-weight:bold;" name="type" class="form-control" id="Types1">
+
+                                              </select>
                                             </div>
                                             <div class=" col-md-4 form-group text-center" style="margin-top:-7px;"> 
-                                            <button style="font-size:15px;" class="btn btn-primary ecbtn" id="editClient">EDIT</button>
+                                            <button style="font-size:15px;" class="btn btn-primary ecbtn" id="EditItemb">EDIT</button>
                                             </div>
                                         </div>
                                     <hr /> 
@@ -275,7 +284,7 @@
                     </div>
                     <div>
                     <label for="qty_left">Quantity:</label>
-                    <input type="number" class="form-control globalDisable" id="qty_left" class="globalDisable" name="qty_left" />
+                    <input type="number" class="form-control globalDisable" id="qty_left1" class="globalDisable" name="qty_left" min="1"/>
             </div>
             <div>
               <label for="qty_left">Supplier:</label>
@@ -285,7 +294,7 @@
             </div>
             <div>
               <label for="qty_left">Expiration Date:</label>
-              <input type="date" class="form-control" id="exp_date" name="exp_date"/>
+              <input type="date" class="form-control" id="exp_date1" name="exp_date"/>
             </div>
 
           
@@ -294,7 +303,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button id="sbmtItem" type="submit" class="btn btn-primary">Add</button>
+                <button id="addst" type="submit" class="btn btn-primary">Add</button>
             </div>
             <?php echo form_close() ?>
         </div>
@@ -322,4 +331,29 @@ $(document).ready(function(){
                           }
                     });
         });
+
+
+
+            $.ajax({
+                         url: 'http://localhost/veterinaryv2/vetclinic/ajax_list',
+                        success: function(data1) {
+                            var obj = JSON.parse(data1);
+                          
+                            var serv3 = "";
+
+                           console.log(obj);
+
+                          
+                            for(var i=0; i<parseInt(obj.types.length); i++){
+                                    serv3 += '<option value='+obj.types[i].id+'>'+obj.types[i].itemtype+'</option>';
+                                }
+                                $("#Types1").html(serv3);
+
+
+
+                          }
+                    });
+       
+
+
 </script>

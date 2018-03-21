@@ -714,6 +714,9 @@
                                                 <th class="text-center bg-info" style="font-size:18px;">
                                                 Item Description
                                                 </th>
+                                                <th class="text-center bg-info" style="font-size:18px;">
+                                                    Qty
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody id="itemsused">
@@ -826,7 +829,7 @@
                           <div class="row form-group">
                                 <div class="col-md-3"><label style="text-decoration-line: underline;">Service Fee:</label></div>
                                 <div class="col-md-9">
-                                <input style="font-size:17px;" type="number" placeholder="" id="" name="" class="form-control"/></div>
+                                <input style="font-size:17px;" type="number" placeholder="" id="sfe" name="" class="form-control"/></div>
                             </div><br/>
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<thead>
@@ -856,7 +859,7 @@
 													<input type="number" name='qty0' id="qtyprice0" placeholder='Price' class="form-control ITprice" min="0" readonly />
 												</td>
 												<td>
-													<input type="number" name='qty0' id="amount0" placeholder='Price' class="form-control Tamount" min="0" readonly/>
+													<input type="number" name='qty0' id="amount0" placeholder='Price' class="form-control Tamount" min="0" readonly/> 
 												</td>
 
 											</tr>
@@ -892,7 +895,7 @@
 							<div class=" row form-group"><br/>
                                     <div class="col-md-4"><h4 class="">Total Cost: (Php)</h4></div>
                                     <div class="col-md-8" style="padding-top:30px;">
-									<input type="number" name="totalCost" placeholder="0.00" class="form-control" readonly/>
+									<input type="text" name="totalfee" id="costfee" placeholder="0.00" value="" class="form-control" readonly />
                                         </div>
 								</div>
 						
@@ -989,7 +992,8 @@ $('.modal').on('hidden.bs.modal', function (e) {
                                             var min =0;
                                             min = $("#hiddenSum").val()-$("#prdid"+(i-1)).val();
                                             
-                                            $("#TotalSum").text("? "+min.toLocaleString("en"));
+                                           
+                                                 $("#costfee").val(min.toLocaleString("en"));
                                         
 
                  if(i>1){
