@@ -1,11 +1,6 @@
 $(document).ready(function(){
-    var today = new Date().toISOString().split('T')[0];
-    document.getElementsByClassName("currdate")[0].setAttribute('min', today);
-
-
-
-	//edit infoo 
-
+    // var today = new Date().toISOString().split('T')[0];
+    // document.getElementsByClassName("currdate")[0].setAttribute('min', today);
 
 
 
@@ -139,6 +134,8 @@ $("#editClient").click(function(e){
 
 
 });
+
+                    
 
 
 // computatiom

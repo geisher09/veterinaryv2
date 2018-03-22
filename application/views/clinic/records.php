@@ -388,7 +388,7 @@
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="birthday">Birthday:</label>
                   <div class="col-sm-8 col-md-8" id="CDerror">
-                        <input type="date" class="form-control currdate" id="petbirthday" name="birthday"/>
+                        <input type="date" class="form-control" id="petbirthday" name="birthday"/>
                         <p id="CDtext" class="valerror"></p>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
@@ -609,7 +609,7 @@
                                 <div class=" col-sm-1 col-md-1"></div>
 								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Birthday:</label>
                                 <div class="col-sm-8 col-md-8">
-                                 <input type="date" class="form-control currdate" id="addpetbday" name="birthday"/>
+                                 <input type="date" class="form-control" id="addpetbday" name="birthday"/>
                                 </div>
                                 <div class=" col-sm-1 col-md-1"></div>
 								<p id="Bdayerror" class="valerror"></p>
@@ -849,7 +849,7 @@
 													1
 												</td>
 												<td>
-													<select style="font-size:17px;" class='form-control Vitems'><option></option></select>
+													<select style="font-size:17px;" id="itid0" class='form-control Vitems'><option></option></select>
 												</td>
 												<td>
 													<input type="number" name='qty0' id="myitem0" placeholder='Qty' class="form-control addtm" min="0"/>
@@ -1153,10 +1153,13 @@ $('.modal').on('hidden.bs.modal', function (e) {
         $(document).ready(function(){
                 var value="";
               var i=1;
-               sos(this.id);
+            sos(this.id);
+                 
              $("#add_row").click(function(){
-            
-              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select style='font-size:17px' class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
+           
+             
+                   
+              $('#addr'+i).html("<td class='text-center'>"+ (i+1) +"</td><td><select style='font-size:17px' id='itid"+i+"' class='form-control Vitems'><option></option></select></td><td><input name='qty"+i+"' type='number' placeholder='Qty' id='myitem"+i+"' class='form-control input-md addtm' min='0'><input id='prdid"+i+"' value='0' class='prd' type='hidden'></input></td><td><input type='number' name='qty0' id='amount0' placeholder='Price' class='form-control Tamount' min='0' readonly/></td>");
 
               $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 
@@ -1164,17 +1167,28 @@ $('.modal').on('hidden.bs.modal', function (e) {
                     value =  $("#myitem"+a).val();
                     
                     }
+
+               
+
               i++; 
+           
           });
              $("#delete_row").click(function(){
                                             var last=$('input[class*="prd"]').length;
                                             var min =0;
                                             var hid =0;
+                                             $('#add_row').show();
+                                             var v=parseInt($("#hiddenSum").val())-parseInt($("#prdid"+(i-1)).val());
+                                             $("#hiddenSum").val(v);
+
+                                            if($("#sfew").val()!=""){
                                             hid= parseInt($("#hiddenSum").val())+parseInt($("#sfew").val());
                                             min = hid-$("#prdid"+(i-1)).val();
                                       
-                                           
+                                                
                                                  $("#costfee").val(min.toLocaleString("en"));
+                                                    
+                                                 }  
                                         
 
                  if(i>1){
@@ -1235,7 +1249,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                                 $("#Select1").html(serv);
                             }
                             else
-                                $("#Select1").html('<option value=0>Check-up only</option>');
+                                $("#Select1").html('<option value=3>Check-up only</option>');
 
                         }
                     });
@@ -1341,17 +1355,50 @@ $('.modal').on('hidden.bs.modal', function (e) {
                     url: 'ajax_list',
                     data:{id: id},
                         success: function(data) {
+                            var b=[];
+                            var i=0;
+                    for(var a=0;a!=$(".Vitems").length;a++ ){
+                
+                           b[a]=$("#itid"+a+"").val(); 
+                            
+                                };
+                        
+                
                             var obj = JSON.parse(data);
+
                              var ai = "";
-                            for(var i=0; i<parseInt(obj.allitems.length); i++){
+                             var z = b.length;
+                             if(obj.allitems.length==z){
+                             $("#add_row").hide();
+
+                               for(i=0; i<parseInt(obj.allitems.length); i++){
+                                if(obj.allitems[i].itemid!=b[i]){
                                     ai += '<option value='+obj.allitems[i].itemid+'>'+obj.allitems[i].item_desc+'</option>';
                                     //hi += '<option value='+obj.allitems[i].stockno+'>'+obj.allitems[i].item_desc+'</option>';
-                             
+                                    
                                 }
+                              
 
-                            $("#additemId").val(id);
-                            $(".Vitems").last().html(ai);
+                                }
+                        }
+                        else{
+                           
+                             for(i=0; i<parseInt(obj.allitems.length); i++){
+                                if(obj.allitems[i].itemid!=b[i]){
+                                    ai += '<option value='+obj.allitems[i].itemid+'>'+obj.allitems[i].item_desc+'</option>';
+                                    //hi += '<option value='+obj.allitems[i].stockno+'>'+obj.allitems[i].item_desc+'</option>';
+                                    
+                                }
+                              
+
+                                }
+                           
+
+                           
                             //$("#Vitems2").html('<option value="wsss">wsss</option>');
+                        }
+                         $("#additemId").val(id);
+                            $(".Vitems").last().html(ai);
                                           
                         }
                     });

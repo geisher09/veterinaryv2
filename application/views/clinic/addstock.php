@@ -297,7 +297,7 @@
             </div> <br/>
             <div >
               <label for="qty_left">Expiration Date:</label>
-              <input type="date" class="form-control currdate" id="exp_date1" mindate=""  name="exp_date"/>
+              <input type="date" class="form-control currdate" id="exp_date1" value="<?php echo date(Y-m-d); ?> "  name="exp_date"/>
               <span class="valerror" id="exp_date2"></span>
             </div>
 
