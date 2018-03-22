@@ -1003,9 +1003,30 @@ class vetclinic extends CI_Controller {
 
 				
 			echo json_encode($data);
+		}
 
+	}
+	public function validatedit1(){
 
+		// print_r($_POST);
+		$this->form_validation->set_rules('desc','Description','required');
+		//$this->form_validation->set_rules('qty','qty','required');
 
+		
+
+		if($this->form_validation->run()){
+			echo true;
+		}
+		else{
+			if(form_error('desc')!=null){
+				$data['desc']=form_error('date');
+			}
+		
+				
+				
+
+				
+			echo json_encode($data);
 		}
 
 	}
@@ -1065,7 +1086,7 @@ class vetclinic extends CI_Controller {
 		 	if($this->form_validation->run()){
 
 
-		 		echo 'true';
+		 		echo true;
 
 		 	}
 		 	else
