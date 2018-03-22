@@ -278,7 +278,7 @@
             
             <!-- Modal Body -->
             <div class="modal-body" style="padding:50px;">
-                <?php echo date('Y-m-d', strtotime("+1 day")); ?>
+                
             <?php echo form_open('vetclinic/savenewpurchase/'.$thisId.'', ['class'=>'form-horizontal','id'=>'frms']); ?>
                   <div class="form-group" >
                     <div>

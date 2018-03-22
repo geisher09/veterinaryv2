@@ -145,7 +145,7 @@ $(document).ready(function(){
 					var base_url = window.location.origin;
 					var id = "";
 					var x=$(this).closest('tr').find(':selected').val();
-					var z=$(this).closest('tr').find('.addtm').val();
+					var z=parseInt($(this).closest('tr').find('.addtm').val());
 					var prc=$(this).val();
 				  	// $(".prd").val('hi');	
   					var y= $(this);		
@@ -176,9 +176,9 @@ $(document).ready(function(){
 									$(y).closest('tr').find('.prd').val(total);
 						}
 						else{
-							total += (parseInt(z) * price[i]['item_cost']);
-							console.log(total);
-							
+							total += (z * price[i]['item_cost']);
+						
+									
 								 $(y).closest('tr').find('.Tamount').val((total).toFixed(2));
 								 $(y).closest('tr').find('.prd').val(total);
 								 
@@ -248,7 +248,7 @@ $(document).ready(function(){
 							var base_url = window.location.origin;
 					var id = "";
 					var x=$(this).closest('tr').find(':selected').val();
-					var z=$(this).closest('tr').find('.addtm').val();
+					var z=parseInt($(this).closest('tr').find('.addtm').val());
 					var prc=$(this).closest('tr').find('.addtm').val();
 				  	// $(".prd").val('hi');	
   					var y= $(this);		
@@ -429,7 +429,7 @@ $(document).ready(function(){
 						   						  data: {name:pname,type:ptype,breed:pbreed,bday:pbday,mark:pmark},
 						   						 success: function(msg){
 						   						 	console.log(msg);
-						   						 	if(msg=='true'){
+						   						 	if(msg==1){
 						   					// 	 		$("#Peterror").text('');	
 														// $("#Perror").removeClass("has-error has-feedback");
 														// $("#addrerror").text('');	

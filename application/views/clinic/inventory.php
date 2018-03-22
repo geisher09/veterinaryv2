@@ -190,11 +190,10 @@
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th class="text-primary">Item no.</th>
-                                            <th class="text-primary">Description</th>
+                                            <th class="text-primary" style="text-align: center;">Item no.</th>
+                                            <th class="text-primary" style="text-align: center;">Description</th>
 
-                                            <th class="text-primary" >Stocks Left</th>
-                                            <th class="text-primary" style="text-align:center">Action</th>
+                                            <th class="text-primary">Action</th>
 
                                         </tr>
                                     </thead>
@@ -208,18 +207,13 @@
                                                                 echo '  
                                                                         <td style="text-align:center;">'.$s['itemid'].'</td>
                                                                         <td style="text-align:center;"  >'.$s['item_desc'].'</td>
-                                                                        <td style="text-align:center;"  >  </td>
                                                                     <td style="">
                                                                     <form method="POST" action="">
                                                                         <div class="row">
-                                                                            <div class="col-sm-6">
                                                                                 <input type="hidden" class="form-control" id="itemid" name="itemid" value="'.$s['itemid'].'"/>
-                                                                            </div>
-                                                                            <div class="class="col-sm-6">
                                                                             <a href="addstock/'.$s['itemid'].'" class="btn btn-info btn-md" />
                                                                                 <span class="glyphicon glyphicon-plus"></span>&nbsp;Modify Item</button>
                                                                             </a>
-                                                                            </div>
                                                                         </div>
                                                                     </form>
                                                                 </td>
