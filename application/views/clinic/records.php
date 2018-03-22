@@ -388,7 +388,7 @@
                   <div class="col-sm-1 col-md-1"></div>
                   <label class=" col-sm-2 col-md-2" for="birthday">Birthday:</label>
                   <div class="col-sm-8 col-md-8" id="CDerror">
-                        <input type="date" class="form-control" id="petbirthday" name="birthday"/>
+                        <input type="date" class="form-control" id="petbirthday" max="<?php echo date('Y-m-d'); ?>" name="birthday"/>
                         <p id="CDtext" class="valerror"></p>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
@@ -609,7 +609,7 @@
                                 <div class=" col-sm-1 col-md-1"></div>
 								<label class=" col-sm-2 col-md-2" for="" style="text-align:left;">Birthday:</label>
                                 <div class="col-sm-8 col-md-8">
-                                 <input type="date" class="form-control" id="addpetbday" name="birthday"/>
+                                 <input type="date" class="form-control" max="<?php echo date('Y-m-d'); ?>" id="addpetbday" name="birthday"/>
                                 </div>
                                 <div class=" col-sm-1 col-md-1"></div>
 								<p id="Bdayerror" class="valerror"></p>
@@ -1286,17 +1286,26 @@ $('.modal').on('hidden.bs.modal', function (e) {
                                             var last=$('input[class*="prd"]').length;
                                             var min =0;
                                             var hid =0;
+                                            var tot =0;
                                              $('#add_row').show();
-                                             var v=parseInt($("#hiddenSum").val())-parseInt($("#prdid"+(i-1)).val());
-                                             $("#hiddenSum").val(v);
+                                          
+                                           
+                                            if(last!=1){
+                                                   var v=parseInt($("#hiddenSum").val())-parseInt($("#prdid"+(i-1)).val());
+                                                  $("#hiddenSum").val(v);
 
-                                            if($("#sfew").val()!=""){
+                                            $("#costfee").val(hid.toLocaleString("en"));
+
+                                            
                                             hid= parseInt($("#hiddenSum").val())+parseInt($("#sfew").val());
-                                            min = hid-$("#prdid"+(i-1)).val();
-                                      
-                                                
-                                                 $("#costfee").val(min.toLocaleString("en"));
-                                                    
+                                            //min = hid-$("#prdid"+(i-1)).val();
+
+                                            if(last!=1){
+                                            $("#costfee").val(hid.toLocaleString("en"));
+                                             $("#costfee1").val(hid);
+                                            }
+                                   
+                                           
                                                  }  
                                         
 

@@ -1042,7 +1042,7 @@ class vetclinic extends CI_Controller {
 		 	if($this->form_validation->run()){
 
 
-		 		echo 'true';
+		 		echo true;
 
 		 	}
 		 	else{
