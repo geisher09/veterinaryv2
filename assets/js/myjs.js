@@ -1,11 +1,6 @@
 $(document).ready(function(){
-    var today = new Date().toISOString().split('T')[0];
-    document.getElementsByClassName("currdate")[0].setAttribute('min', today);
-
-
-
-	//edit infoo 
-
+    // var today = new Date().toISOString().split('T')[0];
+    // document.getElementsByClassName("currdate")[0].setAttribute('min', today);
 
 
 
@@ -43,7 +38,7 @@ $("#editClient").click(function(e){
 					    url: base_url+"/veterinaryv2/vetclinic/validate",
 					     data: {name:name,id:id,cnum:number,email:email,addr:address},
 					    success: function(msg){
-					    	if(msg=='true'){
+					    	if(msg==1){
 					 	
 					 $.ajax({
 					    type: "POST",
@@ -139,6 +134,8 @@ $("#editClient").click(function(e){
 
 
 });
+
+                    
 
 
 // computatiom
@@ -798,12 +795,14 @@ $(document).ready(function(){
 								var desc = $("#itemdesc1").val();
 								$.ajax({
 												type: "POST",
-						  						  url: base_url+"/veterinaryv2/vetclinic/validatedit",
+						  						  url: base_url+"/veterinaryv2/vetclinic/validatedit1",
 						   						  data: {desc:desc},
 						   						 success: function(msge){
 						   						 	console.log(msge);
+
 						   						if(msge==1){
 						   						$("#upItem").submit();
+
 						   					   		}
 						   					else{
 						   			$this.toggleClass('EDIT');

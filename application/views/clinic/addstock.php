@@ -268,6 +268,7 @@
             <div class="modal-header" style="background-color:rgba(128, 191, 255,0.9); height:13%;">
                 <h4 class="modal-title text-center" id="myModalLabel" style="font-size:25px; font-weight:bold; margin-left:20%;">
                     ADD NEW PURCHASE </h4>
+
                 <button type="button" class="close" 
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
@@ -277,6 +278,7 @@
             
             <!-- Modal Body -->
             <div class="modal-body" style="padding:50px;">
+                <?php echo date('Y-m-d', strtotime("+1 day")); ?>
             <?php echo form_open('vetclinic/savenewpurchase/'.$thisId.'', ['class'=>'form-horizontal','id'=>'frms']); ?>
                   <div class="form-group" >
                     <div>
@@ -297,7 +299,7 @@
             </div> <br/>
             <div >
               <label for="qty_left">Expiration Date:</label>
-              <input type="date" class="form-control currdate" id="exp_date1" mindate=""  name="exp_date"/>
+              <input type="date" class="form-control currdate" id="exp_date1" value ="" min="<?php echo date('Y-m-d', strtotime("+30 day")); ?>" name="exp_date"/>
               <span class="valerror" id="exp_date2"></span>
             </div>
 
