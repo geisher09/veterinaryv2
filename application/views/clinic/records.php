@@ -1411,7 +1411,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
                             var r="";
                             var t="";
                             s = '<p align="center" style="font-size:20px;">Visit ID: '+obj.visit.visitid+'<br/>'+'Visit Date: '+obj.visit.visitdate+'</p>';
-                            t = '<p align="center" style="font-size:20px;">Doctor: '+obj.visit.name+'</p>';
+                            t = '<p align="center" style="font-size:20px;">Doctor: '+obj.visit.vetname+'</p>';
                             r = '<p align="center" style="font-size:20px;">Service Type: '+obj.visit.case_type+'&emsp;'+'Service Done: '+obj.visit.desc+'</p>';
                             q = '<p align="center" style="font-size:20px;">Pet ID: '+obj.visit.petid+'&emsp;'+'Pet name: '+obj.visit.pname+'</p>';
                             var item = "";
