@@ -710,6 +710,7 @@
 			$vdata = array(
 				  'visitid' => $yr.'-'.$pet.'-'.$petv,
 				  'petid' => $this->input->post('pet'),
+				  'vetid' => $this->input->post('vet'),
 			      'serviceid' => $this->input->post('Select1') ,
 			      'visitdate' => $date,
 			      'findings' => $this->input->post('findings') ,
@@ -761,10 +762,19 @@
 
 		public function getvisit_by_id($id)
 		{
-			$this->db->select('a.petid,b.pname,a.visitid,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
+			// $this->db->select('a.visitid,a.petid,a.vetid,a.serviceid,a.visitdate,a.findings,a.recommendation,
+			// 		a.case_type,a.visit_cost,a.Total,a.itemCost,b.petid,b.pname,c.vetid,c.vetname')
+			// 	$this->db->from('visit a');
+			// 	$this->db->join('pet b','a.petid = b.petid');
+			// 	$this->db->join('veterinarian c','a.vetid = c.vetid');
+			// 	$this->db->where('petid',$id);
+			// 	$query = $this->db->get();
+
+			$this->db->select('a.petid,b.pname,a.vetid,d.vetid,d.vetname,a.visitid,a.serviceid,a.visitdate,a.findings,a.recommendation,a.case_type,a.visit_cost,c.id,c.desc,a.Total,a.itemCost');
 			$this->db->from('visit a');
 			$this->db->join('pet b','a.petid = b.petid');
 			$this->db->join('services c','a.serviceid = c.id');
+			$this->db->join('veterinarian d','a.vetid = d.vetid');
 			// $this->db->group_by('b.clientid');     
 			$this->db->where('a.visitid',$id);
 			$query = $this->db->get();
