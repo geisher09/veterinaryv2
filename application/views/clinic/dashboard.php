@@ -109,7 +109,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
-                                if($record_dat['notif']!=0){
+                                // if($record_dat['notif']!=0){
                                     if(isset($record_dat['events'])){
                                         $i=1;
                                         foreach($record_dat['events'] as $e){
@@ -132,7 +132,7 @@
 
                                         }
                                     }
-                                }
+                                // }
 
 
                                     else {

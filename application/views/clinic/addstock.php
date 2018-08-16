@@ -186,7 +186,7 @@
 
                                             <div class=" col-md-4 form-group text-center">
                                                 <label for="">Quantity</label>
-                                                        <p style="font-weight:bold" id="quantity"  value=""><?php echo $item->totalq;?></p>
+                                                        <p style="font-weight:bold" id="quantity"  value=""><?php if(($item->totalq)==0){echo '0';} else echo $item->totalq;?></p>
                                             </div>
                                         <!--    <button class="btn btn-primary" id="modal">modal</button> -->
                                         </div>
