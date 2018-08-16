@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2018 at 12:08 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Aug 16, 2018 at 07:55 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -135,7 +137,11 @@ INSERT INTO `itemhistory` (`id`, `itemid`, `action`, `description`, `date`, `qty
 (40, 'Med200318-1', 'Sold Item', 'Sold Item: Item [Med200318-1 ]- VitaC for Cats with 1 pc/s total cost of 550 only 136 pc/s left', '2018-03-22 03:59:29', 1, '550.00'),
 (41, 'Med200318-1', 'Sold Item', 'Sold Item: Item [Med200318-1 ]- VitaC for Cats with 5 pc/s total cost of 2750 only 131 pc/s left', '2018-03-22 04:03:40', 5, '2750.00'),
 (42, 'Med200318-1', 'Sold Item', 'Sold Item: Item [Med200318-1 ]- VitaC for Cats with 1 pc/s total cost of 550 only 130 pc/s left', '2018-03-22 04:04:18', 1, '550.00'),
-(43, 'Med200318-1', 'Sold Item', 'Sold Item: Item [Med200318-1 ]- VitaC for Cats with 1 pc/s total cost of 550 only 129 pc/s left', '2018-03-22 04:04:18', 1, '550.00');
+(43, 'Med200318-1', 'Sold Item', 'Sold Item: Item [Med200318-1 ]- VitaC for Cats with 1 pc/s total cost of 550 only 129 pc/s left', '2018-03-22 04:04:18', 1, '550.00'),
+(44, 'Med200318-1', 'Add Stock', 'Add Stock: Item [Med200318-1 ]-  with 50 pc/s and price of 550 added ', '2018-08-08 09:53:04', 50, '27500.00'),
+(45, 'Med200318-2', 'Add Stock', 'Add Stock: Item [Med200318-2 ]-  with 70 pc/s and price of 90 added ', '2018-08-08 09:54:09', 70, '6300.00'),
+(46, 'Med200318-1', 'Sold Item', 'Sold Item: Item [Med200318-1 ]- VitaC for Cats with 1 pc/s total cost of 550 only 49 pc/s left', '2018-08-08 09:54:46', 1, '550.00'),
+(47, 'Med200318-2', 'Sold Item', 'Sold Item: Item [Med200318-2 ]- Paracetamol for pups with 2 pc/s total cost of 180 only 68 pc/s left', '2018-08-08 09:54:46', 2, '180.00');
 
 -- --------------------------------------------------------
 
@@ -200,7 +206,9 @@ INSERT INTO `items_used` (`items_used_id`, `visitid`, `items_used`, `qty`) VALUE
 (36, '18-1-1-23', 'Med200318-1', 1),
 (35, '18-1-1-22', 'Med200318-1', 1),
 (34, '18-1-1-21', 'Med200318-1', 1),
-(33, '18-1-1-20', 'Med200318-1', 1);
+(33, '18-1-1-20', 'Med200318-1', 1),
+(43, '18-1-1-29', 'Med200318-1', 1),
+(44, '18-1-1-30', 'Med200318-2', 2);
 
 -- --------------------------------------------------------
 
@@ -247,7 +255,9 @@ INSERT INTO `item_instance` (`id`, `item_id`, `item_cost`, `item_qty`, `item_sup
 (13, 'Med200318-2', 90, 75, 1, '2018-03-20', '2018-03-31', 0),
 (14, 'Med200318-1', 500, 25, 1, '2018-03-20', '2018-03-21', 0),
 (15, 'Med200318-1', 500, 60, 2, '2018-03-20', '2018-03-31', 0),
-(16, 'Med200318-2', 90, 45, 2, '2018-03-20', '2018-03-22', 0);
+(16, 'Med200318-2', 90, 45, 2, '2018-03-20', '2018-03-22', 0),
+(17, 'Med200318-1', 550, 49, 1, '2018-08-08', '2020-12-25', 0),
+(18, 'Med200318-2', 90, 68, 2, '2018-08-08', '2021-04-09', 0);
 
 -- --------------------------------------------------------
 
@@ -348,7 +358,9 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `desc`, `type`) VALUES
-(1, 'Puppy Cut', 'Grooming');
+(1, 'Puppy Cut', 'Grooming'),
+(2, '5in1 Vaccine', 'Treatment'),
+(3, 'Examine', 'Check-up only');
 
 -- --------------------------------------------------------
 
@@ -409,6 +421,7 @@ INSERT INTO `veterinarian` (`vetid`, `vetname`) VALUES
 
 CREATE TABLE `visit` (
   `visitid` varchar(30) NOT NULL,
+  `vetid` varchar(10) NOT NULL,
   `petid` varchar(20) NOT NULL,
   `serviceid` varchar(20) NOT NULL,
   `visitdate` varchar(25) NOT NULL,
@@ -424,35 +437,36 @@ CREATE TABLE `visit` (
 -- Dumping data for table `visit`
 --
 
-INSERT INTO `visit` (`visitid`, `petid`, `serviceid`, `visitdate`, `findings`, `recommendation`, `case_type`, `visit_cost`, `Total`, `itemCost`) VALUES
-('18-1-1-1', '1-1', '1', '2018-03-19 13:56:30', 'long haired', 'long haired', 'Grooming', '0.00', '0.00', '0.00'),
-('18-1-1-2', '1-1', '1', '2018-03-19 13:56:30', 'long haired', 'long haired', 'Grooming', '0.00', '0.00', '0.00'),
-('18-1-1-3', '1-1', '1', '2018-03-19 14:07:34', 'trial', 'trial', 'Grooming', '0.00', '0.00', '0.00'),
-('18-1-1-4', '1-1', '1', '2018-03-19 14:07:34', 'trial', 'trial', 'Grooming', '0.00', '0.00', '0.00'),
-('18-1-1-5', '1-1', '1', '2018-03-19 14:37:37', 'trial3', 'trial3', 'Grooming', '0.00', '0.00', '0.00'),
-('18-1-1-6', '1-1', '0', '2018-03-21 15:40:48', 'sick', 'sick', 'Examine', '100.00', '0.00', '0.00'),
-('18-1-1-7', '1-1', '1', '2018-03-21 15:53:18', 'asdad', 'sdsada', 'Grooming', '190.00', '1290.00', '550.00'),
-('18-1-1-8', '1-1', '1', '2018-03-21 15:54:01', 'asdasd', 'asdsa', 'Grooming', '100.00', '1200.00', '550.00'),
-('18-1-1-9', '1-1', '1', '2018-03-21 15:56:31', 'HASHAH', 'AHSHSA', 'Grooming', '100.00', '1200.00', '550.00'),
-('18-1-1-10', '1-1', '1', '2018-03-21 15:58:59', 'ah', 'hah', 'Grooming', '100.00', '1100.00', '550.00'),
-('18-1-1-11', '1-1', '1', '2018-03-21 20:28:35', 'test', 'test', 'Grooming', '1000.00', '6500.00', '5500.00'),
-('18-1-1-12', '1-1', '1', '2018-03-21 21:12:31', 'test3', 'test3', 'Grooming', '500.00', '6750.00', '6250.00'),
-('18-1-1-13', '1-1', '1', '2018-03-21 21:57:24', 'test4', 'test4', 'Grooming', '0.00', '2750.00', '2750.00'),
-('18-1-1-14', '1-1', '1', '2018-03-21 22:42:35', 'test', 'test', 'Grooming', '100.00', '650.00', '550.00'),
-('18-1-1-15', '1-1', '1', '2018-03-21 22:46:09', 'test', 'test', 'Grooming', '5000.00', '6100.00', '1100.00'),
-('18-1-1-16', '1-1', '1', '2018-03-21 22:48:17', 'test', '', 'Grooming', '1.00', '551.00', '550.00'),
-('18-1-1-17', '1-1', '1', '2018-03-22 00:32:18', 'test', 'test', 'Grooming', '1000.00', '6500.00', '5500.00'),
-('18-1-1-18', '1-1', '1', '2018-03-22 00:35:43', 'test', 'test', 'Grooming', '1000.00', '6500.00', '5500.00'),
-('18-1-1-19', '1-1', '1', '2018-03-22 00:38:12', 'test', 'test', 'Grooming', '1.00', '0.00', '0.00'),
-('18-1-1-28', '1-1', '1', '2018-03-22 04:04:18', 'test', 'test', 'Grooming', '100.00', '1200.00', '1100.00'),
-('18-1-1-27', '1-1', '1', '2018-03-22 04:03:40', 'test', '', 'Grooming', '500.00', '3250.00', '2750.00'),
-('18-1-1-26', '1-1', '1', '2018-03-22 03:59:29', 'test', '', 'Grooming', '50.00', '600.00', '550.00'),
-('18-1-1-24', '1-1', '1', '2018-03-22 03:50:46', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
-('18-1-1-25', '1-1', '1', '2018-03-22 03:54:08', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
-('18-1-1-20', '1-1', '1', '2018-03-22 03:41:40', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
-('18-1-1-21', '1-1', '1', '2018-03-22 03:43:13', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
-('18-1-1-22', '1-1', '1', '2018-03-22 03:45:42', 'tets', '', 'Grooming', '100.00', '650.00', '550.00'),
-('18-1-1-23', '1-1', '1', '2018-03-22 03:48:30', 'test', '', 'Grooming', '100.00', '650.00', '550.00');
+INSERT INTO `visit` (`visitid`, `vetid`, `petid`, `serviceid`, `visitdate`, `findings`, `recommendation`, `case_type`, `visit_cost`, `Total`, `itemCost`) VALUES
+('18-1-1-1', '', '1-1', '1', '2018-03-19 13:56:30', 'long haired', 'long haired', 'Grooming', '0.00', '0.00', '0.00'),
+('18-1-1-2', '', '1-1', '1', '2018-03-19 13:56:30', 'long haired', 'long haired', 'Grooming', '0.00', '0.00', '0.00'),
+('18-1-1-3', '', '1-1', '1', '2018-03-19 14:07:34', 'trial', 'trial', 'Grooming', '0.00', '0.00', '0.00'),
+('18-1-1-4', '', '1-1', '1', '2018-03-19 14:07:34', 'trial', 'trial', 'Grooming', '0.00', '0.00', '0.00'),
+('18-1-1-5', '', '1-1', '1', '2018-03-19 14:37:37', 'trial3', 'trial3', 'Grooming', '0.00', '0.00', '0.00'),
+('18-1-1-6', '', '1-1', '0', '2018-03-21 15:40:48', 'sick', 'sick', 'Examine', '100.00', '0.00', '0.00'),
+('18-1-1-7', '', '1-1', '1', '2018-03-21 15:53:18', 'asdad', 'sdsada', 'Grooming', '190.00', '1290.00', '550.00'),
+('18-1-1-8', '', '1-1', '1', '2018-03-21 15:54:01', 'asdasd', 'asdsa', 'Grooming', '100.00', '1200.00', '550.00'),
+('18-1-1-9', '', '1-1', '1', '2018-03-21 15:56:31', 'HASHAH', 'AHSHSA', 'Grooming', '100.00', '1200.00', '550.00'),
+('18-1-1-10', '', '1-1', '1', '2018-03-21 15:58:59', 'ah', 'hah', 'Grooming', '100.00', '1100.00', '550.00'),
+('18-1-1-11', '', '1-1', '1', '2018-03-21 20:28:35', 'test', 'test', 'Grooming', '1000.00', '6500.00', '5500.00'),
+('18-1-1-12', '', '1-1', '1', '2018-03-21 21:12:31', 'test3', 'test3', 'Grooming', '500.00', '6750.00', '6250.00'),
+('18-1-1-13', '', '1-1', '1', '2018-03-21 21:57:24', 'test4', 'test4', 'Grooming', '0.00', '2750.00', '2750.00'),
+('18-1-1-14', '', '1-1', '1', '2018-03-21 22:42:35', 'test', 'test', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-15', '', '1-1', '1', '2018-03-21 22:46:09', 'test', 'test', 'Grooming', '5000.00', '6100.00', '1100.00'),
+('18-1-1-16', '', '1-1', '1', '2018-03-21 22:48:17', 'test', '', 'Grooming', '1.00', '551.00', '550.00'),
+('18-1-1-17', '', '1-1', '1', '2018-03-22 00:32:18', 'test', 'test', 'Grooming', '1000.00', '6500.00', '5500.00'),
+('18-1-1-18', '', '1-1', '1', '2018-03-22 00:35:43', 'test', 'test', 'Grooming', '1000.00', '6500.00', '5500.00'),
+('18-1-1-19', '', '1-1', '1', '2018-03-22 00:38:12', 'test', 'test', 'Grooming', '1.00', '0.00', '0.00'),
+('18-1-1-28', '', '1-1', '1', '2018-03-22 04:04:18', 'test', 'test', 'Grooming', '100.00', '1200.00', '1100.00'),
+('18-1-1-27', '', '1-1', '1', '2018-03-22 04:03:40', 'test', '', 'Grooming', '500.00', '3250.00', '2750.00'),
+('18-1-1-26', '', '1-1', '1', '2018-03-22 03:59:29', 'test', '', 'Grooming', '50.00', '600.00', '550.00'),
+('18-1-1-24', '', '1-1', '1', '2018-03-22 03:50:46', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-25', '', '1-1', '1', '2018-03-22 03:54:08', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-20', '', '1-1', '1', '2018-03-22 03:41:40', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-21', '', '1-1', '1', '2018-03-22 03:43:13', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-22', '', '1-1', '1', '2018-03-22 03:45:42', 'tets', '', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-23', '', '1-1', '1', '2018-03-22 03:48:30', 'test', '', 'Grooming', '100.00', '650.00', '550.00'),
+('18-1-1-29', '301-001', '1-1', '3', '2018-08-08 09:54:46', 'sick', 'gws', 'Examine', '250.00', '980.00', '730.00');
 
 --
 -- Indexes for dumped tables
@@ -563,51 +577,62 @@ ALTER TABLE `visit`
 --
 ALTER TABLE `breeds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
   MODIFY `clientid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `distribution_unit`
 --
 ALTER TABLE `distribution_unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `itemhistory`
 --
 ALTER TABLE `itemhistory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
 --
 -- AUTO_INCREMENT for table `items_used`
 --
 ALTER TABLE `items_used`
-  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `items_used_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
 --
 -- AUTO_INCREMENT for table `item_instance`
 --
 ALTER TABLE `item_instance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `item_type`
 --
 ALTER TABLE `item_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
